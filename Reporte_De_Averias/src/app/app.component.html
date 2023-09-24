@@ -300,9 +300,39 @@
       visibility: hidden;
     }
   }
+
+  h1 {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
 </style>
 
 <!-- Toolbar -->
+<h1>Reporte de averías</h1>
+
+<form action="/reportes/guardar" method="post">
+  <input type="text" name="titulo" placeholder="Título">
+  <input type="text" name="descripcion" placeholder="Descripción">
+  <input type="submit" value="Enviar">
+</form>
+
 <div class="toolbar" role="banner">
   <img
     width="40"
