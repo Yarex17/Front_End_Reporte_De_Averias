@@ -1,1 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+h1 {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  
+  form {
+    width: 500px;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+  
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+    
+  }
+  
+  button {
+    background-color: 5BC0DE;
+    color: #5BC0DE;
+    cursor: pointer;
+    
+  }
+
+  .form-login {
+    width: 80%;
+    padding: 10% 20px;
+    margin: 0 auto;
+  }
+
+ .card{
+    height: 10%;
+    width: 80%;
+    margin-left: 60.5%;
+ }
+
+ .form-control {
+  line-height: 40%;
+}
+
+.imageContainer{
+  max-width: 300px;
+  max-height: 300px;
+  margin-left: 15%;
+}
+
+
+
+
+ 
+
+  
+  
