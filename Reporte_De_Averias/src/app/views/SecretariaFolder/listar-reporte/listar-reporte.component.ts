@@ -6,10 +6,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
+
 @Component({
-  selector: 'app-crear-reporte',
-  templateUrl: './crear-reporte.component.html',
-  styleUrls: ['./crear-reporte.component.css'],
+  selector: 'app-listar-reporte',
+  templateUrl: './listar-reporte.component.html',
+  styleUrls: ['./listar-reporte.component.css'],
   standalone:true,
   imports: [
     NgIf,
@@ -21,7 +22,7 @@ import {NgIf, NgFor} from '@angular/common';
     NgFor,
   ],
 })
-export class CrearReporteComponent {
+export class ListarReporteComponent {
 
   mobileQuery: MediaQueryList;
 
@@ -39,5 +40,4 @@ export class CrearReporteComponent {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-
 }
