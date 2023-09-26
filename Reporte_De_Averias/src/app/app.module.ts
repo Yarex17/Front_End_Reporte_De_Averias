@@ -9,13 +9,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { CrearReporteComponent } from './views/SecretariaFolder/crear-reporte/crear-reporte.component';
+import { ListarReporteComponent } from './views/SecretariaFolder/listar-reporte/listar-reporte.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CrearReporteComponent
   ],
   imports: [
     BrowserModule,
