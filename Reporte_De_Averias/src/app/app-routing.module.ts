@@ -4,7 +4,10 @@ import { SecretariaComponent } from './views/secretaria/secretaria.component';
 import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [{path : '', component : LoginComponent}
-,{path : 'secretaria', component : SecretariaComponent}];
+,{path : 'secretaria', component : SecretariaComponent}
+,{path : 'login', component : LoginComponent}
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
