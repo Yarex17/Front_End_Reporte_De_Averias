@@ -15,8 +15,8 @@
     <mat-sidenav-container class="example-sidenav-container"[style.marginTop.px]="mobileQuery.matches ? 56 : 0">
       <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>
-          <a class="asd" mat-list-item href="/jefetecnico">Menú principal</a>
-          <a class="asd" mat-list-item href="/modificarreporte-jefetecnico">Modificar Reporte</a>
+          <a class="asd" mat-list-item href="/tecnico">Menú principal</a>
+          <a class="asd" mat-list-item href="/modificarreporte-tecnico">Modificar Reporte</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -24,7 +24,7 @@
         <div>  
           <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Opción 1
+              Estado
             </button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">Opción 2</a>
@@ -49,7 +49,7 @@
                 <th class="text-center">Fecha de emisión</th>
                 <th class="text-center">Descripción</th>
                 <th class="text-center">Estado</th>
-                <th class="text-center">Técnico</th>
+                <th class="text-center">Ver</th>
               </tr>
             </thead>
             <tbody>
@@ -57,11 +57,11 @@
                 <td class="text-center">9/26/2023</td>
                 <td class="text-center">Fuga de agua en el servicio sanitario</td>
                 <td class="text-center">
-                  <button type="button" class="btn btn-primary dropdown-toggle" id="Button3" data-bs-toggle="dropdown"
+                <button type="button" class="btn btn-primary dropdown-toggle" id="Button3" data-bs-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   En proceso
                 </button></td>
-                <td class="text-center">Técnico 1</td>
+                <td class="text-center"><img src="./assets/eye.svg" alt="Imagen de la tarea"></td>
                 
             </tbody>
           </table>

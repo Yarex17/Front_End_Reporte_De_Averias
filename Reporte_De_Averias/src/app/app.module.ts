@@ -12,6 +12,7 @@ import { ListarEdificiosComponent } from './views/AdministradorDelEdificioFolder
 import { AdministradorDelEdifcioComponent } from './views/AdministradorDelEdificioFolder/administrador-del-edifcio/administrador-del-edifcio.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
