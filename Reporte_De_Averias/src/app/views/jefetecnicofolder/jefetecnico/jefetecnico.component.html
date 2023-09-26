@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <div class="example-container" [class.example-is-mobile]="mobileQuery.matches" >
+    <mat-toolbar  class="mat-toolbar">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <h1 class="app-name">Reporte de Averías</h1>
+      <h1 class="rol">Rol</h1>
+    </mat-toolbar>
+  
+    <mat-sidenav-container class="example-sidenav-container"[style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <mat-nav-list>
+          <a class="asd" mat-list-item href="/listarreporte-jefetecnico">Listar Reporte</a>
+          <a class="asd" mat-list-item href="/modificarreporte-jefetecnico">Modificar Reporte</a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</body>
+</html>
