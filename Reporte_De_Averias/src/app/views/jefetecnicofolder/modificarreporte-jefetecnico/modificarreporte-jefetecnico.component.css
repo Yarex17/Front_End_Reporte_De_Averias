@@ -83,3 +83,32 @@
   .btn-primary {
     background-color: #007bff;
   }
+
+  .btn-group{
+    margin-top: 1%;
+    margin-left: 28%;
+  }
+
+  #label1{
+    margin-left: 0.2%;
+  }
+
+  #label2{
+    margin-left: 0.2%;
+  }
+
+  #label3{
+    margin-left: 0.2%;
+  }
+
+  #Button1{
+    margin-left: 1%;
+  }
+
+  #Button2{
+    margin-left: 2%;
+  }
+
+  #Button3{
+    margin-left: 2%;
+  }
