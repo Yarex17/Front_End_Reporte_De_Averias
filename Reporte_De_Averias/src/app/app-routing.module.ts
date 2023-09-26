@@ -7,6 +7,9 @@ import { ListarReporteComponent } from './views/SecretariaFolder/listar-reporte/
 import { JefetecnicoComponent } from './views/jefetecnicofolder/jefetecnico/jefetecnico.component';
 import { ListarreporteJefetecnicoComponent } from './views/jefetecnicofolder/listarreporte-jefetecnico/listarreporte-jefetecnico.component';
 import { ModificarreporteJefetecnicoComponent } from './views/jefetecnicofolder/modificarreporte-jefetecnico/modificarreporte-jefetecnico.component';
+import { AdministradorDelEdifcioComponent } from './views/AdministradorDelEdificioFolder/administrador-del-edifcio/administrador-del-edifcio.component';
+import { ListarEdificiosComponent } from './views/AdministradorDelEdificioFolder/listar-edificios/listar-edificios.component';
+import { ListarOficinasComponent } from './views/AdministradorDelEdificioFolder/listar-oficinas/listar-oficinas.component';
 
 const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'secretaria', component : SecretariaComponent}
@@ -16,6 +19,9 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'jefetecnico', component: JefetecnicoComponent}
 ,{path : 'listarreporte-jefetecnico', component: ListarreporteJefetecnicoComponent}
 ,{path : 'modificarreporte-jefetecnico', component: ModificarreporteJefetecnicoComponent}
+,{path : 'administradordeledificio', component: AdministradorDelEdifcioComponent}
+,{path : 'listar_edificio', component:ListarEdificiosComponent}
+,{path : 'listar_oficina', component:  ListarOficinasComponent}
 
 ];
 
