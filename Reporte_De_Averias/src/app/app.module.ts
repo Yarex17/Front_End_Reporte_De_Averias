@@ -1,28 +1,25 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from './views/login/login.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
 
+import { LoginComponent } from './views/login/login.component';
+import { RouterModule, Routes } from '@angular/router';
+import { FormularioReporteComponent } from './views/Reporte-averias/formulario-reporte/formulario-reporte.component';
+import { InicioComponent} from './views/inicio/inicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    InicioComponent,
+    FormularioReporteComponent,
+
   ],
-  imports: [
-    BrowserModule,
-    MatSidenavModule,
-    MatListModule,
+  imports:[
     AppRoutingModule,
-    NgbModule,
-    BrowserAnimationsModule
+    RouterModule,
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })
