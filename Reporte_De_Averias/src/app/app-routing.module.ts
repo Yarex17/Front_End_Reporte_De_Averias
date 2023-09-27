@@ -15,6 +15,9 @@ import { ListarOficinasComponent } from './views/AdministradorDelEdificioFolder/
 import { TecnicoComponent } from './views/TecnicoFolder/tecnico/tecnico.component';
 import { ListarreporteTecnicoComponent } from './views/TecnicoFolder/listarreporte-tecnico/listarreporte-tecnico.component';
 import { VerymodicarreporteTecnicoComponent } from './views/TecnicoFolder/verymodicarreporte-tecnico/verymodicarreporte-tecnico.component';
+import { RegistrarEdificioComponent } from './views/AdministradorDelEdificioFolder/registrar-edificio/registrar-edificio.component';
+import { RegistrarOficinaComponent } from './views/AdministradorDelEdificioFolder/registrar-oficina/registrar-oficina.component';
+import { CrearUsuarioComponent } from './views/AdministradorDelEdificioFolder/crear-usuario/crear-usuario.component';
 
 
 const routes: Routes = [{path : '', component : LoginComponent}
@@ -25,16 +28,14 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'jefetecnico', component: JefetecnicoComponent}
 ,{path : 'listarreporte-jefetecnico', component: ListarreporteJefetecnicoComponent}
 ,{path : 'modificarreporte-jefetecnico', component: ModificarreporteJefetecnicoComponent}
-
 ,{path : 'administradordeledificio', component: AdministradorDelEdifcioComponent}
 ,{path : 'listar_edificio', component:ListarEdificiosComponent}
 ,{path : 'listar_oficina', component:  ListarOficinasComponent}
-
-
 ,{path : 'tecnico', component: TecnicoComponent}
 ,{path : 'listarreporte-tecnico', component: ListarreporteTecnicoComponent}
-,{path : 'modificarreporte-tecnico', component: VerymodicarreporteTecnicoComponent}
-
+,{path : 'registrarOficina', component: RegistrarOficinaComponent}
+,{path : 'registrarEdificio', component: RegistrarEdificioComponent}
+,{path : 'crearUsuario', component: CrearUsuarioComponent}
 ];
 
 @NgModule({
