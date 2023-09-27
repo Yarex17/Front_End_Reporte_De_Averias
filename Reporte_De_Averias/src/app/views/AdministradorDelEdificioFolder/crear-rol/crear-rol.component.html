@@ -1,4 +1,3 @@
-<p>listar-oficinas works!</p>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,13 +9,14 @@
     <mat-toolbar  class="mat-toolbar">
       <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="app-name">Reporte de Averías</h1>
-      <h1 class="rol">Rol</h1>
+      <h1 class="rol">Administrador Del Edificio</h1>
     </mat-toolbar>
   
     <mat-sidenav-container class="pro-sidenav-container"[style.marginTop.px]="mobileQuery.matches ? 56 : 0">
       <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>
           <a class="asd" mat-list-item href="/administradordeledificio">Menú principal</a>
+          <a class="asd" mat-list-item href="/listar_edificio">Listar edificios</a>
           <a class="asd" mat-list-item href="/registrarEdificio">Crear Edificio</a>
           <a class="asd" mat-list-item href="/eliminarEdificio">Eliminar edificio</a>
           <a class="asd" mat-list-item href="/actualizarEdificio">Actualizar edificios</a>
@@ -24,48 +24,35 @@
           <a class="asd" mat-list-item href="/registrarOficina">Crear Oficina</a>
           <a class="asd" mat-list-item href="/eliminarOficina">Eliminar oficinas</a>
           <a class="asd" mat-list-item href="/actualizarOficina">Actualizar oficinas</a>
-          <a class="asd" mat-list-item href="/crear-rol">Crear Rol</a>
           <a class="asd" mat-list-item href="/crearUsuario">Crear Usuario</a>
-          </mat-nav-list>
+        </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <form action="/submit" method="post">
-            <div class="form-group">
-              <label for="Edificio">Edificio</label>
-              <input type="text" class="form-control" id="name" name="Edificio" placeholder="Edificio">
-            </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
-          </form>
-        
         <div class="container">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th class="text-center">Número de piso</th>
-                <th class="text-center">Nombre del Edificio</th>
-                <th class="text-center">Ver</th>
-                <th class="text-center">Editar</th>
-                <th class="text-center">Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center">1</td>
-                <td class="text-center">Edificio</td>
-                <td class="text-center"><img src="./assets/eye.svg" alt="Imagen de la tarea"></td>
-                <td class="text-center"><img src="./assets/pencil-fill.svg" alt="Imagen de la tarea"></td>
-                <td class="text-center"><img src="./assets/trash-fill.svg" alt="Imagen de la tarea"></td>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="">
-          <button type="button" class="btn btn-primary" id="previous">Anterior</button>
-          <button type="button" class="btn btn-primary" id="next">Siguiente</button>
-        </div>
-
+          <h1 class="mt-5">Crear Rol</h1>
+          <form>
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="mb-3">
+                          <label for="nombre_rol" class="form-label">Nombre del rol</label>
+                          <input type="text" class="form-control" id="nombre_rol" name="nombre_rol" required>
+                      </div>
+      
+                      <div class="mb-3">
+                          <label for="descripcion_rol" class="form-label">Descripción del rol</label>
+                          <textarea class="form-control" id="descripcion_rol" name="descripcion_rol" rows="10" required></textarea>
+                      </div>
+                  </div>
+              </div>
+      
+              <button type="submit" class="btn btn-danger" id="cancelar">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Crear</button>
+          </form>
+      </div>
+      
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>
 </body>
 </html>
+
