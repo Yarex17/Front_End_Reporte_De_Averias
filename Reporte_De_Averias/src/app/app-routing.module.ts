@@ -22,6 +22,7 @@ import { ActualizarEdificioComponent } from './views/AdministradorDelEdificioFol
 import { EliminarEdificioComponent } from './views/AdministradorDelEdificioFolder/eliminar-edificio/eliminar-edificio.component';
 import { EliminarOficinaComponent } from './views/AdministradorDelEdificioFolder/eliminar-oficina/eliminar-oficina.component';
 import { ActualizarOficinaComponent } from './views/AdministradorDelEdificioFolder/actualizar-oficina/actualizar-oficina.component';
+import { CrearRolComponent } from './views/AdministradorDelEdificioFolder/crear-rol/crear-rol.component';
 
 
 const routes: Routes = [{path : '', component : LoginComponent}
@@ -45,6 +46,8 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'eliminarEdificio', component: EliminarEdificioComponent}
 ,{path : 'eliminarOficina', component: EliminarOficinaComponent}
 ,{path : 'actualizarOficina', component: ActualizarOficinaComponent}
+,{path : 'actualizarOficina', component: ActualizarOficinaComponent}
+,{path : 'crear-rol', component: CrearRolComponent}
 ];
 
 @NgModule({

@@ -13,8 +13,7 @@ import {MatListModule} from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-
+    LoginComponent
   ],
   imports: [
     BrowserModule,
