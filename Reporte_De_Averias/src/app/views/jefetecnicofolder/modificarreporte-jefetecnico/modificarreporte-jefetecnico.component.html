@@ -8,14 +8,14 @@
 </head>
 
 <body>
-  <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <div class="pro-container" [class.pro-is-mobile]="mobileQuery.matches">
     <mat-toolbar class="mat-toolbar">
       <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="app-name">Reporte de Averías</h1>
       <h1 class="rol">Jefe Técnico</h1>
     </mat-toolbar>
 
-    <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav-container class="pro-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
       <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
         fixedTopGap="56">
         <mat-nav-list>
