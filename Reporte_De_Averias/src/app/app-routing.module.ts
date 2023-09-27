@@ -33,6 +33,7 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'listar_oficina', component:  ListarOficinasComponent}
 ,{path : 'tecnico', component: TecnicoComponent}
 ,{path : 'listarreporte-tecnico', component: ListarreporteTecnicoComponent}
+,{path : 'modificarreporte-tecnico', component: VerymodicarreporteTecnicoComponent}
 ,{path : 'registrarOficina', component: RegistrarOficinaComponent}
 ,{path : 'registrarEdificio', component: RegistrarEdificioComponent}
 ,{path : 'crearUsuario', component: CrearUsuarioComponent}

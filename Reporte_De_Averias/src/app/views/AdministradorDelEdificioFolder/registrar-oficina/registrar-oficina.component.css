@@ -1,4 +1,4 @@
-.example-container {
+.pro-container {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -8,20 +8,20 @@
     right: 0;
   }
   
-  .example-is-mobile .example-toolbar {
+  .pro-is-mobile .pro-toolbar {
     position: fixed;
     z-index: 2;
   }
   
-  h1.example-app-name {
+  h1.pro-app-name {
     margin-left: 8px;
   }
   
-  .example-sidenav-container {
+  .pro-sidenav-container {
     flex: 1;
   }
   
-  .example-is-mobile .example-sidenav-container {
+  .pro-is-mobile .pro-sidenav-container {
     flex: 1 0 auto;
   }
   
