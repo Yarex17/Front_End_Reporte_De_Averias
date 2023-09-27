@@ -18,6 +18,8 @@ import { VerymodicarreporteTecnicoComponent } from './views/TecnicoFolder/verymo
 import { RegistrarEdificioComponent } from './views/AdministradorDelEdificioFolder/registrar-edificio/registrar-edificio.component';
 import { RegistrarOficinaComponent } from './views/AdministradorDelEdificioFolder/registrar-oficina/registrar-oficina.component';
 import { CrearUsuarioComponent } from './views/AdministradorDelEdificioFolder/crear-usuario/crear-usuario.component';
+import { ActualizarEdificioComponent } from './views/AdministradorDelEdificioFolder/actualizar-edificio/actualizar-edificio.component';
+import { EliminarEdificioComponent } from './views/AdministradorDelEdificioFolder/eliminar-edificio/eliminar-edificio.component';
 
 
 const routes: Routes = [{path : '', component : LoginComponent}
@@ -37,6 +39,8 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'registrarOficina', component: RegistrarOficinaComponent}
 ,{path : 'registrarEdificio', component: RegistrarEdificioComponent}
 ,{path : 'crearUsuario', component: CrearUsuarioComponent}
+,{path : 'actualizarEdificio', component: ActualizarEdificioComponent}
+,{path : 'eliminarEdificio', component: EliminarEdificioComponent}
 ];
 
 @NgModule({

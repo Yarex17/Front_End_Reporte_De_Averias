@@ -15,10 +15,13 @@ import { CrearUsuarioComponent } from './views/AdministradorDelEdificioFolder/cr
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+
   ],
   imports: [
     BrowserModule,
