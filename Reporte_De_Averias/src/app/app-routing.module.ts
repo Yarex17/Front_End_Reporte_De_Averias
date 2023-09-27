@@ -20,6 +20,8 @@ import { RegistrarOficinaComponent } from './views/AdministradorDelEdificioFolde
 import { CrearUsuarioComponent } from './views/AdministradorDelEdificioFolder/crear-usuario/crear-usuario.component';
 import { ActualizarEdificioComponent } from './views/AdministradorDelEdificioFolder/actualizar-edificio/actualizar-edificio.component';
 import { EliminarEdificioComponent } from './views/AdministradorDelEdificioFolder/eliminar-edificio/eliminar-edificio.component';
+import { EliminarOficinaComponent } from './views/AdministradorDelEdificioFolder/eliminar-oficina/eliminar-oficina.component';
+import { ActualizarOficinaComponent } from './views/AdministradorDelEdificioFolder/actualizar-oficina/actualizar-oficina.component';
 
 
 const routes: Routes = [{path : '', component : LoginComponent}
@@ -41,6 +43,8 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'crearUsuario', component: CrearUsuarioComponent}
 ,{path : 'actualizarEdificio', component: ActualizarEdificioComponent}
 ,{path : 'eliminarEdificio', component: EliminarEdificioComponent}
+,{path : 'eliminarOficina', component: EliminarOficinaComponent}
+,{path : 'actualizarOficina', component: ActualizarOficinaComponent}
 ];
 
 @NgModule({
