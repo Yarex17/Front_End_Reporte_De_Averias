@@ -36,28 +36,29 @@
             </div>
             <button type="submit" class="btn btn-primary">Buscar</button>
           </form>
-        
-        <div class="container">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th class="text-center">Número de piso</th>
-                <th class="text-center">Nombre del Edificio</th>
-                <th class="text-center">Ver</th>
-                <th class="text-center">Editar</th>
-                <th class="text-center">Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center">1</td>
-                <td class="text-center">Edificio</td>
-                <td class="text-center"><img src="./assets/eye.svg" alt="Imagen de la tarea"></td>
-                <td class="text-center"><img src="./assets/pencil-fill.svg" alt="Imagen de la tarea"></td>
-                <td class="text-center"><img src="./assets/trash-fill.svg" alt="Imagen de la tarea"></td>
-            </tbody>
-          </table>
-        </div>
+
+            <div class="container">
+              <table class="table table-bordered" *ngFor="let Edificio of listaEdificios">
+                <thead>
+                  <tr>
+                    <th class="text-center">Número de piso</th>
+                    <th class="text-center">{{Edificio.TbEliminado}}</th>
+                    <th class="text-center">Ver</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">2</td>
+                    <td class="text-center"><img src="./assets/eye.svg" alt="Imagen de la tarea"></td>
+                    <td class="text-center"><img src="./assets/pencil-fill.svg" alt="Imagen de la tarea"></td>
+                    <td class="text-center"><img src="./assets/trash-fill.svg" alt="Imagen de la tarea"></td>
+                </tbody>
+              </table>
+            </div>
+
 
         <div class="">
           <button type="button" class="btn btn-primary" id="previous">Anterior</button>
