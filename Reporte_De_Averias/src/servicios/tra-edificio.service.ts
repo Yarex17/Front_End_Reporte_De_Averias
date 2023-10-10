@@ -28,7 +28,7 @@ export class TraEdificioService {
   };
 
   getEdificios(): Observable<Edificio[]> {
-    return this.http.get<Edificio[]>(this.urlAPI + "listarEdificio", this.httpOptions2
+    return this.http.get<Edificio[]>(this.urlAPI + "ListarTraEdificio", this.httpOptions2
     );
   }
 }
