@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-g
+import { RouterModule, Routes } from '@angular/router';
 import { SecretariaComponent } from './views/SecretariaFolder/secretaria/secretaria.component';
 import { LoginComponent } from './views/login/login.component';
 import { CrearReporteComponent } from './views/SecretariaFolder/crear-reporte/crear-reporte.component';
