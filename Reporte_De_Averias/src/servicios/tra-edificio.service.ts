@@ -31,4 +31,7 @@ export class TraEdificioService {
     return this.http.get<Edificio[]>(this.urlAPI + "ListarTraEdificio", this.httpOptions2
     );
   }
+  registrarEdificio(data: Edificio): Observable<any> {
+    return this.http.post(this.urlAPI + 'registarEdificio', this.httpOptions1);
+  }
 }
