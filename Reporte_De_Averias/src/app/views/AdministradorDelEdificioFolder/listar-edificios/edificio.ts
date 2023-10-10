@@ -1,8 +1,8 @@
 export interface Edificio{
-    TnIdEdificio:number,
-    TcPropietario: string,
-    TcNombre: string,
-    TbActivo: boolean,
-    TbEliminado: boolean
+    tnIdEdificio:number,
+    tcPropietario: string,
+    tcNombre: string,
+    tbActivo: boolean,
+    tbEliminado: boolean
 }
 

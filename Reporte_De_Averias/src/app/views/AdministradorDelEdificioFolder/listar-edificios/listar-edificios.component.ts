@@ -47,19 +47,16 @@ export class ListarEdificiosComponent implements OnInit {
     });
   }
 
-  obtenerTareas(){
-    this._edificiosService.getList().subscribe({
-      next:(data)=> {
-        this.listaEdificios=data;
-      },error:(e)=> {}
-    });
-  }
-
+  obtenerTareas() {
+    return this._edificiosService.getList().subscribe((data: Edificio[]) => {
+      console.log(data);
+      this.listaEdificios = data;
+    })
+  };
   ngOnInit(): void {
-    this.obtenerTareas
+    this.obtenerTareas();
     throw new Error('Method not implemented.');
   }
-
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
