@@ -8,7 +8,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Edificio } from '../../../core/edificio';
-import {ListarEdificioServices} from '../../../core/ListarEdificiosServices';
+import {EdificioServices} from '../../../core/EdificiosServices';
 
 @Component({
   selector: 'app-registrar-edificio',
@@ -33,7 +33,7 @@ export class RegistrarEdificioComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:ListarEdificioServices, private fb:FormBuilder) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private fb:FormBuilder) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

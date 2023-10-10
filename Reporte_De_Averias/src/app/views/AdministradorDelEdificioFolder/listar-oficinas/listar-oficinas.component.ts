@@ -6,6 +6,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Oficina } from '../../../core/oficina';
+import {OficinaServices} from '../../../core/OficinasServices';
 
 @Component({
   selector: 'app-listar-oficinas',
@@ -25,18 +28,33 @@ import {NgIf, NgFor} from '@angular/common';
 export class ListarOficinasComponent {
 
   mobileQuery: MediaQueryList;
+  listaOficinas:Oficina[]=[];
+  formularioOficina:FormGroup;
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasService:OficinaServices, private fb:FormBuilder) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-  }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.formularioOficina=this.fb.group({
+      TnIdOficina:[0,Validators.required],
+      TnNumeroPiso:[0,Validators.required],
+      TbActivo:[1,Validators.required],
+      TbEliminado:[1,Validators.required],
+    });
   }
 
+  obtenerTareas() {
+    return this._oficinasService.getList().subscribe((data: Oficina[]) => {
+      console.log(data);
+      this.listaOficinas = data;
+    })
+  };
+  ngOnInit(): void {
+    this.obtenerTareas();
+    throw new Error('Method not implemented.');
+  }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
