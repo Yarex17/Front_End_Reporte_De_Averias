@@ -9,6 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+import {HttpClientModule} from '@angular/common/http';
+
+import { ListarEdificioServices } from './views/AdministradorDelEdificioFolder/listar-edificios/ListarEdificiosServices';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +27,9 @@ import {MatListModule} from '@angular/material/list';
     MatListModule,
     AppRoutingModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
