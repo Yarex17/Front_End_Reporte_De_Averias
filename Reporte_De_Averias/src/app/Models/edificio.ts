@@ -11,6 +11,7 @@ export interface Edificio {
 export class Edificio implements Edificio {
 
   constructor(public TcNombre: string) {
+    
   };
 
 
