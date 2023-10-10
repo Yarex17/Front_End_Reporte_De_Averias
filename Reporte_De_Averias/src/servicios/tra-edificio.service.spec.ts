@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { TraEdificioService } from './tra-edificio.service';
 
+
 describe('TraEdificioService', () => {
   let service: TraEdificioService;
 
