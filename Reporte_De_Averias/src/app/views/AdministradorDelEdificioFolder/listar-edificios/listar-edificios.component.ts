@@ -7,8 +7,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Edificio } from './edificio';
-import {ListarEdificioServices} from './ListarEdificiosServices';
+import { Edificio } from '../../../core/edificio';
+import {ListarEdificioServices} from '../../../core/ListarEdificiosServices';
 
 @Component({
   selector: 'app-listar-edificios',
