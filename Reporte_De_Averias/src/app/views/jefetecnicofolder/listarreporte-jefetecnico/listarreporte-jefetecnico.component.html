@@ -43,6 +43,27 @@
         </div>
 
         <div class="container">
+          <table class="table table-bordered" *ngFor="let Reporte of listaReportes">
+            <thead>
+              <tr>
+                <th class="text-center">Descripción</th>
+                <th class="text-center">Fecha</th>
+                <th class="text-center">Ver</th>
+                <th class="text-center">Editar</th>
+                <th class="text-center">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">{{Reporte.tcDescripcion}}</td>
+                <td class="text-center">{{Reporte.tfFecha}}</td>
+                <td class="text-center"><img src="./assets/eye.svg" alt="Imagen de la tarea"></td>
+                <td class="text-center"><img src="./assets/pencil-fill.svg" alt="Imagen de la tarea"></td>
+                <td class="text-center"><img src="./assets/trash-fill.svg" alt="Imagen de la tarea"></td>
+            </tbody>
+          </table>
+        </div>
+        <!-- <div class="container">
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -65,7 +86,7 @@
                 
             </tbody>
           </table>
-        </div>
+        </div> -->
 
         <div class="">
           <button type="button" class="btn btn-primary" id="previous">Anterior</button>

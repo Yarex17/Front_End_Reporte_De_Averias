@@ -7,7 +7,7 @@ import {Edificio} from './edificio'
     providedIn:'root'
 })
 
-export class ListarEdificioServices{
+export class EdificioServices{
 
 
     constructor(private http:HttpClient){}

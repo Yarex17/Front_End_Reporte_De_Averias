@@ -32,32 +32,30 @@
         <form action="/submit" method="post">
             <div class="form-group">
               <label for="Edificio">Edificio</label>
-              <input type="text" class="form-control" id="name" name="Edificio" placeholder="Edificio">
+              <input type="text" class="form-control" id="name" name="Oficina" placeholder="Oficina">
             </div>
             <button type="submit" class="btn btn-primary">Buscar</button>
           </form>
         
-        <div class="container">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th class="text-center">Número de piso</th>
-                <th class="text-center">Nombre de la oficina</th>
-                <th class="text-center">Ver</th>
-                <th class="text-center">Editar</th>
-                <th class="text-center">Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center">1</td>
-                <td class="text-center">Oficina 3</td>
-                <td class="text-center"><img src="./assets/eye.svg" alt="Imagen de la tarea"></td>
-                <td class="text-center"><img src="./assets/pencil-fill.svg" alt="Imagen de la tarea"></td>
-                <td class="text-center"><img src="./assets/trash-fill.svg" alt="Imagen de la tarea"></td>
-            </tbody>
-          </table>
-        </div>
+          <div class="container">
+            <table class="table table-bordered" *ngFor="let Oficina of listaOficinas">
+              <thead>
+                <tr>
+                  <th class="text-center">Numero de pisos</th>
+                  <th class="text-center">Ver</th>
+                  <th class="text-center">Editar</th>
+                  <th class="text-center">Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">{{Oficina.tnNumeroPiso}}</td>
+                  <td class="text-center"><img src="./assets/eye.svg" alt="Imagen de la tarea"></td>
+                  <td class="text-center"><img src="./assets/pencil-fill.svg" alt="Imagen de la tarea"></td>
+                  <td class="text-center"><img src="./assets/trash-fill.svg" alt="Imagen de la tarea"></td>
+              </tbody>
+            </table>
+          </div>
 
         <div class="">
           <button type="button" class="btn btn-primary" id="previous">Anterior</button>
