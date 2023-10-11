@@ -6,7 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
 import { Edificio } from '../../../core/edificio';
 import {EdificioServices} from '../../../core/EdificiosServices';
 
@@ -23,6 +23,7 @@ import {EdificioServices} from '../../../core/EdificiosServices';
     MatSidenavModule,
     MatListModule,
     NgFor,
+    ReactiveFormsModule
   ],
 })
 export class RegistrarEdificioComponent {
@@ -38,11 +39,11 @@ export class RegistrarEdificioComponent {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.formularioEdificio=this.fb.group({
-      TnIdEdificio:[0,Validators.required],
-      TcPropietario:["",Validators.required],
-      TcNombre:["",Validators.required],
-      TbActivo:[1,Validators.required],
-      TbEliminado:[1,Validators.required],
+      tnIdEdificio:[0,Validators.required],
+      tcPropietario:["",Validators.required],
+      tcNombre:["",Validators.required],
+      tbActivo:[1,Validators.required],
+      tbEliminado:[1,Validators.required],
     });
   }
 
@@ -52,8 +53,25 @@ export class RegistrarEdificioComponent {
       this.listaEdificios = data;
     })
   };
-
   
+  registrarEdificio(){
+    const request:Edificio ={
+      tnIdEdificio:0,
+      tcPropietario: this.formularioEdificio.value.tcNombre,
+      tcNombre: this.formularioEdificio.value.tcPropietario,
+      tbActivo:true,
+      tbEliminado:false
+    }
+    this._edificiosService.registrarEdificio(request).subscribe({
+      next:(data) =>{
+        this.listaEdificios.push(data);
+        this.formularioEdificio.patchValue({
+          tcNommbre:'',
+          tcPropietario:''
+        });
+      }, error:(e) =>{}
+    });
+  }
 
 
   ngOnInit(): void {
