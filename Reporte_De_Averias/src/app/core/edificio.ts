@@ -8,7 +8,7 @@ export interface Edificio{
 
 export class Edificio implements Edificio {
 
-    constructor(public tcPropietario: string,public tcNombre: string) {
+    constructor(public tnIdEdificio:number,public tcPropietario: string,public tcNombre: string, public tbActivo: boolean, public tbEliminado:boolean) {
     };
   
   

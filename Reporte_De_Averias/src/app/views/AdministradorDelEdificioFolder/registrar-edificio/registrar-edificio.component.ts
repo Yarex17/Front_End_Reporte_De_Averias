@@ -39,11 +39,11 @@ export class RegistrarEdificioComponent {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.formularioEdificio=this.fb.group({
-      tnIdEdificio:[0,Validators.required],
+      tnIdEdificio:[0],
       tcPropietario:["",Validators.required],
       tcNombre:["",Validators.required],
-      tbActivo:[1,Validators.required],
-      tbEliminado:[1,Validators.required],
+      tbActivo:[0],
+      tbEliminado:[1],
     });
   }
 
@@ -63,7 +63,9 @@ export class RegistrarEdificioComponent {
       tbEliminado:false
     }
     this._edificiosService.registrarEdificio(request).subscribe({
+      
       next:(data) =>{
+        console.log(data);
         this.listaEdificios.push(data);
         this.formularioEdificio.patchValue({
           tcNommbre:'',
