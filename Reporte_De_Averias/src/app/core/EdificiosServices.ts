@@ -24,10 +24,10 @@ export class EdificioServices{
         return this.http.get<Edificio[]>('https://localhost:7196/api/TraEdificios/ListarTraEdificio');
     }
 
-    registrarEdificio(data: Edificio): Observable<any> {
+    registrarEdificio(data: Edificio): Observable<Edificio> {
 
   
-        return this.http.post('https://localhost:7196/api/TraEdificios/RegistrarTraEdificio',data,this.httpOptions1);
+        return this.http.post<Edificio>('https://localhost:7196/api/TraEdificios/RegistrarTraEdificio',data);
       }
 
       modificarEdificio(data: Edificio): Observable<any> {
