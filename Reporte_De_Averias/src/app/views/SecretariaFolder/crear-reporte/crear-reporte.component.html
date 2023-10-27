@@ -22,7 +22,7 @@
       <mat-sidenav-content>
         <div class="container">
             <h1 class="mt-5">Reporte de avería</h1>
-            <form>
+            <form [formGroup]="formularioReporte">
               <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
@@ -53,12 +53,12 @@
         
                   <div class="mb-3">
                     <label for="descripcion_informe" class="form-label">Descripción del informe</label>
-                    <textarea class="form-control" id="descripcion_informe" name="descripcion_informe" rows="3" required></textarea>
+                    <textarea type="text" class="form-control" id="descripcion_informe" name="descripcion_informe" rows="3" formControlName="tcDescripcion" required></textarea>
                   </div>
                 </div>
               </div>
         
-              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="submit" class="btn btn-primary" (click)="crearReporte()">Guardar</button>
             </form>
           </div>
       </mat-sidenav-content>

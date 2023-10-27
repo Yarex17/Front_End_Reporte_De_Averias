@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import {Reporte} from './reporte'
 
@@ -12,13 +12,20 @@ export class ReporteServices{
 
     constructor(private http:HttpClient){}
 
+    httpOptions1 = {
+        headers: new HttpHeaders({
+          "Access-Control-Allow-Origin": "*"
+        }),
+        withCredentials: false
+      };
+
     getList():Observable<Reporte[]>{
         return this.http.get<Reporte[]>('https://localhost:7196/api/TraReportes/ListarTraReportes');
     }
 
-    // registrarEdificio(data: Oficina): Observable<any> {
-    //     return this.http.post('https://localhost:7196/api/TraEdificios/RegistrarTraEdificio',data);
-    //   }
+    registrarReporte(data: Reporte): Observable<any> {
+         return this.http.post('https://localhost:7196/api/TraReportes/CrearTraReporte',data);
+    }
 
     //   modificarEdificio(data: Oficina): Observable<any> {
     //     return this.http.post('https://localhost:7196/api/TraEdificios/ModificarTraEdificio',data);

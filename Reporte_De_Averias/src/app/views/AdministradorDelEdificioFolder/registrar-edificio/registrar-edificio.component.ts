@@ -42,8 +42,8 @@ export class RegistrarEdificioComponent {
       tnIdEdificio:[0],
       tcPropietario:["",Validators.required],
       tcNombre:["",Validators.required],
-      tbActivo:[0],
-      tbEliminado:[1],
+      tbActivo:[1],
+      tbEliminado:[0],
     });
   }
 
