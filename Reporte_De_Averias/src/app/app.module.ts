@@ -11,7 +11,7 @@ import {MatListModule} from '@angular/material/list';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import {HttpClientModule} from '@angular/common/http';
-
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import {HttpClientModule} from '@angular/common/http';
     NgbModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
