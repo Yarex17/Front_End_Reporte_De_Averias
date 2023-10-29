@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular
 import { Edificio } from '../../../core/edificio';
 import {EdificioServices} from '../../../core/EdificiosServices';
 
+
 @Component({
   selector: 'app-registrar-edificio',
   templateUrl: './registrar-edificio.component.html',
@@ -23,7 +24,8 @@ import {EdificioServices} from '../../../core/EdificiosServices';
     MatSidenavModule,
     MatListModule,
     NgFor,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
 })
 export class RegistrarEdificioComponent {
