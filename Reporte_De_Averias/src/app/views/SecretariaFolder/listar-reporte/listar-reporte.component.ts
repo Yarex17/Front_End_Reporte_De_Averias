@@ -45,14 +45,14 @@ export class ListarReporteComponent {
     });
   }
 
-  obtenerTareas() {
+  obtenerReportes() {
     return this._reportesService.getList().subscribe((data: Reporte[]) => {
       console.log(data);
       this.listaReportes = data;
     })
   };
   ngOnInit(): void {
-    this.obtenerTareas();
+    this.obtenerReportes();
     throw new Error('Method not implemented.');
   }
   ngOnDestroy(): void {
