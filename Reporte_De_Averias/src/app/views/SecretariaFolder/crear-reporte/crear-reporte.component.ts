@@ -28,8 +28,10 @@ import { ReporteServices } from 'src/app/core/ReportesServices';
 export class CrearReporteComponent {
 
   mobileQuery: MediaQueryList;
-  listaEdificios:Reporte[]=[];
+  listaReportes:Reporte[]=[];
   formularioReporte:FormGroup;
+
+  idUsuarioActual: string | null | undefined;
 
   private _mobileQueryListener: () => void;
 
@@ -44,29 +46,19 @@ export class CrearReporteComponent {
       tbActivo:[1],
       tbEliminado:[0]
     });
+    this.idUsuarioActual = sessionStorage.getItem('id');
   }
 
   crearReporte(){
-    const request:Reporte = {
-      tnIdReporte:0,
-      tcDescripcion: this.formularioReporte.value.tcDescripcion,
-      tfFecha: new Date(),
-      tbActivo: true,
-      tbEliminado: false
-    }
-    this._reportesService.registrarReporte(request).subscribe({
-      next:(data) =>{
-        console.log(data);
-        this.listaEdificios.push(data);
-        this.formularioReporte.patchValue({
-          tcDescripcion:''
-        });
-      }, error:(e) =>{}
-    });
+    const request = {
+      descripcion: this.formularioReporte.value.tcDescripcion,
+      idUsuario: this.idUsuarioActual
+    };
+    this._reportesService.registrarReporte(request).subscribe((data: any) => {console.log(data);});
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.idUsuarioActual = sessionStorage.getItem('id');
   }
 
   ngOnDestroy(): void {
