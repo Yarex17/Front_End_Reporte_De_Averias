@@ -70,6 +70,6 @@ export class LoginComponent implements OnInit {
     else {
       console.log("Buscar" + usuario.length);
     }
-  }
+  } //buscarUsuario
 
 }
