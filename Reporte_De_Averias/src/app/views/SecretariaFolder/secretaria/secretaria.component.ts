@@ -1,5 +1,5 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
@@ -24,20 +24,20 @@ import {NgIf, NgFor} from '@angular/common';
     NgFor,
   ],
 })
-export class SecretariaComponent {
+export class SecretariaComponent implements OnInit{
 
 
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
-
+  rolValue: string | null | undefined;
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.rolValue = sessionStorage.getItem('rol')+" "+sessionStorage.getItem('usuario');
   }
 
   ngOnDestroy(): void {

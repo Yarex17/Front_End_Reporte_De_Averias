@@ -44,12 +44,13 @@ export class LoginComponent implements OnInit {
         console.log(data);
         dataLogin = new Login(data.usuario,data.contrasenna,data.id,data.rol)
         if (dataLogin.ID != null) {
-          localStorage.setItem('id', dataLogin.ID.toString());
-          localStorage.setItem('usuario', dataLogin.usuario);
-          localStorage.setItem('rol', dataLogin.rol);
-
+       
+          sessionStorage.setItem('id', dataLogin.ID.toString());
+          sessionStorage.setItem('usuario', dataLogin.usuario);
+          sessionStorage.setItem('rol', dataLogin.rol);
+       
           if(dataLogin.rol==="JefeTecnico"){
-            console.log("entré");
+
             this.router.navigate(['/jefetecnico']); 
           }else if(dataLogin.rol==="Secretaria"){
             this.router.navigate(['/secretaria']); 

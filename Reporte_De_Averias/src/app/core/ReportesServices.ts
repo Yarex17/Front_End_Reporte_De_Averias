@@ -23,8 +23,9 @@ export class ReporteServices{
         return this.http.get<Reporte[]>('https://localhost:7196/api/TraReportes/ListarTraReportes');
     }
 
-    registrarReporte(data: Reporte): Observable<any> {
-         return this.http.post('https://localhost:7196/api/TraReportes/CrearTraReporte',data);
+    registrarReporte(data: any): Observable<any> {
+         console.log(data);
+      return this.http.post("https://localhost:7196/api/TraReportes/CrearTraReporte?descripcion="+data.descripcion+"&idUsuario="+data.idUsuario, data);
     }
 
     //   modificarEdificio(data: Oficina): Observable<any> {
