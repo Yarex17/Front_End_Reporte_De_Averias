@@ -8,14 +8,13 @@ import { Login } from "../Models/login";
 })
 
 export class LoginService {
-  constructor(private http: HttpClient) {
-    console.log('Servicio HTTP');
-  }
+  constructor(private http: HttpClient) {}
 
 
 
   buscarUsuario(data: any): Observable<Login> {
-    return this.http.post<Login>("https://localhost:7275/buscarUsuario",data);
+    console.log(data);
+    return this.http.post<Login>("https://localhost:7289/buscarUsuario?usuario="+data.usuario+"&contrasenna="+data.contrasenna,data);
   }
 
 }
