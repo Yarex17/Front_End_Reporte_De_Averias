@@ -24,17 +24,24 @@ export class EdificioServices{
         return this.http.get<Edificio[]>('https://localhost:7196/api/TraEdificios/ListarTraEdificio');
     }
 
+    //buscarEdificio():Observable<Edificio[]>{
+     //return this.http.get<Edificio[]>('https://localhost:7196/api/TraEdificios/ListarTraEdificio');
+    //}
+
+    buscarEdificioPorUsuario(data: any):Observable<Edificio>{
+      return this.http.post<Edificio>("https://localhost:7196/api/TraEdificios/BuscarTraEdificioPorUsuario?idUsuario="+data, data);
+    }
+
     registrarEdificio(data: Edificio): Observable<Edificio> {
+      return this.http.post<Edificio>('https://localhost:7196/api/TraEdificios/RegistrarTraEdificio',data);
+    }
 
-  
-        return this.http.post<Edificio>('https://localhost:7196/api/TraEdificios/RegistrarTraEdificio',data);
-      }
+    modificarEdificio(data: Edificio): Observable<any> {
+      return this.http.post('https://localhost:7196/api/TraEdificios/ModificarTraEdificio',data);
+    }
 
-      modificarEdificio(data: Edificio): Observable<any> {
-        return this.http.post('https://localhost:7196/api/TraEdificios/ModificarTraEdificio',data);
-      }
-      eliminarEdificio(data: any): Observable<any> {
-        return this.http.post('https://localhost:7196/api/TraEdificios/EliminarTraEdificio',data);
-      }
+    eliminarEdificio(data: any): Observable<any> {
+      return this.http.post('https://localhost:7196/api/TraEdificios/EliminarTraEdificio',data);
+    }
 
 }
