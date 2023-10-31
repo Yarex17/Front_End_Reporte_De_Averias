@@ -7,7 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Reporte } from '../../../core/reporte';
+import { Reporte } from '../../../Models/reporte';
 import {ReporteServices} from '../../../core/ReportesServices';
 
 @Component({

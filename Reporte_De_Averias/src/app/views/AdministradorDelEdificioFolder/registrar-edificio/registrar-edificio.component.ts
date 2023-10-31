@@ -7,7 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
-import { Edificio } from '../../../core/edificio';
+import { Edificio } from '../../../Models/edificio';
 import {EdificioServices} from '../../../core/EdificiosServices';
 
 
