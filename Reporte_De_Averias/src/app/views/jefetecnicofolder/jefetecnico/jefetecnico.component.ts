@@ -35,7 +35,7 @@ export class JefetecnicoComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
   ngOnInit(): void {
-    this.rolValue = localStorage.getItem('rol');
+    this.rolValue = sessionStorage.getItem('rol')+" "+sessionStorage.getItem('usuario');
    
   }
 
