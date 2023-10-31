@@ -18,6 +18,8 @@
         <mat-nav-list>
           <a class="asd" mat-list-item href="/administradordeledificio">Menú principal</a>
           <a class="asd" mat-list-item href="/registrarEdificio">Crear Edificio</a>
+          <a class="asd" mat-list-item href="/eliminarEdificio">Eliminar edificio</a>
+          <a class="asd" mat-list-item href="/actualizarEdificio">Actualizar edificios</a>
           <a class="asd" mat-list-item href="/listar_oficina">Listar oficinas</a>
           <a class="asd" mat-list-item href="/registrarOficina">Crear Oficina</a>
           <a class="asd" mat-list-item href="/eliminarOficina">Eliminar oficinas</a>
@@ -41,6 +43,7 @@
                   <tr>
                     <th class="text-center">Propietario</th>
                     <th class="text-center">Nombre</th>
+                    <th class="text-center">Ver</th>
                     <th class="text-center">Editar</th>
                     <th class="text-center">Eliminar</th>
                   </tr>
@@ -49,8 +52,9 @@
                   <tr>
                     <td class="text-center">{{Edificio.tcPropietario}}</td>
                     <td class="text-center">{{Edificio.tcNombre}}</td>
-                    <td class="text-center"><a href="/actualizarEdificio"><img src="./assets/editar.png" alt="Imagen de la tarea"></a></td>
-                    <td class="text-center"><a href="/eliminarEdificio"><img src="./assets/eliminar.png" alt="Imagen de la tarea"></a></td>
+                    <td class="text-center"><img src="./assets/eye.svg" alt="Imagen de la tarea"></td>
+                    <td class="text-center"><img src="./assets/pencil-fill.svg" alt="Imagen de la tarea"></td>
+                    <td class="text-center"><img src="./assets/trash-fill.svg" alt="Imagen de la tarea"></td>
                 </tbody>
               </table>
             </div>

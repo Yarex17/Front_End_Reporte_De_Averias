@@ -7,7 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Oficina } from '../../../core/oficina';
+import { Oficina } from '../../../Models/oficina';
 import {OficinaServices} from '../../../core/OficinasServices';
 
 @Component({

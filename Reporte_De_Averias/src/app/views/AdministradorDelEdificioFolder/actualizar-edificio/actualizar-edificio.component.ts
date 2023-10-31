@@ -6,6 +6,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
+import { Edificio } from '../../../Models/edificio';
 
 @Component({
   selector: 'app-actualizar-edificio',
@@ -25,6 +26,9 @@ import {NgIf, NgFor} from '@angular/common';
 export class ActualizarEdificioComponent {
 
   mobileQuery: MediaQueryList;
+
+  edificioSeleccionado: Edificio | null = null;
+
 
   private _mobileQueryListener: () => void;
 
