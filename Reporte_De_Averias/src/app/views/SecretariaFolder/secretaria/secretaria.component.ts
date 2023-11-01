@@ -65,6 +65,7 @@ export class SecretariaComponent implements OnInit{
         sessionStorage.setItem('edificio', dataEdificio.tnIdEdificio.toString());
         console.log("Edif:"+sessionStorage.getItem('edificio'))
       }
+      this.obtenerAdminEdificio();
     });
   }
 
@@ -91,8 +92,7 @@ export class SecretariaComponent implements OnInit{
     this.rolValue = sessionStorage.getItem('rol');
     this.obtenerReportes();
     this.obtenerEdificio();
-    console.log("fefe:"+sessionStorage.getItem('edificio'));
-    this.obtenerAdminEdificio();
+    
   }
 
   ngOnDestroy(): void {
