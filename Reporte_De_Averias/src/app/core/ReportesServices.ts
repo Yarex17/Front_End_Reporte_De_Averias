@@ -29,7 +29,7 @@ export class ReporteServices{
 
     registrarReporte(data: any): Observable<any> {
          console.log(data);
-      return this.http.post("https://localhost:7196/api/TraReportes/CrearTraReporte?descripcion="+data.descripcion+"&idUsuario="+data.idUsuario, data);
+      return this.http.post("https://localhost:7196/api/TraReportes/CrearTraReporte?descripcion="+data.descripcion+"&idUsuario="+data.idUsuario+"&idAdminEdificio="+data.idAdmin, data);
     }
 
     //   modificarEdificio(data: Oficina): Observable<any> {

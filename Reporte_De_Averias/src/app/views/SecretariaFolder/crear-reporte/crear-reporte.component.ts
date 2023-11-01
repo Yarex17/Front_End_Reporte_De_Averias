@@ -33,6 +33,7 @@ export class CrearReporteComponent {
 
   idUsuarioActual: string | null | undefined;
   idAdminEdificio: string | null | undefined;
+  nombreAdminEdificio: string | null | undefined;
 
   private _mobileQueryListener: () => void;
 
@@ -53,14 +54,16 @@ export class CrearReporteComponent {
   crearReporte(){
     const request = {
       descripcion: this.formularioReporte.value.tcDescripcion,
-      idUsuario: this.idUsuarioActual
+      idUsuario: this.idUsuarioActual,
+      idAdmin: this.idAdminEdificio
     };
     this._reportesService.registrarReporte(request).subscribe((data: any) => {console.log(data);});
   }
 
   ngOnInit(): void {
     this.idUsuarioActual = sessionStorage.getItem('id');
-    this.idAdminEdificio = sessionStorage.getItem('nombreAdminEdificio');
+    this.idAdminEdificio = sessionStorage.getItem('idAdminEdificio');
+    this.nombreAdminEdificio = sessionStorage.getItem('nombreAdminEdificio');
   }
 
   ngOnDestroy(): void {
