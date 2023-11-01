@@ -10,8 +10,11 @@ import { Reporte } from 'src/app/Models/reporte';
 import { ReporteServices } from 'src/app/core/ReportesServices';
 import { EdificioServices } from 'src/app/core/EdificiosServices';
 import { Edificio } from 'src/app/Models/edificio';
+import { UsuarioServices } from 'src/app/core/UsuarioServices';
+import { Usuario } from 'src/app/Models/usuario';
 
 let dataEdificio: Edificio;
+let dataUsuario: Usuario;
 
 @Component({
   selector: 'app-secretaria',
@@ -38,11 +41,12 @@ export class SecretariaComponent implements OnInit{
   private _mobileQueryListener: () => void;
   rolValue: string | null | undefined;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _edificiosService: EdificioServices) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _edificiosService: EdificioServices, private _usuarioServices: UsuarioServices) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     dataEdificio;
+    dataUsuario;
   }
 
   obtenerReportes() {
@@ -61,15 +65,34 @@ export class SecretariaComponent implements OnInit{
         sessionStorage.setItem('edificio', dataEdificio.tnIdEdificio.toString());
         console.log("Edif:"+sessionStorage.getItem('edificio'))
       }
-    
+    });
+  }
+
+  obtenerAdminEdificio() {
+    const request = {
+      idEdificio: sessionStorage.getItem('edificio'),
+      rol: "AdminEdificio"
+    };
+    this._usuarioServices.buscarUsuarioPorEdificioYRol(request).subscribe((data: any) => 
+    {
+      console.log(data);
+      dataUsuario = new Usuario(data.tnIdUsuario, data.tccRol, data.tcNombre, data.tcApellido, data.tcCedula, data.tcContrasennia, data.tcCorreo, data.tbActivo, data.tbEliminado);
+      if(dataUsuario.tnIdUsuario != null){
+        sessionStorage.setItem('idAdminEdificio', dataUsuario.tnIdUsuario.toString());
+        sessionStorage.setItem('nombreAdminEdificio', dataUsuario.tcNombre);
+        console.log("id:"+sessionStorage.getItem('idAdminEdificio'))
+        console.log("nombre:"+sessionStorage.getItem('nombreAdminEdificio'))
+      }
     });
   }
 
   ngOnInit(): void {
     this.idUsuarioActual = sessionStorage.getItem('id');
-    this.rolValue = sessionStorage.getItem('rol')+" "+sessionStorage.getItem('usuario');
+    this.rolValue = sessionStorage.getItem('rol');
     this.obtenerReportes();
     this.obtenerEdificio();
+    console.log("fefe:"+sessionStorage.getItem('edificio'));
+    this.obtenerAdminEdificio();
   }
 
   ngOnDestroy(): void {
