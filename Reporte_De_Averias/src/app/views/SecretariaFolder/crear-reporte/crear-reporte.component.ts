@@ -32,6 +32,7 @@ export class CrearReporteComponent {
   formularioReporte:FormGroup;
 
   idUsuarioActual: string | null | undefined;
+  idAdminEdificio: string | null | undefined;
 
   private _mobileQueryListener: () => void;
 
@@ -59,6 +60,7 @@ export class CrearReporteComponent {
 
   ngOnInit(): void {
     this.idUsuarioActual = sessionStorage.getItem('id');
+    this.idAdminEdificio = sessionStorage.getItem('nombreAdminEdificio');
   }
 
   ngOnDestroy(): void {
