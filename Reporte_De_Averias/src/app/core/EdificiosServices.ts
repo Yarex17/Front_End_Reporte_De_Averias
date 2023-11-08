@@ -24,9 +24,9 @@ export class EdificioServices{
         return this.http.get<Edificio[]>('https://localhost:7196/api/TraEdificios/ListarTraEdificio');
     }
 
-    //buscarEdificio():Observable<Edificio[]>{
-     //return this.http.get<Edificio[]>('https://localhost:7196/api/TraEdificios/ListarTraEdificio');
-    //}
+    buscarEdificio(data: any):Observable<Edificio>{
+      return this.http.post<Edificio>("https://localhost:7196/api/TraEdificios/BuscarTraEdificio?id="+data, data);
+    }
 
     buscarEdificioPorUsuario(data: any):Observable<Edificio>{
       return this.http.post<Edificio>("https://localhost:7196/api/TraEdificios/BuscarTraEdificioPorUsuario?idUsuario="+data, data);
