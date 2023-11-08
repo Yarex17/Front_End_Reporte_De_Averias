@@ -69,6 +69,12 @@ export class SecretariaComponent implements OnInit{
     });
   }
 
+  editarReporte(idReporte: number) {
+    // Aquí puedes utilizar el ID del reporte seleccionado (idReporte) como necesites
+    console.log("ID del reporte seleccionado:", idReporte);
+    // También puedes redirigir a la página de edición o realizar otras acciones según tu lógica
+  }
+  
   obtenerAdminEdificio() {
     const request = {
       idEdificio: sessionStorage.getItem('edificio'),
