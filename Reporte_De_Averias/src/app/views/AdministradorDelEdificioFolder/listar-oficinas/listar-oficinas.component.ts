@@ -70,6 +70,15 @@ export class ListarOficinasComponent {
     });
   }
 
+  eliminarOficina(idOficina: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este edificio?')) {
+      this._oficinasService.eliminarOficina(idOficina).subscribe((data: any) => {
+        alert('Edificio eliminado exitosamente');
+        this.obtenerOficinas();
+      });
+    }
+  }
+
   ngOnInit(): void {
     this.obtenerOficinas();
     throw new Error('Method not implemented.');
