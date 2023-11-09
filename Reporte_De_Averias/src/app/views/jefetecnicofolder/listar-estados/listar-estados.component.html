@@ -1,0 +1,59 @@
+<p>listar-estados works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+  <div class="pro-container" [class.pro-is-mobile]="mobileQuery.matches" >
+    <mat-toolbar  class="mat-toolbar">
+      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <h1 class="app-name">Reporte de Averías</h1>
+      <h1 class="rol">Rol</h1>
+    </mat-toolbar>
+  
+    <mat-sidenav-container class="pro-sidenav-container"[style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+        <mat-nav-list>
+            <a class="asd" mat-list-item href="/jefetecnico">Menu Principal</a>
+            <a class="asd" mat-list-item href="/listarreporte-jefetecnico">Listar Reporte</a>
+            <a class="asd" mat-list-item href="/modificarreporte-jefetecnico">Modificar Reporte</a>
+          </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <form action="/submit" method="post">
+            <div class="form-group">
+              <label for="Edificio">Estados</label>
+              <input type="text" class="form-control" id="name" name="Estado" placeholder="Estado">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+          </form>
+
+            <div class="container">
+              <table class="table table-bordered" *ngFor="let Estado of listaEstados">
+                <thead>
+                  <tr>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">{{Estado.tcNombre}}</td>
+                    <td class="text-center"><a href="#"><img src="./assets/eliminar.png" alt="Imagen de la tarea"></a></td>
+                </tbody>
+              </table>
+            </div>
+
+
+        <div class="">
+          <button type="button" class="btn btn-primary" id="previous">Anterior</button>
+          <button type="button" class="btn btn-primary" id="next">Siguiente</button>
+        </div>
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</body>
+</html>
