@@ -43,7 +43,6 @@
                   <tr>
                     <th class="text-center">Propietario</th>
                     <th class="text-center">Nombre</th>
-                    <th class="text-center">Ver</th>
                     <th class="text-center">Editar</th>
                     <th class="text-center">Eliminar</th>
                   </tr>
@@ -52,9 +51,8 @@
                   <tr>
                     <td class="text-center">{{Edificio.tcPropietario}}</td>
                     <td class="text-center">{{Edificio.tcNombre}}</td>
-                    <td class="text-center"><img src="./assets/eye.svg" alt="Imagen de la tarea"></td>
-                    <td class="text-center"><img src="./assets/pencil-fill.svg" alt="Imagen de la tarea"></td>
-                    <td class="text-center"><img src="./assets/trash-fill.svg" alt="Imagen de la tarea"></td>
+                    <td class="text-center"><a (click)="editarEdificio(Edificio.tnIdEdificio)" href="#"><img src="./assets/editar.png" alt="Imagen de la tarea"></a></td>
+                    <td class="text-center"><a href="/eliminarEdificio"><img src="./assets/eliminar.png" alt="Imagen de la tarea"></a></td>
                 </tbody>
               </table>
             </div>

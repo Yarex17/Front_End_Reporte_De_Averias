@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Edificio } from '../../../Models/edificio';
 import {EdificioServices} from '../../../core/EdificiosServices';
 
+let dataEdificioSeleccionado: Edificio;
+
 @Component({
   selector: 'app-listar-edificios',
   templateUrl: './listar-edificios.component.html',
@@ -31,7 +33,6 @@ export class ListarEdificiosComponent implements OnInit {
   listaEdificios:Edificio[]=[];
   formularioEdificio:FormGroup;
 
-
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private fb:FormBuilder) {
@@ -45,6 +46,7 @@ export class ListarEdificiosComponent implements OnInit {
       TbActivo:[1,Validators.required],
       TbEliminado:[1,Validators.required],
     });
+    dataEdificioSeleccionado;
   }
 
   obtenerTareas() {
@@ -53,6 +55,26 @@ export class ListarEdificiosComponent implements OnInit {
       this.listaEdificios = data;
     })
   };
+
+  editarEdificio(idEdificio: number) {
+    console.log("ID del edificio seleccionado:", idEdificio);
+    
+    this._edificiosService.buscarEdificio(idEdificio).subscribe((data: any) => 
+    {
+      console.log(data);
+      dataEdificioSeleccionado = new Edificio(data.tnIdEdificio, data.tcPropietario, data.tcNombre, data.tbActivo, data.tbEliminado);
+      if(dataEdificioSeleccionado.tnIdEdificio != null){
+        sessionStorage.setItem('idEdificioSeleccionado', dataEdificioSeleccionado.tnIdEdificio.toString());
+        sessionStorage.setItem('nombreEdificioSeleccionado', dataEdificioSeleccionado.tcNombre);
+        sessionStorage.setItem('propietarioEdificioSeleccionado', dataEdificioSeleccionado.tcPropietario);
+
+        console.log("EdifID:"+sessionStorage.getItem('idEdificioSeleccionado'));
+        console.log("EdifNAME:"+sessionStorage.getItem('nombreEdificioSeleccionado'));
+        console.log("EdifPROPI:"+sessionStorage.getItem('propietarioEdificioSeleccionado'));
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.obtenerTareas();
     throw new Error('Method not implemented.');
