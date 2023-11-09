@@ -24,6 +24,7 @@ import { EliminarOficinaComponent } from './views/AdministradorDelEdificioFolder
 import { ActualizarOficinaComponent } from './views/AdministradorDelEdificioFolder/actualizar-oficina/actualizar-oficina.component';
 import { CrearRolComponent } from './views/AdministradorDelEdificioFolder/crear-rol/crear-rol.component';
 import { ListarEstadosComponent } from './views/jefetecnicofolder/listar-estados/listar-estados.component';
+import { CrearEstadoComponent } from './views/jefetecnicofolder/crear-estado/crear-estado.component';
 
 
 const routes: Routes = [{path : '', component : LoginComponent}
@@ -48,6 +49,7 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'eliminarOficina', component: EliminarOficinaComponent}
 ,{path : 'actualizarOficina', component: ActualizarOficinaComponent}
 ,{path : 'listar_estado', component: ListarEstadosComponent}
+,{path : 'crearEstado', component: CrearEstadoComponent}
 ,{path : 'crear-rol', component: CrearRolComponent}
 ];
 

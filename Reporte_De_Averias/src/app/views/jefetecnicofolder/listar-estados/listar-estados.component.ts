@@ -6,7 +6,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatosReporteServices } from 'src/app/core/DatosReporteServices';
 import { Estado } from 'src/app/Models/estado';
 
@@ -26,25 +25,18 @@ import { Estado } from 'src/app/Models/estado';
     NgFor
   ],
 })
+
 export class ListarEstadosComponent implements OnInit {
   
   mobileQuery: MediaQueryList;
-  formularioEdificio:FormGroup;
   listaEstados:Estado[]=[];
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private fb:FormBuilder, private _datosReporteServices: DatosReporteServices){
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices){
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    this.formularioEdificio=this.fb.group({
-      TnIdEdificio:[0,Validators.required],
-      TcPropietario:["",Validators.required],
-      TcNombre:["",Validators.required],
-      TbActivo:[1,Validators.required],
-      TbEliminado:[1,Validators.required],
-    });
   }
   
   obtenerEstados() {
@@ -53,6 +45,15 @@ export class ListarEstadosComponent implements OnInit {
       this.listaEstados = data;
     })
   };
+
+  eliminarEdificio(idEstado: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este edificio?')) {
+      this._datosReporteServices.eliminarEstado(idEstado).subscribe((data: any) => {
+        console.log('Estado eliminado exitosamente');
+        this.obtenerEstados();
+      });
+    }
+  }
 
   ngOnInit(): void {
     this.obtenerEstados()

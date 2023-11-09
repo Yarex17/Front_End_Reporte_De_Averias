@@ -23,7 +23,13 @@ export class DatosReporteServices{
         return this.http.get<Estado[]>('https://localhost:7196/api/TraEstadoes/ListarTraEstados');
     }
 
+    registrarEstado(data: any): Observable<any> {
+        return this.http.post('https://localhost:7196/api/TraEstadoes/CrearTraEstado?nombre='+data.nombreEstado, data);
+    }
 
+    eliminarEstado(data: any): Observable<any> {
+        return this.http.post('https://localhost:7196/api/TraEstadoes/EliminarTraEstado?id='+data,data);
+    }
 
     //crud TipoAveria
 

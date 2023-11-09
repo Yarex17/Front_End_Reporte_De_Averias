@@ -17,8 +17,8 @@
       <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>
             <a class="asd" mat-list-item href="/jefetecnico">Menu Principal</a>
-            <a class="asd" mat-list-item href="/listarreporte-jefetecnico">Listar Reporte</a>
             <a class="asd" mat-list-item href="/modificarreporte-jefetecnico">Modificar Reporte</a>
+            <a class="asd" mat-list-item href="/crearEstado">Crear Estado</a>
           </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -41,7 +41,7 @@
                 <tbody>
                   <tr>
                     <td class="text-center">{{Estado.tcNombre}}</td>
-                    <td class="text-center"><a href="#"><img src="./assets/eliminar.png" alt="Imagen de la tarea"></a></td>
+                    <td class="text-center"><a (click)="eliminarEdificio(Estado.tnIdEstado)" href="#"><img src="./assets/eliminar.png" alt="Imagen de la tarea"></a></td>
                 </tbody>
               </table>
             </div>
