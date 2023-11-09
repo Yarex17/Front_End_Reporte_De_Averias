@@ -32,8 +32,8 @@ export class OficinaServices{
     //   modificarEdificio(data: Oficina): Observable<any> {
     //     return this.http.post('https://localhost:7196/api/TraEdificios/ModificarTraEdificio',data);
     //   }
-    //   eliminarEdificio(data: any): Observable<any> {
-    //     return this.http.post('https://localhost:7196/api/TraEdificios/EliminarTraEdificio',data);
-    //   }
+       eliminarOficina(data: any): Observable<any> {
+         return this.http.post('https://localhost:7196/api/TraOficinas/EliminarTraOficina?id='+data,data);
+       }
 
 }
