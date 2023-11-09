@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog'; // Importa MatDialog
 import { Login } from 'src/app/Models/login';
 import { LoginService } from 'src/app/core/LoginServices';
-import { DialogComponent } from './dialog/dialog.component'; // Importa el componente de diálogo
+import { DialogComponent } from '../../Alerts/dialog/dialog.component'; // Importa el componente de diálogo
 
 let dataLogin: Login;
 

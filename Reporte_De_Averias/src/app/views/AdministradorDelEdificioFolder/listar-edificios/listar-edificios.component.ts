@@ -75,9 +75,17 @@ export class ListarEdificiosComponent implements OnInit {
     });
   }
 
+  eliminarEdificio(idEdificio: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este edificio?')) {
+      this._edificiosService.eliminarEdificio(idEdificio).subscribe((data: any) => {
+        console.log('Edificio eliminado exitosamente');
+        this.obtenerTareas();
+      });
+    }
+  }
+
   ngOnInit(): void {
     this.obtenerTareas();
-    throw new Error('Method not implemented.');
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
