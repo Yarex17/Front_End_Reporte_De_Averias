@@ -28,20 +28,15 @@
       <mat-sidenav-content>
         <div class="container">
             <h1 class="mt-5">Agregar Oficina</h1>
-            <form>
+            <form [formGroup]="formularioOficina">
               <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label for="titulo_informe" class="form-label">Nombre de la oficina</label>
-                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" required>
-                  </div>
-
-                  <div class="mb-3">
                     <label for="titulo_informe" class="form-label">Edificio</label>
-                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" required>
+                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" formControlName="tnEdificioCrearOficina" required>
                     
                     <label for="titulo_informe" class="form-label">Número de piso</label>
-                    <input type="text" class="form-control" id="" name="" required>
+                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" formControlName="tnNumeroPisoCrearOficina" required>
                   </div>
                 </div>
         
@@ -49,7 +44,7 @@
               
               
               <button type="submit" class="btn btn-danger" id="cancelar">Cancelar</button>
-              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="submit" class="btn btn-primary" (click)="registrarOficina()">Guardar</button>
             </form>
           </div>
       </mat-sidenav-content>
