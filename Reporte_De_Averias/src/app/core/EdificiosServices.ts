@@ -36,8 +36,9 @@ export class EdificioServices{
       return this.http.post<Edificio>('https://localhost:7196/api/TraEdificios/RegistrarTraEdificio',data);
     }
 
-    modificarEdificio(data: Edificio): Observable<any> {
-      return this.http.post('https://localhost:7196/api/TraEdificios/ModificarTraEdificio',data);
+    modificarEdificio(data: any): Observable<any> {
+      console.log(data);
+      return this.http.post("https://localhost:7196/api/TraEdificios/ModificarTraEdificio?id="+data.idEdificio+"&propietario="+data.propietarioEdificio+"&nombre="+data.nombreEdificio+"&activo=true",data);
     }
 
     eliminarEdificio(data: any): Observable<any> {

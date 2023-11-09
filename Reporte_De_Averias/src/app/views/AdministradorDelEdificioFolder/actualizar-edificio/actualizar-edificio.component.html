@@ -30,18 +30,16 @@
       <mat-sidenav-content>
         <div class="container">
             <h1 class="mt-5">Actualizar Edificio</h1>
-            <form>
+            <form [formGroup]="formularioEdificio">
               <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
-                    <label for="titulo_informe" class="form-label">Nombre del edificio</label>
-                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" value="{{nombreEdificioSeleccionado}}" required>
+                    <label for="titulo_informe" class="form-label">Propietario</label>
+                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" formControlName="tnPropietarioEdificioModificar" value="{{propietarioEdificioSeleccionado}}" required>
                   </div>
-
                   <div class="mb-3">
-                    <label for="titulo_informe" class="form-label">Dueño</label>
-                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" value="{{propietarioEdificioSeleccionado}}" required>
-                    
+                    <label for="titulo_informe" class="form-label">Nombre del edificio</label>
+                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" formControlName="tnNombreEdificioModificar" value="{{nombreEdificioSeleccionado}}" required>
                   </div>
                 </div>
         
@@ -49,7 +47,7 @@
               
               
               <button type="submit" class="btn btn-danger" id="cancelar">Cancelar</button>
-              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="submit" class="btn btn-primary" (click)="modificarEdificio()">Guardar</button>
             </form>
           </div>
       </mat-sidenav-content>
