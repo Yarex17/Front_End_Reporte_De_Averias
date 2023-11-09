@@ -27,8 +27,9 @@ export class ActualizarEdificioComponent {
 
   mobileQuery: MediaQueryList;
 
-  edificioSeleccionado: Edificio | null = null;
-
+  idEdificioSeleccionado: string | null | undefined;
+  nombreEdificioSeleccionado: string | null | undefined;
+  propietarioEdificioSeleccionado: string | null | undefined;
 
   private _mobileQueryListener: () => void;
 
@@ -37,8 +38,11 @@ export class ActualizarEdificioComponent {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
+  
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.idEdificioSeleccionado = sessionStorage.getItem('idEdificioSeleccionado');
+    this.nombreEdificioSeleccionado = sessionStorage.getItem('nombreEdificioSeleccionado');
+    this.propietarioEdificioSeleccionado = sessionStorage.getItem('propietarioEdificioSeleccionado');
   }
 
   ngOnDestroy(): void {
