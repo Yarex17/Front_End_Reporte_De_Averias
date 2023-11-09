@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { DialogComponent } from './Alerts/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './Alerts/popup/popup.component';
+import { ListarEstadosComponent } from './views/jefetecnicofolder/listar-estados/listar-estados.component';
+import { CrearEstadoComponent } from './views/jefetecnicofolder/crear-estado/crear-estado.component';
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { PopupComponent } from './Alerts/popup/popup.component';
     AppComponent,
     LoginComponent,
     DialogComponent,
-    PopupComponent
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
