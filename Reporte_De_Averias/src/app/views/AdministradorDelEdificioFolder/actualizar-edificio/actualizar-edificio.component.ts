@@ -9,6 +9,9 @@ import {NgIf, NgFor} from '@angular/common';
 import { Edificio } from '../../../Models/edificio';
 import { EdificioServices } from 'src/app/core/EdificiosServices';
 import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-actualizar-edificio',
@@ -37,7 +40,7 @@ export class ActualizarEdificioComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private fb:FormBuilder) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private fb:FormBuilder,private dialog: MatDialog,private router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -50,16 +53,39 @@ export class ActualizarEdificioComponent {
     });
   }
 
-  modificarEdificio(){
+  modificarEdificio() {
+    if (
+      !this.formularioEdificio.value.tnNombreEdificioModificar ||
+      !this.formularioEdificio.value.tnPropietarioEdificioModificar
+    ) {
+      this.mostrarPopupCamposEnBlanco();
+      return;
+    }
+  
     const request = {
       idEdificio: this.idEdificioSeleccionado,
       nombreEdificio: this.formularioEdificio.value.tnNombreEdificioModificar,
       propietarioEdificio: this.formularioEdificio.value.tnPropietarioEdificioModificar
     };
-    this._edificiosService.modificarEdificio(request).subscribe((data: any) => {console.log(data);});
+    
+    this._edificiosService.modificarEdificio(request).subscribe((data: any) => {
+      console.log(data);
+      this.router.navigate(['/listar_edificio']); // Redirección aquí
+    });
+  }
+  
+
+
+
+  mostrarPopupCamposEnBlanco() {
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '250px',
+      data: { message: 'Los campos están en blanco' }
+    });
   }
 
   ngOnInit(): void {
+    console.log();
     this.idEdificioSeleccionado = sessionStorage.getItem('idEdificioSeleccionado');
     this.nombreEdificioSeleccionado = sessionStorage.getItem('nombreEdificioSeleccionado');
     this.propietarioEdificioSeleccionado = sessionStorage.getItem('propietarioEdificioSeleccionado');
