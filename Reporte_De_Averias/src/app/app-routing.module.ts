@@ -46,7 +46,6 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'eliminarEdificio', component: EliminarEdificioComponent}
 ,{path : 'eliminarOficina', component: EliminarOficinaComponent}
 ,{path : 'actualizarOficina', component: ActualizarOficinaComponent}
-,{path : 'actualizarOficina', component: ActualizarOficinaComponent}
 ,{path : 'crear-rol', component: CrearRolComponent}
 ];
 

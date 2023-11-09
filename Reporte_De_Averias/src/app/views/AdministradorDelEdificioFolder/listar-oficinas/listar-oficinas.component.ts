@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Oficina } from '../../../Models/oficina';
 import {OficinaServices} from '../../../core/OficinasServices';
 
+let dataOficinaSeleccionada: Oficina;
+
 @Component({
   selector: 'app-listar-oficinas',
   templateUrl: './listar-oficinas.component.html',
@@ -43,16 +45,33 @@ export class ListarOficinasComponent {
       TbActivo:[1,Validators.required],
       TbEliminado:[1,Validators.required],
     });
+    dataOficinaSeleccionada;
   }
 
-  obtenerTareas() {
+  obtenerOficinas() {
     return this._oficinasService.getList().subscribe((data: Oficina[]) => {
       console.log(data);
       this.listaOficinas = data;
     })
   };
+
+  editarOficina(idOficina: number){
+    this._oficinasService.buscarOficina(idOficina).subscribe((data: any) => 
+    {
+      console.log(data);
+      dataOficinaSeleccionada = new Oficina(data.tnIdOficina, data.tnNumeroPiso, data.tbActivo, data.tbEliminado);
+      if(dataOficinaSeleccionada.tnIdOficina != null){
+        sessionStorage.setItem('idOficinaSeleccionado', dataOficinaSeleccionada.tnIdOficina.toString());
+        sessionStorage.setItem('numeroPisoOficinaSeleccionado', dataOficinaSeleccionada.tnNumeroPiso.toString());
+
+        console.log("OFID:"+sessionStorage.getItem('idOficinaSeleccionado'));
+        console.log("OFNP:"+sessionStorage.getItem('numeroPisoOficinaSeleccionado'));
+      }
+    });
+  }
+
   ngOnInit(): void {
-    this.obtenerTareas();
+    this.obtenerOficinas();
     throw new Error('Method not implemented.');
   }
   ngOnDestroy(): void {

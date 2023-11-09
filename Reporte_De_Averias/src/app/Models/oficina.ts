@@ -5,3 +5,9 @@ export interface Oficina{
     tbEliminado: boolean
 }
 
+export class Oficina implements Oficina{
+
+    constructor(public tnIdOficina:number, public tnNumeroPiso: number, public tbActivo: boolean, public tbEliminado: boolean){
+    };
+
+}
