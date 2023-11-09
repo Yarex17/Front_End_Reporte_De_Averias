@@ -20,6 +20,15 @@ export class OficinaServices{
         return this.http.post("https://localhost:7196/api/TraOficinas/CrearTraOficina?numeroPiso="+data.numeroPisos+"&idEdificio="+data.idEdificio+"", data);
     }
 
+    buscarOficina(data: any):Observable<Oficina>{
+        return this.http.post<Oficina>("https://localhost:7196/api/TraOficinas/BuscarTraOficina?id="+data, data);
+    }
+
+    modificarOficina(data: any): Observable<any> {
+        console.log(data);
+        return this.http.post("https://localhost:7196/api/TraOficinas/ModificarOficina?idOficina="+data.idOficina+"&numeroPiso="+data.numeroPiso+"&activa=true", data);
+    }
+
     //   modificarEdificio(data: Oficina): Observable<any> {
     //     return this.http.post('https://localhost:7196/api/TraEdificios/ModificarTraEdificio',data);
     //   }

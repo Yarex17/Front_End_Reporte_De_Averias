@@ -6,6 +6,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
+import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
+import { OficinaServices } from 'src/app/core/OficinasServices';
 
 @Component({
   selector: 'app-actualizar-oficina',
@@ -20,23 +25,65 @@ import {NgIf, NgFor} from '@angular/common';
     MatSidenavModule,
     MatListModule,
     NgFor,
+    ReactiveFormsModule
   ],
 })
 export class ActualizarOficinaComponent {
   mobileQuery: MediaQueryList;
+  formularioOficina:FormGroup;
+  idOficinaSeleccionado: string | null | undefined;
+  numeroPisoOficinaSeleccionado: string | null | undefined;
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasService:OficinaServices, private fb:FormBuilder,private dialog: MatDialog,private router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.formularioOficina = this.fb.group({
+      tnIdOficina:[0],
+      tnNumeroPisoEditarOficina:["",Validators.required],
+      tbActivo:[1],
+      tbEliminado:[0]
+    });
   }
+
+  modificarOficina(){
+    if (
+      !this.formularioOficina.value.tnNumeroPisoEditarOficina
+    ) {
+      this.mostrarPopupCamposEnBlanco();
+      return;
+    }
+
+    const request = {
+      idOficina: this.idOficinaSeleccionado,
+      numeroPiso: this.formularioOficina.value.tnNumeroPisoEditarOficina
+    };
+
+    this._oficinasService.modificarOficina(request).subscribe((data: any) => {
+      console.log(data);
+      this.router.navigate(['/listar_oficina']); // Redirección aquí
+    });
+
+  }
+
+  mostrarPopupCamposEnBlanco() {
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '250px',
+      data: { message: 'Los campos están en blanco' }
+    });
+  }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.idOficinaSeleccionado = sessionStorage.getItem('idOficinaSeleccionado');
+    this.numeroPisoOficinaSeleccionado = sessionStorage.getItem('numeroPisoOficinaSeleccionado');
+    this.formularioOficina.patchValue({
+      tnNumeroPisoEditarOficina: this.numeroPisoOficinaSeleccionado
+    });
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.mobileQuery.removeListener(this._mobileQueryListener)
   }
 }

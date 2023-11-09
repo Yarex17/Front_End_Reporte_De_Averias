@@ -40,7 +40,7 @@
             <table class="table table-bordered" *ngFor="let Oficina of listaOficinas">
               <thead>
                 <tr>
-                  <th class="text-center">Numero de pisos</th>
+                  <th class="text-center">Numero de piso</th>
                   <th class="text-center">Editar</th>
                   <th class="text-center">Eliminar</th>
                 </tr>
@@ -48,8 +48,8 @@
               <tbody>
                 <tr>
                   <td class="text-center">{{Oficina.tnNumeroPiso}}</td>
-                  <td class="text-center"><a href="/actualizarEdificio"><img src="./assets/editar.png" alt="Imagen de la tarea"></a></td>
-                  <td class="text-center"><a href="/eliminarEdificio"><img src="./assets/eliminar.png" alt="Imagen de la tarea"></a></td>
+                  <td class="text-center"><a (click)="editarOficina(Oficina.tnIdOficina)" href="/actualizarOficina"><img src="./assets/editar.png" alt="Imagen de la tarea"></a></td>
+                  <td class="text-center"><a href="#"><img src="./assets/eliminar.png" alt="Imagen de la tarea"></a></td>
               </tbody>
             </table>
           </div>
