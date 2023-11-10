@@ -21,4 +21,8 @@ export class UsuarioServices{
     buscarUsuarioPorEdificioYRol(data: any):Observable<Usuario>{
         return this.http.post<Usuario>("https://localhost:7196/api/TraUsuarios/BuscarTraUsarioPorEdificioYRol?idEdificio="+data.idEdificio+"&rol="+data.rol, data);
     }
+
+    buscarJefeTecnico():Observable<Usuario>{
+        return this.http.get<Usuario>("https://localhost:7196/api/TraUsuarios/BuscarJefeTecnico");
+    }
 }

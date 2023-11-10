@@ -9,6 +9,7 @@ import {NgIf, NgFor} from '@angular/common';
 import { Reporte } from 'src/app/Models/reporte';
 import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
 import { ReporteServices } from 'src/app/core/ReportesServices';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clasificar-reporte',
@@ -32,19 +33,33 @@ export class ClasificarReporteComponent implements OnInit{
   listaReportes:Reporte[]=[];
   idReporteSeleccionado: string | null | undefined;
   descripcionReporteSeleccionado: string | null | undefined;
+  idJefeTecnico: string | null | undefined;
 
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder, private router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
+  enviarReporte(){
+    const request = {
+      idReporte: this.idReporteSeleccionado,
+      idUsuario: this.idJefeTecnico
+    };
+    this._reportesService.enviarReporte(request).subscribe((data: any) => {
+      console.log(data);
+      this.router.navigate(['/administradordeledificio']); // Redirección aquí
+    });
+  }
+
   ngOnInit(): void {
     this.idReporteSeleccionado = sessionStorage.getItem('idReporteSeleccionado');
     this.descripcionReporteSeleccionado = sessionStorage.getItem('descripcionReporteSeleccionado');
+    this.idJefeTecnico = sessionStorage.getItem('idJefeTecnico');
     console.log("Llego: "+this.idReporteSeleccionado)
+    console.log("JT: "+this.idJefeTecnico)
   }
 }
