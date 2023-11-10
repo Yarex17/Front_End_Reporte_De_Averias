@@ -8,6 +8,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
 import { Reporte } from 'src/app/Models/reporte';
 import { ReporteServices } from 'src/app/core/ReportesServices';
+import { EdificioServices } from 'src/app/core/EdificiosServices';
+
+let dataReporteSeleccionado:Reporte;
 
 @Component({
   selector: 'app-jefetecnico',
@@ -37,6 +40,7 @@ export class JefetecnicoComponent implements OnInit {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    dataReporteSeleccionado;
   }
 
   obtenerReportes() {
@@ -47,9 +51,15 @@ export class JefetecnicoComponent implements OnInit {
   };
 
   editarReporte(idReporte:number){
-    console.log("ID del reporte seleccionado:", idReporte);
     sessionStorage.setItem('idReporteSeleccionado', idReporte.toString());
     console.log("RepID:"+sessionStorage.getItem('idReporteSeleccionado'));
+
+    this._reportesService.buscarReporte(sessionStorage.getItem('idReporteSeleccionado')).subscribe((data: any) => 
+    {
+      if(data.tnIdReporte != null){
+        sessionStorage.setItem('descripcionReporteSeleccionado', data.tcDescripcion);
+      }
+    });
 
   }
 

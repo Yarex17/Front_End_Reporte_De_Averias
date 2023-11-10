@@ -40,6 +40,7 @@ export class ModificarreporteJefetecnicoComponent {
   selectedPrioridad: string = ''; // Variable para almacenar la prioridad seleccionada
   selectedTipoAveria: string = ''; // Variable para almacenar el tipo de averÃ­a seleccionado
   idReporteSeleccionado: string | null | undefined;
+  descripcionReporteSeleccionado: string | null | undefined;
 
   private _mobileQueryListener: () => void;
 
@@ -70,12 +71,6 @@ export class ModificarreporteJefetecnicoComponent {
     })
   };
 
-  prueba(){
-    console.log(this.selectedEstado)
-    console.log(this.selectedPrioridad)
-    console.log(this.selectedTipoAveria)
-  }
-
   agregarDatosReporte(){
     const request = {
       idReporte: this.idReporteSeleccionado,
@@ -89,11 +84,14 @@ export class ModificarreporteJefetecnicoComponent {
       this.router.navigate(['/jefetecnico']); // Redirección aquí
     });
 
+    
+
 
   }
 
   ngOnInit(): void {
     this.idReporteSeleccionado = sessionStorage.getItem('idReporteSeleccionado');
+    this.descripcionReporteSeleccionado = sessionStorage.getItem('descripcionReporteSeleccionado');
     console.log("Llego: "+this.idReporteSeleccionado)
     this.obtenerEstados();
     this.obtenerPrioridades();
