@@ -16,12 +16,6 @@ import { UsuarioServices } from 'src/app/core/UsuarioServices';
 import { Usuario } from 'src/app/Models/usuario';
 import { ReporteServices } from 'src/app/core/ReportesServices';
 
-interface Elemento {
-  id: number;
-  nombre: string;
-  seleccionado: boolean;
-}
-
 interface Tecnico {
   id: number;
   nombre: string;
@@ -60,15 +54,7 @@ export class ModificarreporteJefetecnicoComponent {
   idReporteSeleccionado: string | null | undefined;
   descripcionReporteSeleccionado: string | null | undefined;
 
-  elementos: Elemento[] = [
-    { id: 1, nombre: 'Elemento 1', seleccionado: false },
-    { id: 2, nombre: 'Elemento 2', seleccionado: false },
-    { id: 3, nombre: 'Elemento 3', seleccionado: false }
-  ];
-
   tecnicosSeleccionados: Tecnico[] = [];
-  
-  elementosSeleccionados: Elemento[] = [];
 
   private _mobileQueryListener: () => void;
 
@@ -76,7 +62,6 @@ export class ModificarreporteJefetecnicoComponent {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    this.elementos.push({ id: 3, nombre: 'Elemento 4', seleccionado: false });
   }
 
   obtenerEstados() {
@@ -120,14 +105,7 @@ export class ModificarreporteJefetecnicoComponent {
 
     this._datosReporteServices.asignarDatosReportes(request).subscribe((data: any) => {
       console.log(data);
-      this.router.navigate(['/jefetecnico']); // Redirección aquí
     });
-    
-
-  }
-
-  enviarSeleccion(): void {
-    // Filtra los elementos seleccionados
     this.tecnicosSeleccionados = this.tecnicos.filter(tecnico => tecnico.seleccionado);
     for (let i = 0; i < this.tecnicosSeleccionados.length; i++) {
       const request = {
@@ -139,8 +117,7 @@ export class ModificarreporteJefetecnicoComponent {
       });
     }
     this.router.navigate(['/jefetecnico']); // Redirección aquí
-    // Realiza acciones con los elementos seleccionados
-    console.log('Tecnicos seleccionados:', this.tecnicosSeleccionados);
+
   }
 
   ngOnInit(): void {

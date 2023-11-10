@@ -36,29 +36,8 @@
                 </div>
 
                 <div class="mb-3">
-                  <label for="fecha_informe" class="form-label">Fecha</label>
-                  <input type="date" class="form-control" id="fecha_informe" name="fecha_informe" required>
-                </div>
-
-                <div class="mb-3">
-                  <label for="edificio_informe" class="form-label-edificio">Edificio</label>
-                  <select class="form-control" id="edificio_informe" name="edificio_informe">
-                    <option value="A">Edificio A</option>
-                    <option value="B">Edificio B</option>
-                    <option value="C">Edificio C</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
-                  <label for="oficina_informe" class="form-label">Oficina</label>
-                  <input type="text" class="form-control" id="oficina_informe" name="oficina_informe" required>
-                </div>
-
-                <div class="mb-3">
                   <label for="descripcion_informe" class="form-label">Descripción del informe</label>
-                  <textarea class="form-control" id="descripcion_informe" name="descripcion_informe" rows="3"
+                  <textarea class="form-control" id="descripcion_informe" name="descripcion_informe" value="{{descripcionReporteSeleccionado}}" rows="3"
                     required></textarea>
                 </div>
               </div>
@@ -67,17 +46,15 @@
           </form>
         </div>
 
-
         <div class="btn-group" id="container1">
           <label for="" class="form-label" id="label4">Tipo de avería</label>
           <input type="text" class="form-control" id="oficina_informe" name="oficina_informe" required>
           <label for="" class="form-label" id="label5">Prioridad</label>
           <input type="text" class="form-control" id="oficina_informe" name="oficina_informe" required>
           <label for="" class="form-label" id="label6">Estado</label>
-          <button type="button" class="btn btn-primary dropdown-toggle" id="Button3" data-bs-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Opción 1
-          </button>
+          <select class="form-control" id="selectEstado" name="Estado" [(ngModel)]="selectedEstado">
+            <option *ngFor="let Estado of listaEstados" [value]="Estado.tnIdEstado">{{ Estado.tcNombre }}</option>
+          </select>
         </div>
 
 
