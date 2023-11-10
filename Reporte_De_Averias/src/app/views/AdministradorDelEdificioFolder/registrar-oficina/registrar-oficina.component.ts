@@ -57,17 +57,27 @@ export class RegistrarOficinaComponent {
 
   mostrarPopupCamposEnBlanco() {
     const dialogRef = this.dialog.open(PopupComponent, {
-      width: '250px',
+      width: '900px',
+      height: '600px',
       data: { message: 'Los campos están en blanco' }
     });
   }
 
   registrarOficina(){
+
+    const propietario = this.formularioOficina.value.tnNumeroPisoCrearOficina;
+    const nombre = this.formularioOficina.value.tnEdificioCrearOficina;
+  
+    if (!propietario || !nombre) {
+      this.mostrarPopupCamposEnBlanco();
+      return; // No continuar con el registro si hay campos vacíos
+    }
+
     const request = {
       numeroPisos: this.formularioOficina.value.tnNumeroPisoCrearOficina,
       idEdificio: this.formularioOficina.value.tnEdificioCrearOficina
     };
-
+    
     this._oficinasServices.registrarOficina(request).subscribe((data: any) => {
       console.log(data);
       this.listaOficinas.push(data);

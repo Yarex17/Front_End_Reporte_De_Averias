@@ -9,6 +9,9 @@ import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
 import { Edificio } from '../../../Models/edificio';
 import {EdificioServices} from '../../../core/EdificiosServices';
+import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -36,7 +39,7 @@ export class RegistrarEdificioComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private fb:FormBuilder) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private fb:FormBuilder,private dialog: MatDialog,private router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -57,23 +60,41 @@ export class RegistrarEdificioComponent {
   };
   
   registrarEdificio(){
-    const request:Edificio ={
-      tnIdEdificio:0,
-      tcPropietario: this.formularioEdificio.value.tcNombre,
-      tcNombre: this.formularioEdificio.value.tcPropietario,
-      tbActivo:true,
-      tbEliminado:false
+    const propietario = this.formularioEdificio.value.tcPropietario;
+    const nombre = this.formularioEdificio.value.tcNombre;
+  
+    if (!propietario || !nombre) {
+      this.mostrarPopupCamposEnBlanco();
+      return; // No continuar con el registro si hay campos vacíos
     }
+  
+    const request: Edificio = {
+      tnIdEdificio: 0,
+      tcPropietario: nombre,
+      tcNombre: propietario,
+      tbActivo: true,
+      tbEliminado: false
+    }
+  
     this._edificiosService.registrarEdificio(request).subscribe({
-      
-      next:(data) =>{
+      next: (data) => {
         console.log(data);
         this.listaEdificios.push(data);
         this.formularioEdificio.patchValue({
-          tcNommbre:'',
-          tcPropietario:''
+          tcNombre: '',
+          tcPropietario: ''
         });
-      }, error:(e) =>{}
+      }, 
+      error: (e) => {}
+    });
+  }
+
+
+  mostrarPopupCamposEnBlanco() {
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '900px',
+      height:'600px',
+      data: { message: 'Los campos están en blanco' }
     });
   }
 

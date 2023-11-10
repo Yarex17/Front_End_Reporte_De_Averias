@@ -11,11 +11,12 @@ import { DatosReporteServices } from 'src/app/core/DatosReporteServices';
 import { Estado } from 'src/app/Models/estado';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
+import { Prioridad } from 'src/app/Models/prioridades';
 
 @Component({
-  selector: 'app-crear-estado',
-  templateUrl: './crear-estado.component.html',
-  styleUrls: ['./crear-estado.component.css'],
+  selector: 'app-crear-prioridades',
+  templateUrl: './crear-prioridades.component.html',
+  styleUrls: ['./crear-prioridades.component.css'],
   standalone:true,
   imports: [
     NgIf,
@@ -30,11 +31,11 @@ import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
   ],
 })
 
-export class CrearEstadoComponent implements OnInit{
+export class CrearPrioridadesComponent implements OnInit{
   
   mobileQuery: MediaQueryList;
   formularioEstado:FormGroup;
-  listaEstados:Estado[]=[];
+  listaEstados:Prioridad[]=[];
 
   private _mobileQueryListener: () => void;
 
@@ -43,7 +44,7 @@ export class CrearEstadoComponent implements OnInit{
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     this.formularioEstado=this.fb.group({
-      tnIdEstado:[0],
+      tnIdPrioridad:[0],
       tcNombreEstado:["",Validators.required],
       tbActivo:[1],
       tbEliminado:[0],
@@ -62,7 +63,7 @@ export class CrearEstadoComponent implements OnInit{
       nombreEstado: this.formularioEstado.value.tcNombreEstado
     };
 
-    this._datosReporteServices.registrarEstado(request).subscribe({
+    this._datosReporteServices.registrarPrioridad(request).subscribe({
       next:(data) =>{
         console.log(data);
         this.listaEstados.push(data);
@@ -74,7 +75,7 @@ export class CrearEstadoComponent implements OnInit{
   }
 
   obtenerEstados() {
-    return this._datosReporteServices.getList().subscribe((data: Estado[]) => {
+    return this._datosReporteServices.getListPrioridad().subscribe((data: Prioridad[]) => {
       console.log(data);
       this.listaEstados = data;
     })
