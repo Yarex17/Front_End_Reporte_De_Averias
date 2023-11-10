@@ -46,6 +46,18 @@ export class AdministradorDelEdifcioComponent {
     })
   };
 
+  clasificarReporte(idReporte:number){
+    sessionStorage.setItem('idReporteSeleccionado', idReporte.toString());
+    console.log("RepID:"+sessionStorage.getItem('idReporteSeleccionado'));
+
+    this._reportesService.buscarReporte(sessionStorage.getItem('idReporteSeleccionado')).subscribe((data: any) => 
+    {
+      if(data.tnIdReporte != null){
+        sessionStorage.setItem('descripcionReporteSeleccionado', data.tcDescripcion);
+      }
+    });
+
+  }
 
   ngOnInit(): void {
     this.idUsuarioActual = sessionStorage.getItem('id');
