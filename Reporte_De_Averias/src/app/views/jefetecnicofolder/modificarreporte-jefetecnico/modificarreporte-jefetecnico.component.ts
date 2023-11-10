@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioServices } from 'src/app/core/UsuarioServices';
 import { Usuario } from 'src/app/Models/usuario';
+import { ReporteServices } from 'src/app/core/ReportesServices';
 
 interface Elemento {
   id: number;
@@ -71,7 +72,7 @@ export class ModificarreporteJefetecnicoComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices, private _reportesService:ReporteServices) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -121,11 +122,23 @@ export class ModificarreporteJefetecnicoComponent {
       console.log(data);
       this.router.navigate(['/jefetecnico']); // Redirección aquí
     });
+    
+
   }
 
   enviarSeleccion(): void {
     // Filtra los elementos seleccionados
     this.tecnicosSeleccionados = this.tecnicos.filter(tecnico => tecnico.seleccionado);
+    for (let i = 0; i < this.tecnicosSeleccionados.length; i++) {
+      const request = {
+        idReporte: this.idReporteSeleccionado,
+        idUsuario: this.tecnicosSeleccionados[i].id
+      };
+      this._reportesService.enviarReporte(request).subscribe((data: any) => {
+        console.log(data);
+      });
+    }
+    this.router.navigate(['/jefetecnico']); // Redirección aquí
     // Realiza acciones con los elementos seleccionados
     console.log('Tecnicos seleccionados:', this.tecnicosSeleccionados);
   }
