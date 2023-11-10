@@ -16,6 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './Alerts/popup/popup.component';
 import { ListarEstadosComponent } from './views/jefetecnicofolder/listar-estados/listar-estados.component';
 import { CrearEstadoComponent } from './views/jefetecnicofolder/crear-estado/crear-estado.component';
+import { ListarPrioridadesComponent } from './views/jefetecnicofolder/listar-prioridades/listar-prioridades.component';
+import { CrearPrioridadesComponent } from './views/jefetecnicofolder/crear-prioridades/crear-prioridades.component';
 
 
 @NgModule({
@@ -23,7 +25,7 @@ import { CrearEstadoComponent } from './views/jefetecnicofolder/crear-estado/cre
     AppComponent,
     LoginComponent,
     DialogComponent,
-    PopupComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

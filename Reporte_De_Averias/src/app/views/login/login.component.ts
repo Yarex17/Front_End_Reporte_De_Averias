@@ -76,7 +76,8 @@ export class LoginComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
+      width: '900px',
+      height: '600px',
       data: { message: 'Usuario o contraseña incorrectos' }
     });
 

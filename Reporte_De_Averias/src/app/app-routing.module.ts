@@ -25,6 +25,8 @@ import { ActualizarOficinaComponent } from './views/AdministradorDelEdificioFold
 import { CrearRolComponent } from './views/AdministradorDelEdificioFolder/crear-rol/crear-rol.component';
 import { ListarEstadosComponent } from './views/jefetecnicofolder/listar-estados/listar-estados.component';
 import { CrearEstadoComponent } from './views/jefetecnicofolder/crear-estado/crear-estado.component';
+import { CrearPrioridadesComponent } from './views/jefetecnicofolder/crear-prioridades/crear-prioridades.component';
+import { ListarPrioridadesComponent } from './views/jefetecnicofolder/listar-prioridades/listar-prioridades.component';
 
 
 const routes: Routes = [{path : '', component : LoginComponent}
@@ -51,6 +53,8 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'listar_estado', component: ListarEstadosComponent}
 ,{path : 'crearEstado', component: CrearEstadoComponent}
 ,{path : 'crear-rol', component: CrearRolComponent}
+,{path : 'crear-prioridad', component: CrearPrioridadesComponent}
+,{path : 'listar_prioridad', component: ListarPrioridadesComponent}
 ];
 
 @NgModule({
