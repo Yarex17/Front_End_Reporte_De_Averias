@@ -61,4 +61,9 @@ export class DatosReporteServices{
         return this.http.post('https://localhost:7196/api/TraTipoAverias/ElminarTraTipoAveria?id='+data,data);
     }
 
+    //asignar datos reporte
+    asignarDatosReportes(data: any): Observable<any> {
+        return this.http.post("https://localhost:7196/api/TraReportes/AgregarDatosReporte?idReporte="+data.idReporte+"&tipoAveria="+data.tipoAveriaReporte+"&prioridad="+data.prioridadReporte+"&estado="+data.estadoReporte+"&oficina=6", data);
+    }
+
 }

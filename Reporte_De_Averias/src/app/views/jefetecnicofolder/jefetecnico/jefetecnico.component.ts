@@ -46,6 +46,13 @@ export class JefetecnicoComponent implements OnInit {
     })
   };
 
+  editarReporte(idReporte:number){
+    console.log("ID del reporte seleccionado:", idReporte);
+    sessionStorage.setItem('idReporteSeleccionado', idReporte.toString());
+    console.log("RepID:"+sessionStorage.getItem('idReporteSeleccionado'));
+
+  }
+
   ngOnInit(): void {
     this.idUsuarioActual = sessionStorage.getItem('id');
     this.rolValue = sessionStorage.getItem('rol');
