@@ -28,7 +28,7 @@ import { Prioridad } from 'src/app/Models/prioridades';
 export class ListarPrioridadesComponent implements OnInit {
   
   mobileQuery: MediaQueryList;
-  listaEstados:Prioridad[]=[];
+  listaPrioridades:Prioridad[]=[];
 
   private _mobileQueryListener: () => void;
 
@@ -38,10 +38,10 @@ export class ListarPrioridadesComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
   
-  obtenerEstados() {
+  obtenerPrioridades() {
     return this._datosReporteServices.getListPrioridad().subscribe((data: Prioridad[]) => {
       console.log(data);
-      this.listaEstados = data;
+      this.listaPrioridades = data;
     })
   };
 
@@ -49,13 +49,13 @@ export class ListarPrioridadesComponent implements OnInit {
     if (confirm('¿Estás seguro de que deseas eliminar este edificio?')) {
       this._datosReporteServices.eliminarPrioridad(idEstado).subscribe((data: any) => {
         console.log('Estado eliminado exitosamente');
-        this.obtenerEstados();
+        this.obtenerPrioridades();
       });
     }
   }
 
   ngOnInit(): void {
-    this.obtenerEstados()
+    this.obtenerPrioridades()
   }
 
 }
