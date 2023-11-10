@@ -32,6 +32,11 @@ export class ReporteServices{
       return this.http.post("https://localhost:7196/api/TraReportes/CrearTraReporte?descripcion="+data.descripcion+"&idUsuario="+data.idUsuario+"&idAdminEdificio="+data.idAdmin, data);
     }
 
+    enviarReporte(data: any): Observable<any> {
+      console.log(data);
+      return this.http.post("https://localhost:7196/api/TraReportes/EnviarTraReporte?idReporte="+data.idReporte+"&idUsuario="+data.idUsuario, data);
+    }
+
     buscarReporte(data: any):Observable<Reporte>{
       console.log(data);
       return this.http.get<Reporte>("https://localhost:7196/api/TraReportes/BuscarTraReporte?id="+data);

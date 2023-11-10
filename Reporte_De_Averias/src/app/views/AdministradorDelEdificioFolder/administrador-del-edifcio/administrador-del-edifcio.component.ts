@@ -8,6 +8,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
 import { Reporte } from 'src/app/Models/reporte';
 import { ReporteServices } from 'src/app/core/ReportesServices';
+import { UsuarioServices } from 'src/app/core/UsuarioServices';
+import { Usuario } from 'src/app/Models/usuario';
 
 @Component({
   selector: 'app-administrador-del-edifcio',
@@ -33,7 +35,7 @@ export class AdministradorDelEdifcioComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _usuarioServices: UsuarioServices) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -54,6 +56,13 @@ export class AdministradorDelEdifcioComponent {
     {
       if(data.tnIdReporte != null){
         sessionStorage.setItem('descripcionReporteSeleccionado', data.tcDescripcion);
+      }
+    });
+
+    this._usuarioServices.buscarJefeTecnico().subscribe((data: Usuario) => 
+    {
+      if(data.tnIdUsuario != null){
+        sessionStorage.setItem('idJefeTecnico', data.tnIdUsuario.toString());
       }
     });
 
