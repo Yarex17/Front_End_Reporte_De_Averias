@@ -52,7 +52,6 @@ export class JefetecnicoComponent implements OnInit {
 
   editarReporte(idReporte:number){
     sessionStorage.setItem('idReporteSeleccionado', idReporte.toString());
-    console.log("RepID:"+sessionStorage.getItem('idReporteSeleccionado'));
 
     this._reportesService.buscarReporte(sessionStorage.getItem('idReporteSeleccionado')).subscribe((data: any) => 
     {

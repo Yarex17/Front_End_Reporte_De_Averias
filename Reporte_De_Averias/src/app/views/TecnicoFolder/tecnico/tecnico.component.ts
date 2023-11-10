@@ -47,6 +47,17 @@ export class TecnicoComponent {
     })
   };
 
+  editarReporte(idReporte:number){
+    sessionStorage.setItem('idReporteSeleccionado', idReporte.toString());
+
+    this._reportesService.buscarReporte(sessionStorage.getItem('idReporteSeleccionado')).subscribe((data: any) => 
+    {
+      if(data.tnIdReporte != null){
+        sessionStorage.setItem('descripcionReporteSeleccionado', data.tcDescripcion);
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.idUsuarioActual = sessionStorage.getItem('id');
     this.rolValue = sessionStorage.getItem('rol');
