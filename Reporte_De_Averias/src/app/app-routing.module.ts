@@ -29,6 +29,7 @@ import { CrearPrioridadesComponent } from './views/jefetecnicofolder/crear-prior
 import { ListarPrioridadesComponent } from './views/jefetecnicofolder/listar-prioridades/listar-prioridades.component';
 import { ListarTiposaveriaComponent } from './views/jefetecnicofolder/listar-tiposaveria/listar-tiposaveria.component';
 import { CrearTipoaveriaComponent } from './views/jefetecnicofolder/crear-tipoaveria/crear-tipoaveria.component';
+import { ClasificarReporteComponent } from './views/AdministradorDelEdificioFolder/clasificar-reporte/clasificar-reporte.component';
 
 
 const routes: Routes = [{path : '', component : LoginComponent}
@@ -59,6 +60,7 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'listar_prioridad', component: ListarPrioridadesComponent}
 ,{path : 'listar_tipoAveria', component: ListarTiposaveriaComponent}
 ,{path : 'crear_tipoAveria', component: CrearTipoaveriaComponent}
+,{path : 'clasificar_reporte', component: ClasificarReporteComponent}
 ];
 
 @NgModule({
