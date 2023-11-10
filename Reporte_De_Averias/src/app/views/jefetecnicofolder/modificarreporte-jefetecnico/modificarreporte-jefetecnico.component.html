@@ -75,7 +75,18 @@
             <option *ngFor="let TipoAveria of listaTipoAveria" [value]="TipoAveria.tnIdTipoAveria">{{ TipoAveria.tcDescripcion }}</option>
           </select>
         </div>
-
+        <div>
+          <ul>
+            <li *ngFor="let Tecnico of tecnicos">
+               <label>
+                  <input type="checkbox" [(ngModel)]="Tecnico.seleccionado" />
+                  {{ Tecnico.nombre }}
+               </label>
+            </li>
+         </ul>
+         
+         <button (click)="enviarSeleccion()">Enviar Selección</button>
+        </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>

@@ -12,6 +12,20 @@ import { Prioridad } from 'src/app/Models/prioridades';
 import { TipoAveria } from 'src/app/Models/tipoAveria';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UsuarioServices } from 'src/app/core/UsuarioServices';
+import { Usuario } from 'src/app/Models/usuario';
+
+interface Elemento {
+  id: number;
+  nombre: string;
+  seleccionado: boolean;
+}
+
+interface Tecnico {
+  id: number;
+  nombre: string;
+  seleccionado: boolean;
+}
 
 @Component({
   selector: 'app-modificarreporte-jefetecnico',
@@ -29,6 +43,7 @@ import { Router } from '@angular/router';
     FormsModule
     
   ],
+  
 })
 export class ModificarreporteJefetecnicoComponent {
 
@@ -36,18 +51,31 @@ export class ModificarreporteJefetecnicoComponent {
   listaEstados: Estado[] = [];
   listaPrioridades: Prioridad[] = [];
   listaTipoAveria: TipoAveria[] = [];
+  listaTecnicos:Usuario[] = [];
+  tecnicos: Tecnico[] = [];
   selectedEstado: string = ''; // Variable para almacenar el estado seleccionado
   selectedPrioridad: string = ''; // Variable para almacenar la prioridad seleccionada
   selectedTipoAveria: string = ''; // Variable para almacenar el tipo de averÃ­a seleccionado
   idReporteSeleccionado: string | null | undefined;
   descripcionReporteSeleccionado: string | null | undefined;
 
+  elementos: Elemento[] = [
+    { id: 1, nombre: 'Elemento 1', seleccionado: false },
+    { id: 2, nombre: 'Elemento 2', seleccionado: false },
+    { id: 3, nombre: 'Elemento 3', seleccionado: false }
+  ];
+
+  tecnicosSeleccionados: Tecnico[] = [];
+  
+  elementosSeleccionados: Elemento[] = [];
+
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.elementos.push({ id: 3, nombre: 'Elemento 4', seleccionado: false });
   }
 
   obtenerEstados() {
@@ -71,6 +99,16 @@ export class ModificarreporteJefetecnicoComponent {
     })
   };
 
+  obtenerTecnicos() {
+    return this._usuarioServices.buscarTecnicos().subscribe((data: Usuario[]) => {
+      console.log(data);
+      this.listaTecnicos = data;
+      for (let i = 0; i < this.listaTecnicos.length; i++) {
+        this.tecnicos.push({id: this.listaTecnicos[i].tnIdUsuario, nombre: this.listaTecnicos[i].tcNombre, seleccionado: false});
+      }
+    });
+  };
+
   agregarDatosReporte(){
     const request = {
       idReporte: this.idReporteSeleccionado,
@@ -83,10 +121,13 @@ export class ModificarreporteJefetecnicoComponent {
       console.log(data);
       this.router.navigate(['/jefetecnico']); // Redirección aquí
     });
+  }
 
-    
-
-
+  enviarSeleccion(): void {
+    // Filtra los elementos seleccionados
+    this.tecnicosSeleccionados = this.tecnicos.filter(tecnico => tecnico.seleccionado);
+    // Realiza acciones con los elementos seleccionados
+    console.log('Tecnicos seleccionados:', this.tecnicosSeleccionados);
   }
 
   ngOnInit(): void {
@@ -96,6 +137,7 @@ export class ModificarreporteJefetecnicoComponent {
     this.obtenerEstados();
     this.obtenerPrioridades();
     this.obtenerTiposAveria();
+    this.obtenerTecnicos();
   }
 
   ngOnDestroy(): void {

@@ -25,4 +25,8 @@ export class UsuarioServices{
     buscarJefeTecnico():Observable<Usuario>{
         return this.http.get<Usuario>("https://localhost:7196/api/TraUsuarios/BuscarJefeTecnico");
     }
+
+    buscarTecnicos():Observable<Usuario[]>{
+        return this.http.get<Usuario[]>("https://localhost:7196/api/TraUsuarios/BuscarTecnicos");
+    }
 }
