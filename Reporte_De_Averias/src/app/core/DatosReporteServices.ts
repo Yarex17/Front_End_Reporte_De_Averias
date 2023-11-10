@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Estado } from '../Models/estado';
 import { Prioridad } from '../Models/prioridades';
+import { TipoAveria } from '../Models/tipoAveria';
 
 @Injectable({
     providedIn:'root'
@@ -32,7 +33,7 @@ export class DatosReporteServices{
         return this.http.post('https://localhost:7196/api/TraEstadoes/EliminarTraEstado?id='+data,data);
     }
 
-    //crud TipoAveria
+    //crud Prioridad
 
     getListPrioridad():Observable<Prioridad[]>{
         return this.http.get<Prioridad[]>('https://localhost:7196/api/TraPrioridads/ListarTraPrioridades');
@@ -46,6 +47,18 @@ export class DatosReporteServices{
         return this.http.post('https://localhost:7196/api/TraPrioridads/EliminarTraPrioridad?id='+data,data);
     }
 
-    //crud Prioridad
+    //crud TipoAveria
+    
+    getListTipoAveria():Observable<TipoAveria[]>{
+        return this.http.get<TipoAveria[]>('https://localhost:7196/api/TraTipoAverias/ListarTraTipoAveria');
+    }
+
+    registrarTipoAveria(data: any): Observable<any> {
+        return this.http.post('https://localhost:7196/api/TraTipoAverias/CrearTraTipoAveria?descripcion='+data.descripcionTipoAveria, data);
+    }
+
+    eliminarTipoAveria(data: any): Observable<any> {
+        return this.http.post('https://localhost:7196/api/TraTipoAverias/ElminarTraTipoAveria?id='+data,data);
+    }
 
 }

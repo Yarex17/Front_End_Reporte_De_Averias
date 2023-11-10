@@ -27,6 +27,8 @@ import { ListarEstadosComponent } from './views/jefetecnicofolder/listar-estados
 import { CrearEstadoComponent } from './views/jefetecnicofolder/crear-estado/crear-estado.component';
 import { CrearPrioridadesComponent } from './views/jefetecnicofolder/crear-prioridades/crear-prioridades.component';
 import { ListarPrioridadesComponent } from './views/jefetecnicofolder/listar-prioridades/listar-prioridades.component';
+import { ListarTiposaveriaComponent } from './views/jefetecnicofolder/listar-tiposaveria/listar-tiposaveria.component';
+import { CrearTipoaveriaComponent } from './views/jefetecnicofolder/crear-tipoaveria/crear-tipoaveria.component';
 
 
 const routes: Routes = [{path : '', component : LoginComponent}
@@ -55,6 +57,8 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'crear-rol', component: CrearRolComponent}
 ,{path : 'crear-prioridad', component: CrearPrioridadesComponent}
 ,{path : 'listar_prioridad', component: ListarPrioridadesComponent}
+,{path : 'listar_tipoAveria', component: ListarTiposaveriaComponent}
+,{path : 'crear_tipoAveria', component: CrearTipoaveriaComponent}
 ];
 
 @NgModule({
