@@ -10,6 +10,8 @@ import { Reporte } from 'src/app/Models/reporte';
 import { ReporteServices } from 'src/app/core/ReportesServices';
 import { UsuarioServices } from 'src/app/core/UsuarioServices';
 import { Usuario } from 'src/app/Models/usuario';
+// @ts-ignore
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-administrador-del-edifcio',
@@ -32,7 +34,7 @@ export class AdministradorDelEdifcioComponent {
   listaReportes:Reporte[]=[];
   idUsuarioActual: string | null | undefined;
   rolValue: string | null | undefined;
-
+  single: any[] = [];
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _usuarioServices: UsuarioServices) {
@@ -68,9 +70,54 @@ export class AdministradorDelEdifcioComponent {
 
   }
 
+  generarPDF(): void {
+    const options = {
+      margin: 10,
+      filename: 'reportes.pdf',
+      html2canvas: { scale: 5 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+  
+    const meses = [
+      'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+      'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+    ];
+  
+    const fechaActual = new Date();
+    const nombreMesActual = meses[fechaActual.getMonth()]; // Obtener el nombre del mes actual
+  
+    // Filtrar los reportes que fueron creados en el mismo mes
+    const reportesEnEsteMes = this.listaReportes.filter(reporte => {
+      const fechaReporte = new Date(reporte.tfFecha);
+      return fechaReporte.getMonth() === fechaActual.getMonth();
+    });
+  
+    const cantidadReportesEnEsteMes = reportesEnEsteMes.length;
+  
+    // Construir el contenido del PDF
+    const content = `
+      Cantidad de Reportes Creados en ${nombreMesActual}: ${cantidadReportesEnEsteMes}\n\n
+      Detalles de los Reportes:\n
+      ${this.listaReportes.map(reporte => `${reporte.tcDescripcion} - ${reporte.tfFecha}`).join('\n')}
+    `;
+  
+    const container = document.createElement('div');
+    container.innerText = content;
+  
+    html2pdf()
+      .from(container)
+      .set(options)
+      .outputPdf('datauristring')
+      .then((pdfString: string) => {
+        const newWindow = window.open();
+        newWindow!.document.write('<iframe width="100%" height="100%" src="' + pdfString + '"></iframe>');
+      });
+  }
+
   ngOnInit(): void {
     this.idUsuarioActual = sessionStorage.getItem('id');
     this.rolValue = sessionStorage.getItem('rol');
+    
     this.obtenerReportes();
   }
 
