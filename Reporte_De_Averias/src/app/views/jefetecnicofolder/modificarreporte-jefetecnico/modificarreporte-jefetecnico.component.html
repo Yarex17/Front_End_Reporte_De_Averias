@@ -10,7 +10,7 @@
 <body>
   <div class="pro-container" [class.pro-is-mobile]="mobileQuery.matches">
     <mat-toolbar class="mat-toolbar">
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <button class="span" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="app-name">Reporte de Averías</h1>
       <h1 class="rol">Jefe Técnico</h1>
     </mat-toolbar>
@@ -37,50 +37,56 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3">
-                  <label for="titulo_informe" class="form-label">Título</label>
-                  <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" required>
-                </div>
-              </div>
-
-              <div class="col-md-6">
-                <div class="mb-3">
                   <label for="descripcion_informe" class="form-label">Descripción del informe</label>
                   <textarea class="form-control" id="descripcion_informe" name="descripcion_informe" value="{{descripcionReporteSeleccionado}}" rows="3"
                     required></textarea>
                 </div>
+                
               </div>
             </div>
             <button type="button" class="btn btn-primary" id="guardar" (click)="agregarDatosReporte()">Editar</button>
           </form>
         </div>
-
+        
 
         <div class="btn-group" id="container1">
           <label for="selectEstado" class="form-label" id="label1">Estado</label>
-          <select class="form-control" id="selectEstado" name="Estado" [(ngModel)]="selectedEstado">
+          <select class="form-select custom-select mb-3" id="selectEstado" name="Estado" [(ngModel)]="selectedEstado">
             <option *ngFor="let Estado of listaEstados" [value]="Estado.tnIdEstado">{{ Estado.tcNombre }}</option>
           </select>
 
           <label for="selectPrioridad" class="form-label" id="label2">Prioridad</label>
-          <select class="form-control" id="selectPrioridad" name="Prioridad" [(ngModel)]="selectedPrioridad">
+          <select class="form-select mb-3" id="selectPrioridad" name="Prioridad" [(ngModel)]="selectedPrioridad">
             <option *ngFor="let Prioridad of listaPrioridades" [value]="Prioridad.tnIdPrioridad">{{ Prioridad.tcNombre }}</option>
           </select>
 
           <label for="selectTipoAveria" class="form-label" id="label3">Tipo de avería</label>
-          <select class="form-control" id="selectTipoAveria" name="TipoAveria" [(ngModel)]="selectedTipoAveria">
+          <select class="form-select mb-3" id="selectTipoAveria" name="TipoAveria" [(ngModel)]="selectedTipoAveria">
             <option *ngFor="let TipoAveria of listaTipoAveria" [value]="TipoAveria.tnIdTipoAveria">{{ TipoAveria.tcDescripcion }}</option>
           </select>
         </div>
-        <div>
-          <ul>
-            <li *ngFor="let Tecnico of tecnicos">
-               <label>
-                  <input type="checkbox" [(ngModel)]="Tecnico.seleccionado" />
-                  {{ Tecnico.nombre }}
-               </label>
-            </li>
-         </ul>
-         
+
+
+        
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nombre Técnico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Tecnico of tecnicos">
+                <td>
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="Tecnico.seleccionado" />
+                    {{ Tecnico.nombre }}
+                  </label>
+                </td>
+                <!-- Agrega más columnas según sea necesario -->
+              </tr>
+            </tbody>
+          </table>
         </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
