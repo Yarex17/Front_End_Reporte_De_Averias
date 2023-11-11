@@ -49,6 +49,10 @@
     background-color: black;
   }
 
+  mat-sidenav-content{
+    background-color: lightgray;
+  }
+
   .span {
     color: #FFCA28; /* Cambia el color del texto dentro del span a blanco */
   }
