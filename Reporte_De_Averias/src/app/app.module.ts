@@ -37,7 +37,7 @@ import { VerReportesFinalizadosComponent } from './views/jefetecnicofolder/ver-r
     MatIconModule,
     FormsModule,
     MatDialogModule,
-   
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

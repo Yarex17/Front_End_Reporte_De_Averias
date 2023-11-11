@@ -1,91 +1,146 @@
 .pro-container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .pro-is-mobile .pro-toolbar {
-    position: fixed;
-    z-index: 2;
-  }
-  
-  h1.pro-app-name {
-    margin-left: 8px;
-  }
-  
-  .pro-sidenav-container {
-    flex: 1;
-  }
-  
-  .pro-is-mobile .pro-sidenav-container {
-    flex: 1 0 auto;
-  }
-  
-  
-  mat-sidenav{
-    width: 30%;
-    background-color: blue;
-  }
-  
-  
-  mat-toolbar{
-    background-color: blue;
-  }
-  
-  .app-name{
-    color: white;
-    font-size: x-large;
-  }
-  
-  .rol{
-    color: white;
-    font-size: x-large;
-    margin-left: 65%;
-  }
-  
-  .asd{
-    background-color: white;
-  }
-  
-  .container{
-    margin-top: 3%;
-  }
-  
-  .btn-group{
-    margin-top: 5%;
-    margin-left: 7.3%;
-  }
-  
-  .fecha_informe {
-    width: 10%;
-    height: 20%;
-    margin-top: 3%;
-  }
-  
-  .form-label{
-    margin-top: 3%;
-    margin-left: 7.3%;
-  }
-  
-  .form-label1{
-    margin-top: 3%;
-    margin-left: 3.1%;
-  }
-  
-  #boton1{
-    margin-left: 2%;
-    margin-bottom: 0.5%;
-  }
-  
-  #previous{
-    margin-left:7.1% ;
-  }
-  
-  #next{
-    margin-left:1% ;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.pro-is-mobile .pro-toolbar {
+  position: fixed;
+  z-index: 2;
+}
+
+h1.pro-app-name {
+  margin-left: 8px;
+}
+
+.pro-sidenav-container {
+  flex: 1;
+}
+
+.pro-is-mobile .pro-sidenav-container {
+  flex: 1 0 auto;
+}
+
+
+mat-sidenav-content{
+  background-color: lightgray;
+}
+
+mat-sidenav {
+  width: 15%;
+  background-color: black; /* Cambia el color de fondo a negro */
+  color: black; 
+}
+
+/* Estilo para los elementos de la mat-nav-list dentro de la mat-sidenav */
+mat-nav-list a {
+  background-color: #FFCA28; /* Cambia el color del texto de los elementos de la lista a blanco o el color deseado */
+}
+
+mat-nav-list a {
+  color: white !important; /* Usa !important para aumentar la especificidad */
+}
+/* Estilo para los elementos de la mat-nav-list cuando están activos */
+mat-nav-list a.active {
+  background-color: #FFCA28; /* Cambia el color de fondo cuando el enlace está activo (puedes ajustar el color según sea necesario) */
+}
+
+mat-toolbar{
+  background-color: black;
+}
+
+.span {
+  color: #FFCA28; /* Cambia el color del texto dentro del span a blanco */
+}
+
+
+.app-name {
+  color: #FFCA28 !important;
+}
+
+.rol {
+  color:  #FFCA28 !important;
+}
+
+.app-name{
+  color: white;
+  font-size: x-large;
+}
+
+.rol{
+  color: white;
+  font-size: x-large;
+  margin-left: 65%;
+}
+
+.asd{
+  background-color: white;
+}
+
+.container{
+  margin-top: 3%;
+}
+
+.btn-group{
+  margin-top: 5%;
+  margin-left: 7.3%;
+}
+
+.fecha_informe {
+  width: 10%;
+  height: 20%;
+  margin-top: 3%;
+}
+
+.form-label{
+  margin-top: 3%;
+  margin-left: 7.3%;
+}
+
+.form-label1{
+  margin-top: 3%;
+  margin-left: 3.1%;
+}
+
+#boton1{
+  margin-left: 2%;
+  margin-bottom: 0.5%;
+}
+
+#previous{
+  margin-left:7.1% ;
+}
+
+#next{
+  margin-left:1% ;
+}
+
+
+/* Estilos para la tabla */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; /* Ajusta según sea necesario */
+}
+
+.table th, .table td {
+  width: 50%; /* Divide el ancho de la tabla entre el número de columnas para tener celdas iguales */
+  text-align: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  background-color: white; /* Fondo blanco para las celdas */
+}
+
+/* Estilo para el formulario */
+.form-group {
+  margin-bottom: 20px; /* Ajusta según sea necesario */
+}
+
+.table-title {
+  font-size: 2rem; /* Tamaño de fuente del título */
+  margin-bottom: 10px; /* Espaciado inferior del título */
+}

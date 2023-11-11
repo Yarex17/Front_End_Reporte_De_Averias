@@ -7,9 +7,9 @@
 <body>
   <div class="pro-container" [class.pro-is-mobile]="mobileQuery.matches" >
     <mat-toolbar  class="mat-toolbar">
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <button class="span" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="app-name">Reporte de Averías</h1>
-      <h1 class="rol">Rol</h1>
+      <h1 class="rol">Jefe técnico</h1>
     </mat-toolbar>
   
     <mat-sidenav-container class="pro-sidenav-container"[style.marginTop.px]="mobileQuery.matches ? 56 : 0">

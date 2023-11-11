@@ -26,14 +26,44 @@ h1.pro-app-name {
 }
 
 
-mat-sidenav{
-  width: 30%;
-  background-color: blue;
+mat-sidenav-content{
+  background-color: lightgray;
+}
+
+mat-sidenav {
+  width: 15%;
+  background-color: black; /* Cambia el color de fondo a negro */
+  color: black; 
+}
+
+/* Estilo para los elementos de la mat-nav-list dentro de la mat-sidenav */
+mat-nav-list a {
+  background-color: #FFCA28; /* Cambia el color del texto de los elementos de la lista a blanco o el color deseado */
+}
+
+mat-nav-list a {
+  color: white !important; /* Usa !important para aumentar la especificidad */
+}
+/* Estilo para los elementos de la mat-nav-list cuando están activos */
+mat-nav-list a.active {
+  background-color: #FFCA28; /* Cambia el color de fondo cuando el enlace está activo (puedes ajustar el color según sea necesario) */
+}
+
+mat-toolbar{
+  background-color: black;
+}
+
+.span {
+  color: #FFCA28; /* Cambia el color del texto dentro del span a blanco */
 }
 
 
-mat-toolbar{
-  background-color: blue;
+.app-name {
+  color: #FFCA28 !important;
+}
+
+.rol {
+  color:  #FFCA28 !important;
 }
 
 .app-name{
@@ -88,3 +118,23 @@ mat-toolbar{
 #next{
   margin-left:1% ;
 }
+
+
+.table-title {
+  font-size: 2rem; /* Tamaño de fuente del título */
+  margin-bottom: 10px; /* Espaciado inferior del título */
+}
+
+.table {
+  width: 100%; /* Hace que la tabla ocupe el 100% del ancho del contenedor */
+  border-collapse: collapse; /* Combina los bordes de las celdas */
+}
+
+.table th, .table td {
+  width: 25%; /* Divide el ancho de la tabla entre el número de columnas para tener celdas iguales */
+  text-align: center; /* Alinea el contenido al centro de las celdas */
+  padding: 8px; /* Espaciado interno de las celdas */
+  border: 1px solid #ddd; /* Borde de las celdas */
+}
+
+/* Otras reglas de estilo si es necesario */

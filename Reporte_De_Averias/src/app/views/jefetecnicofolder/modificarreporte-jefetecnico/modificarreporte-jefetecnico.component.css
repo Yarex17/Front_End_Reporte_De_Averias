@@ -123,14 +123,14 @@
   }
 
   #container1 .form-select{
-    margin-left: 11%;
+    margin-left: 9%;
     margin-bottom: 50px;
     height: 40px;
     width: 20%;
   }
 
   #container1 .form-label{
-    margin-left: 11%;
+    margin-left: 9%;
     height: 40px;
     width: 20%;
   }
@@ -146,7 +146,7 @@
     width: 35%;
     border-collapse: collapse;
     margin-top: 15px; /* Ajusta el margen superior según sea necesario */
-    margin-left: 35.9%;
+    margin-left: 34.5%;
   }
   
   .table th, .table td {
