@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { DialogComponent } from './Alerts/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './Alerts/popup/popup.component';
+import { VerReportesFinalizadosComponent } from './views/jefetecnicofolder/ver-reportes-finalizados/ver-reportes-finalizados.component';
 
 
 
@@ -22,7 +23,7 @@ import { PopupComponent } from './Alerts/popup/popup.component';
     AppComponent,
     LoginComponent,
     DialogComponent,
-    PopupComponent
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
