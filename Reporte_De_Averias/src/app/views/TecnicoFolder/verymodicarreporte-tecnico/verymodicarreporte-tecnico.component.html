@@ -27,7 +27,7 @@
       <mat-sidenav-content>
         <div class="container">
           <h1 class="mt-5">Modificar Reporte</h1>
-          <form>
+          <form [formGroup]="formulariomodificarReporteTecnico">
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3">
@@ -37,12 +37,12 @@
 
                 <div class="mb-3">
                   <label for="descripcion_informe" class="form-label">Descripción del informe</label>
-                  <textarea class="form-control" id="descripcion_informe" name="descripcion_informe" value="{{descripcionReporteSeleccionado}}" rows="3"
+                  <textarea class="form-control" id="descripcion_informe" name="descripcion_informe" formControlName="tcDescripcionNueva" value="{{descripcionReporteSeleccionado}}" rows="3"
                     required></textarea>
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
+            <button type="submit" class="btn btn-primary" id="guardar" (click)="modificarReporteTecnico()">Guardar</button>
           </form>
         </div>
 
