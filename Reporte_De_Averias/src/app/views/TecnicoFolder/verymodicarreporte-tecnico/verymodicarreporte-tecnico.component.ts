@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { UsuarioServices } from 'src/app/core/UsuarioServices';
 import { ReporteServices } from 'src/app/core/ReportesServices';
 import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-verymodicarreporte-tecnico',
@@ -26,12 +27,14 @@ import { FormsModule } from '@angular/forms';
     MatSidenavModule,
     MatListModule,
     NgFor,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
 })
 
 export class VerymodicarreporteTecnicoComponent {
   mobileQuery: MediaQueryList;
+  formulariomodificarReporteTecnico:FormGroup;
   listaEstados: Estado[] = [];
   selectedEstado: string = '';
   idReporteSeleccionado: string | null | undefined;
@@ -39,10 +42,16 @@ export class VerymodicarreporteTecnicoComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices, private _reportesService:ReporteServices) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices, private _reportesService:ReporteServices, private fb:FormBuilder) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.formulariomodificarReporteTecnico=this.fb.group({
+      tnIdReporte:[0],
+      tcDescripcionNueva:["",Validators.required],
+      tbActivo:[1],
+      tbEliminado:[0]
+    });
   }
 
   obtenerEstados() {
@@ -52,11 +61,28 @@ export class VerymodicarreporteTecnicoComponent {
     })
   };
 
+  modificarReporteTecnico(){
+    const request = {
+      idReporte: this.idReporteSeleccionado,
+      descripcionReporte: this.formulariomodificarReporteTecnico.value.tcDescripcionNueva,
+      idEstadoReporte: this.selectedEstado
+    };
+
+    this._reportesService.modificarReporteTecnico(request).subscribe((data: any) => {
+      console.log(data);
+      this.router.navigate(['/tecnico']);
+    });
+
+  }
+
   ngOnInit(): void {
     this.idReporteSeleccionado = sessionStorage.getItem('idReporteSeleccionado');
     this.descripcionReporteSeleccionado = sessionStorage.getItem('descripcionReporteSeleccionado');
     console.log("Llego: "+this.idReporteSeleccionado)
     console.log("Desc: "+this.descripcionReporteSeleccionado)
+    this.formulariomodificarReporteTecnico.patchValue({
+      tcDescripcionNueva: this.descripcionReporteSeleccionado
+    });
     this.obtenerEstados();
   }
 

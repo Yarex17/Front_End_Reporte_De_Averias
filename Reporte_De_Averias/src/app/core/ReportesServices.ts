@@ -42,11 +42,8 @@ export class ReporteServices{
       return this.http.get<Reporte>("https://localhost:7196/api/TraReportes/BuscarTraReporte?id="+data);
     }
 
-    //   modificarEdificio(data: Oficina): Observable<any> {
-    //     return this.http.post('https://localhost:7196/api/TraEdificios/ModificarTraEdificio',data);
-    //   }
-    //   eliminarEdificio(data: any): Observable<any> {
-    //     return this.http.post('https://localhost:7196/api/TraEdificios/EliminarTraEdificio',data);
-    //   }
+    modificarReporteTecnico(data: any): Observable<any> {
+      return this.http.post("https://localhost:7196/api/TraReportes/ModificarReporteTecnico?idReporte="+data.idReporte+"&descripcion="+data.descripcionReporte+"&idEstado="+data.idEstadoReporte, data);
+    }
 
 }
