@@ -7,9 +7,9 @@
 <body>
   <div class="pro-container" [class.pro-is-mobile]="mobileQuery.matches" >
     <mat-toolbar  class="mat-toolbar">
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <button class="span" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="app-name">Reporte de Averías</h1>
-      <h1 class="rol">Secretaria</h1>
+      <h1 class="rol">Administrador Del Edificio</h1>
     </mat-toolbar>
   
     <mat-sidenav-container class="pro-sidenav-container"[style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -20,7 +20,6 @@
             <a class="asd" mat-list-item href="/registrarEdificio">Crear edificio</a>
             <a class="asd" mat-list-item href="/listar_oficina">Listar oficinas</a>
             <a class="asd" mat-list-item href="/registrarOficina">Crear oficinas</a>
-            <a class="asd" mat-list-item href="/eliminarOficina">Eliminar oficinas</a>
             <a class="asd" mat-list-item href="/actualizarOficina">Actualizar oficinas</a>
             <a class="asd" mat-list-item href="/crear-rol">Crear Rol</a>
             <a class="asd" mat-list-item href="/crearUsuario">Crear Usuario</a>
@@ -28,27 +27,19 @@
       </mat-sidenav>
       <mat-sidenav-content>
         <div class="container">
-            <h1 class="mt-5">Reporte de avería</h1>
-            <form>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="titulo_informe" class="form-label">Título</label>
-                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" required>
-                  </div>
-                </div>
-        
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="descripcion_informe" class="form-label">Descripción del informe</label>
-                    <textarea type="text" class="form-control" id="descripcion_informe" name="descripcion_informe" rows="3" value="{{descripcionReporteSeleccionado}}" required></textarea>
-                  </div>
-                </div>
-              </div>
-              <button type="button" class="btn btn-primary" (click)="enviarReporte()" >Cancelar</button>
-              <button type="button" class="btn btn-primary" (click)="enviarReporte()" >Enviar al Jefe Tecnico</button>
-            </form>
-          </div>
+          <h1 class="mt-5">Reporte de avería</h1>
+          <form class="form-container">
+            <div class="mb-3">
+              <label for="descripcion_informe" class="form-label">Descripción del informe</label>
+              <textarea type="text" class="form-control" id="descripcion_informe" name="descripcion_informe" rows="3" value="{{descripcionReporteSeleccionado}}" required></textarea>
+            </div>
+
+            
+              <button type="button" class="btn btn-danger" (click)="enviarReporte()">Cancelar</button>
+              <button type="button" class="btn btn-primary" (click)="enviarReporte()">Enviar al Jefe Tecnico</button>
+
+          </form>
+        </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>

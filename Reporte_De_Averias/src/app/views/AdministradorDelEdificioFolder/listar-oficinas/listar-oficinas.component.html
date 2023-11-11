@@ -8,9 +8,9 @@
 <body>
   <div class="pro-container" [class.pro-is-mobile]="mobileQuery.matches" >
     <mat-toolbar  class="mat-toolbar">
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <button class="span" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="app-name">Reporte de Averías</h1>
-      <h1 class="rol">Rol</h1>
+      <h1 class="rol">Administrador Del Edificio</h1>
     </mat-toolbar>
   
     <mat-sidenav-container class="pro-sidenav-container"[style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -28,15 +28,8 @@
           </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <form action="/submit" method="post">
-            <div class="form-group">
-              <label for="Edificio">Edificio</label>
-              <input type="text" class="form-control" id="name" name="Oficina" placeholder="Oficina">
-            </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
-          </form>
-        
           <div class="container">
+            <h2 class="table-title">Oficinas</h2>
             <table class="table table-bordered" *ngFor="let Oficina of listaOficinas">
               <thead>
                 <tr>
@@ -53,12 +46,6 @@
               </tbody>
             </table>
           </div>
-
-        <div class="">
-          <button type="button" class="btn btn-primary" id="previous">Anterior</button>
-          <button type="button" class="btn btn-primary" id="next">Siguiente</button>
-        </div>
-
       </mat-sidenav-content>
     </mat-sidenav-container>
   </div>
