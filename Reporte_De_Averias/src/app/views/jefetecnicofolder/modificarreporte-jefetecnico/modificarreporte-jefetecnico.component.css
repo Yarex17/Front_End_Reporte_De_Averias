@@ -26,14 +26,40 @@
   }
   
   
-  mat-sidenav{
+  mat-sidenav {
     width: 30%;
-    background-color: blue;
+    background-color: black; /* Cambia el color de fondo a negro */
+    color: black; 
   }
   
+  /* Estilo para los elementos de la mat-nav-list dentro de la mat-sidenav */
+  mat-nav-list a {
+    background-color: #FFCA28; /* Cambia el color del texto de los elementos de la lista a blanco o el color deseado */
+  }
+  
+  mat-nav-list a {
+    color: white !important; /* Usa !important para aumentar la especificidad */
+  }
+  /* Estilo para los elementos de la mat-nav-list cuando están activos */
+  mat-nav-list a.active {
+    background-color: #FFCA28; /* Cambia el color de fondo cuando el enlace está activo (puedes ajustar el color según sea necesario) */
+  }
   
   mat-toolbar{
-    background-color: blue;
+    background-color: black;
+  }
+
+  .span {
+    color: #FFCA28; /* Cambia el color del texto dentro del span a blanco */
+  }
+
+
+  .app-name {
+    color: #FFCA28 !important;
+  }
+  
+  .rol {
+    color:  #FFCA28 !important;
   }
   
   .app-name{
@@ -89,26 +115,43 @@
     margin-left: 28%;
   }
 
-  #label1{
-    margin-left: 0.2%;
+
+  #container1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
-  #label2{
-    margin-left: 0.2%;
+  #container1 .form-select{
+    margin-left: 11%;
+    margin-bottom: 50px;
+    height: 40px;
+    width: 20%;
   }
 
-  #label3{
-    margin-left: 0.2%;
+  #container1 .form-label{
+    margin-left: 11%;
+    height: 40px;
+    width: 20%;
+  }
+  
+  /* Estilo para las opciones dentro de los select */
+
+
+  .table-container {
+    margin-top: 20px; /* Ajusta el margen según sea necesario */
+  }
+  
+  .table {
+    width: 35%;
+    border-collapse: collapse;
+    margin-top: 15px; /* Ajusta el margen superior según sea necesario */
+    margin-left: 35.9%;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd; /* Borde de las celdas */
+    padding: 8px; /* Relleno de las celdas */
+    text-align: left;
   }
 
-  #Button1{
-    margin-left: 1%;
-  }
-
-  #Button2{
-    margin-left: 2%;
-  }
-
-  #Button3{
-    margin-left: 2%;
-  }
