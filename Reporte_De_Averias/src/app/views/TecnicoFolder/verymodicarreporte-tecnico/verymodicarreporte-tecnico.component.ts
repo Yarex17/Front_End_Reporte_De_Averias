@@ -54,10 +54,13 @@ export class VerymodicarreporteTecnicoComponent {
     });
   }
 
-  obtenerEstados() {
-    return this._datosReporteServices.getList().subscribe((data: Estado[]) => {
+  obtenerEstadoFinalizado() {
+    const request = {
+      estado:"Finalizado"
+    }
+    return this._datosReporteServices.buscarEstadoPorNombre(request).subscribe((data: Estado) => {
       console.log(data);
-      this.listaEstados = data;
+      this.listaEstados[0] = data;
     })
   };
 
@@ -83,7 +86,7 @@ export class VerymodicarreporteTecnicoComponent {
     this.formulariomodificarReporteTecnico.patchValue({
       tcDescripcionNueva: this.descripcionReporteSeleccionado
     });
-    this.obtenerEstados();
+    this.obtenerEstadoFinalizado();
   }
 
   ngOnDestroy(): void {

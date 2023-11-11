@@ -33,6 +33,10 @@ export class DatosReporteServices{
         return this.http.post('https://localhost:7196/api/TraEstadoes/EliminarTraEstado?id='+data,data);
     }
 
+    buscarEstadoPorNombre(data: any): Observable<Estado>{
+        return this.http.post<Estado>('https://localhost:7196/api/TraEstadoes/BuscarTraEstadoPorNombre?nombre='+data.estado, data);
+    }
+
     //crud Prioridad
 
     getListPrioridad():Observable<Prioridad[]>{

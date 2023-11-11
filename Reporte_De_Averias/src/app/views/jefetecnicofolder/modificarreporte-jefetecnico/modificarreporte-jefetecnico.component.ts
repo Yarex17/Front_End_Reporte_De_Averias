@@ -124,6 +124,7 @@ export class ModificarreporteJefetecnicoComponent {
     this.idReporteSeleccionado = sessionStorage.getItem('idReporteSeleccionado');
     this.descripcionReporteSeleccionado = sessionStorage.getItem('descripcionReporteSeleccionado');
     console.log("Llego: "+this.idReporteSeleccionado)
+    console.log("Desc: "+this.descripcionReporteSeleccionado)
     this.obtenerEstados();
     this.obtenerPrioridades();
     this.obtenerTiposAveria();

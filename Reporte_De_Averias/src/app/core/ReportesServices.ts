@@ -27,6 +27,10 @@ export class ReporteServices{
       return this.http.get<Reporte[]>("https://localhost:7196/api/TraReportes/ListarTraReportesPorUsuario?idUsuario="+data);
     }
 
+    listarReportesPorUsuarioYEstado(data: any):Observable<Reporte[]>{
+      return this.http.post<Reporte[]>("https://localhost:7196/api/TraReportes/ListarTraReportesPorUsuarioYEstado?idUsuario="+data.idUsuario+"&nombreEstado="+data.nombreEstado, data);
+    }
+
     registrarReporte(data: any): Observable<any> {
          console.log(data);
       return this.http.post("https://localhost:7196/api/TraReportes/CrearTraReporte?descripcion="+data.descripcion+"&idUsuario="+data.idUsuario+"&idAdminEdificio="+data.idAdmin, data);

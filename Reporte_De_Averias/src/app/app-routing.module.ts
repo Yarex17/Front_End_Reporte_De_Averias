@@ -30,6 +30,7 @@ import { ListarPrioridadesComponent } from './views/jefetecnicofolder/listar-pri
 import { ListarTiposaveriaComponent } from './views/jefetecnicofolder/listar-tiposaveria/listar-tiposaveria.component';
 import { CrearTipoaveriaComponent } from './views/jefetecnicofolder/crear-tipoaveria/crear-tipoaveria.component';
 import { ClasificarReporteComponent } from './views/AdministradorDelEdificioFolder/clasificar-reporte/clasificar-reporte.component';
+import { VerReportesFinalizadosComponent } from './views/jefetecnicofolder/ver-reportes-finalizados/ver-reportes-finalizados.component';
 
 
 const routes: Routes = [{path : '', component : LoginComponent}
@@ -61,6 +62,7 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'listar_tipoAveria', component: ListarTiposaveriaComponent}
 ,{path : 'crear_tipoAveria', component: CrearTipoaveriaComponent}
 ,{path : 'clasificar_reporte', component: ClasificarReporteComponent}
+,{path : 'ver-reportesFinalizados', component: VerReportesFinalizadosComponent}
 ];
 
 @NgModule({
