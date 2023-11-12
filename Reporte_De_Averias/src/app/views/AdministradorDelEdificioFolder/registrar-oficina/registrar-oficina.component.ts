@@ -37,7 +37,7 @@ export class RegistrarOficinaComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, private _oficinasServices: OficinaServices, private fb:FormBuilder, private dialog: MatDialog) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasServices: OficinaServices, private fb:FormBuilder, private dialog: MatDialog, private router:Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -71,7 +71,7 @@ export class RegistrarOficinaComponent {
   
     if (!propietario || !nombre) {
       this.mostrarPopupCamposEnBlanco();
-      return; // No continuar con el registro si hay campos vacíos
+      return; 
     }
 
     const request = {
@@ -83,7 +83,7 @@ export class RegistrarOficinaComponent {
       console.log(data);
       this.listaOficinas.push(data);
     });
-
+    this.router.navigate(['/listar_oficina']);
   }
 
   ngOnInit(): void {

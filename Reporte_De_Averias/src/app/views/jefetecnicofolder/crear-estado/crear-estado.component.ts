@@ -11,6 +11,7 @@ import { DatosReporteServices } from 'src/app/core/DatosReporteServices';
 import { Estado } from 'src/app/Models/estado';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-estado',
@@ -38,7 +39,7 @@ export class CrearEstadoComponent implements OnInit{
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private fb:FormBuilder, private _datosReporteServices: DatosReporteServices, private dialog: MatDialog){
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private fb:FormBuilder, private _datosReporteServices: DatosReporteServices, private dialog: MatDialog, private router: Router){
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -71,6 +72,7 @@ export class CrearEstadoComponent implements OnInit{
         });
       }, error:(e) =>{}
     });
+    this.router.navigate(['/listar_estado']);
   }
 
   obtenerEstados() {
