@@ -9,6 +9,9 @@ import {NgIf, NgFor} from '@angular/common';
 import { Reporte } from 'src/app/Models/reporte';
 import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
 import { ReporteServices } from 'src/app/core/ReportesServices';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-crear-reporte',
   templateUrl: './crear-reporte.component.html',
@@ -37,7 +40,7 @@ export class CrearReporteComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder, private dialog: MatDialog, private router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -52,12 +55,28 @@ export class CrearReporteComponent {
   }
 
   crearReporte(){
+    const descripcionObtenida = this.formularioReporte.value.tcDescripcion;
+    if (!descripcionObtenida) {
+      this.mostrarPopupCamposEnBlanco();
+      return; // No continuar con el registro si hay campos vacíos
+    }
     const request = {
       descripcion: this.formularioReporte.value.tcDescripcion,
       idUsuario: this.idUsuarioActual,
       idAdmin: this.idAdminEdificio
     };
-    this._reportesService.registrarReporte(request).subscribe((data: any) => {console.log(data);});
+    this._reportesService.registrarReporte(request).subscribe((data: any) => {
+      console.log(data);
+      this.router.navigate(['/listar_edificio']);
+    });
+  }
+
+  mostrarPopupCamposEnBlanco() {
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '900px',
+      height:'600px',
+      data: { message: 'Los campos están en blanco' }
+    });
   }
 
   ngOnInit(): void {
