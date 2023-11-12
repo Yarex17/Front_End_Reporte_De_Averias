@@ -9,6 +9,7 @@ import {NgIf, NgFor} from '@angular/common';
 import { Reporte } from 'src/app/Models/reporte';
 import { ReporteServices } from 'src/app/core/ReportesServices';
 import { EdificioServices } from 'src/app/core/EdificiosServices';
+import { Router } from '@angular/router';
 
 let dataReporteSeleccionado:Reporte;
 
@@ -36,7 +37,7 @@ export class JefetecnicoComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private router: Router, private _reportesService:ReporteServices) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -60,6 +61,17 @@ export class JefetecnicoComponent implements OnInit {
       }
     });
 
+  }
+
+  eliminarReporte(idReporte:number){
+    sessionStorage.setItem('idReporteSeleccionado', idReporte.toString());
+    const request = {
+      idReporte: sessionStorage.getItem('idReporteSeleccionado'),
+    };
+    if (confirm('¿Estás seguro de que deseas eliminar este Reporte?')) {
+      this._reportesService.eliminarReporteTecnico(request).subscribe((data: any) => {});
+    }
+    
   }
 
   ngOnInit(): void {

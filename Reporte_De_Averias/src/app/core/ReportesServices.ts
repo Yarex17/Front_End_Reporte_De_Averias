@@ -50,4 +50,8 @@ export class ReporteServices{
       return this.http.post("https://localhost:7196/api/TraReportes/ModificarReporteTecnico?idReporte="+data.idReporte+"&descripcion="+data.descripcionReporte+"&idEstado="+data.idEstadoReporte, data);
     }
 
+    eliminarReporteTecnico(data: any): Observable<any> {
+      return this.http.post("https://localhost:7196/api/TraReportes/EliminarTraReporte?id="+data.idReporte, data);
+    }
+
 }
