@@ -1,0 +1,28 @@
+.container{
+    background-color: lightgray;
+}
+
+.col-md-6{
+    background-color: lightgray;
+}
+
+.card{
+    background-color: black;
+}
+
+.form-label{
+    color: #FFCA28;
+}
+
+
+.img-fluid{
+    margin-left: 7.5%;
+}
+
+.card-header{
+    color: #FFCA28;
+}
+
+body{
+    background-color:  lightgray;
+}

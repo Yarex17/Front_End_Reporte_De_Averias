@@ -26,23 +26,44 @@
   }
   
   
-  mat-sidenav{
-    width: 30%;
-    background-color: blue;
+  mat-sidenav {
+    width: 15%;
+    background-color: black; /* Cambia el color de fondo a negro */
+    color: black; 
   }
   
+  /* Estilo para los elementos de la mat-nav-list dentro de la mat-sidenav */
+  mat-nav-list a {
+    background-color: #FFCA28; /* Cambia el color del texto de los elementos de la lista a blanco o el color deseado */
+  }
+  
+  mat-nav-list a {
+    color: white !important; /* Usa !important para aumentar la especificidad */
+  }
+  /* Estilo para los elementos de la mat-nav-list cuando están activos */
+  mat-nav-list a.active {
+    background-color: #FFCA28; /* Cambia el color de fondo cuando el enlace está activo (puedes ajustar el color según sea necesario) */
+  }
   
   mat-toolbar{
-    background-color: blue;
+    background-color: black;
+  }
+
+  mat-sidenav-content{
+    background-color: lightgray;
+  }
+
+  .span {
+    color: #FFCA28; /* Cambia el color del texto dentro del span a blanco */
   }
   
   .app-name{
-    color: white;
+    color:  #FFCA28;
     font-size: x-large;
   }
   
   .rol{
-    color: white;
+    color: #FFCA28;
     font-size: x-large;
     margin-left: 60%;
   }

@@ -81,7 +81,6 @@ export class ListarOficinasComponent {
 
   ngOnInit(): void {
     this.obtenerOficinas();
-    throw new Error('Method not implemented.');
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

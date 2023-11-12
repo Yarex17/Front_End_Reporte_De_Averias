@@ -6,7 +6,7 @@
 <body>
   <div class="pro-container" [class.pro-is-mobile]="mobileQuery.matches" >
     <mat-toolbar  class="mat-toolbar">
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <button class="span" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="app-name">Reporte de Averías</h1>
       <h1 class="rol">Administrador Del Edificio</h1>
     </mat-toolbar>
@@ -18,36 +18,21 @@
           <a class="asd" mat-list-item href="/registrarEdificio">Crear edificio</a>
           <a class="asd" mat-list-item href="/listar_oficina">Listar oficinas</a>
           <a class="asd" mat-list-item href="/registrarOficina">Crear oficinas</a>
-          <a class="asd" mat-list-item href="/eliminarOficina">Eliminar oficinas</a>
           <a class="asd" mat-list-item href="/actualizarOficina">Actualizar oficinas</a>
           <a class="asd" mat-list-item href="/crear-rol">Crear Rol</a>
           <a class="asd" mat-list-item href="/crearUsuario">Crear Usuario</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <button type="button" class="btn btn-primary" id="generarPDF" (click)="generarPDF()">Generar PDF</button>
         <div>  
           <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Opción 1
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Opción 2</a>
-              <a class="dropdown-item" href="#">Opción 3</a>
-              <a class="dropdown-item" href="#">Opción 4</a>
-            </div>
+            <button type="button" class="btn btn-primary" id="generarPDF" (click)="generarPDF()">Generar Reporte</button>
           </div>
-          <div class="mb-3">
-            <label for="fecha_informe" class="form-label">Desde</label>
-            <input type="date" class="fecha_informe" id="fecha_informe" name="fecha_informe" required>
 
-            <label for="fecha_informe" class="form-label1">Hasta</label>
-            <input type="date" class="fecha_informe" id="fecha_informe" name="fecha_informe" required>
-            <button type="button" class="btn btn-primary" id="boton1">Buscar</button>
-          </div>
         </div>
 
         <div class="container">
+          <h2 class="table-title">Reportes</h2>
           <table class="table table-bordered" *ngFor="let Reporte of listaReportes">
             <thead>
               <tr>
@@ -65,10 +50,6 @@
           </table>
         </div>
 
-        <div class="">
-          <button type="button" class="btn btn-primary" id="previous">Anterior</button>
-          <button type="button" class="btn btn-primary" id="next">Siguiente</button>
-        </div>
 
       </mat-sidenav-content>
     </mat-sidenav-container>

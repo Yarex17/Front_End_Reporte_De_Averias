@@ -19,8 +19,6 @@ import { RegistrarEdificioComponent } from './views/AdministradorDelEdificioFold
 import { RegistrarOficinaComponent } from './views/AdministradorDelEdificioFolder/registrar-oficina/registrar-oficina.component';
 import { CrearUsuarioComponent } from './views/AdministradorDelEdificioFolder/crear-usuario/crear-usuario.component';
 import { ActualizarEdificioComponent } from './views/AdministradorDelEdificioFolder/actualizar-edificio/actualizar-edificio.component';
-import { EliminarEdificioComponent } from './views/AdministradorDelEdificioFolder/eliminar-edificio/eliminar-edificio.component';
-import { EliminarOficinaComponent } from './views/AdministradorDelEdificioFolder/eliminar-oficina/eliminar-oficina.component';
 import { ActualizarOficinaComponent } from './views/AdministradorDelEdificioFolder/actualizar-oficina/actualizar-oficina.component';
 import { CrearRolComponent } from './views/AdministradorDelEdificioFolder/crear-rol/crear-rol.component';
 import { ListarEstadosComponent } from './views/jefetecnicofolder/listar-estados/listar-estados.component';
@@ -51,8 +49,6 @@ const routes: Routes = [{path : '', component : LoginComponent}
 ,{path : 'registrarEdificio', component: RegistrarEdificioComponent}
 ,{path : 'crearUsuario', component: CrearUsuarioComponent}
 ,{path : 'actualizarEdificio', component: ActualizarEdificioComponent}
-,{path : 'eliminarEdificio', component: EliminarEdificioComponent}
-,{path : 'eliminarOficina', component: EliminarOficinaComponent}
 ,{path : 'actualizarOficina', component: ActualizarOficinaComponent}
 ,{path : 'listar_estado', component: ListarEstadosComponent}
 ,{path : 'crearEstado', component: CrearEstadoComponent}
