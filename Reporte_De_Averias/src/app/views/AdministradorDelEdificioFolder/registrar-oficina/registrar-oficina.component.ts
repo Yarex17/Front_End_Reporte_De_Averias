@@ -11,6 +11,7 @@ import { Oficina } from 'src/app/Models/oficina';
 import { OficinaServices } from 'src/app/core/OficinasServices';
 import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-oficina',
@@ -36,7 +37,7 @@ export class RegistrarOficinaComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasServices: OficinaServices, private fb:FormBuilder, private dialog: MatDialog) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, private _oficinasServices: OficinaServices, private fb:FormBuilder, private dialog: MatDialog) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

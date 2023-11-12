@@ -86,7 +86,9 @@ export class RegistrarEdificioComponent {
         });
       }, 
       error: (e) => {}
+      
     });
+    this.router.navigate(['/listar_edificio']);
   }
 
 
