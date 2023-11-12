@@ -63,7 +63,7 @@ export class ActualizarOficinaComponent {
 
     this._oficinasService.modificarOficina(request).subscribe((data: any) => {
       console.log(data);
-      this.router.navigate(['/listar_oficina']); // Redirección aquí
+      this.router.navigate(['/listar_oficina']); 
     });
 
   }
