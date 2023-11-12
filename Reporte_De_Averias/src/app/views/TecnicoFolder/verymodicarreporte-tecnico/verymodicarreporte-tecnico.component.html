@@ -10,7 +10,7 @@
 <body>
   <div class="pro-container" [class.pro-is-mobile]="mobileQuery.matches">
     <mat-toolbar class="mat-toolbar">
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <button class="span" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
       <h1 class="app-name">Reporte de Averías</h1>
       <h1 class="rol">Técnico</h1>
     </mat-toolbar>
@@ -31,11 +31,6 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3">
-                  <label for="titulo_informe" class="form-label">Título</label>
-                  <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" required>
-                </div>
-
-                <div class="mb-3">
                   <label for="descripcion_informe" class="form-label">Descripción del informe</label>
                   <textarea class="form-control" id="descripcion_informe" name="descripcion_informe" formControlName="tcDescripcionNueva" value="{{descripcionReporteSeleccionado}}" rows="3"
                     required></textarea>
@@ -47,12 +42,8 @@
         </div>
 
         <div class="btn-group" id="container1">
-          <label for="" class="form-label" id="label4">Tipo de avería</label>
-          <input type="text" class="form-control" id="oficina_informe" name="oficina_informe" required>
-          <label for="" class="form-label" id="label5">Prioridad</label>
-          <input type="text" class="form-control" id="oficina_informe" name="oficina_informe" required>
-          <label for="" class="form-label" id="label6">Estado</label>
-          <select class="form-control" id="selectEstado" name="Estado" [(ngModel)]="selectedEstado">
+          <label for="selectEstado" class="form-label" id="label1">Estado</label>
+          <select class="form-select custom-select mb-3" id="selectEstado" name="Estado" [(ngModel)]="selectedEstado">
             <option *ngFor="let Estado of listaEstados" [value]="Estado.tnIdEstado">{{ Estado.tcNombre }}</option>
           </select>
         </div>
