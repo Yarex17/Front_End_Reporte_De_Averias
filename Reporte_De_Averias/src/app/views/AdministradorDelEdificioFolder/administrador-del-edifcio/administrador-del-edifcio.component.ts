@@ -12,6 +12,8 @@ import { UsuarioServices } from 'src/app/core/UsuarioServices';
 import { Usuario } from 'src/app/Models/usuario';
 // @ts-ignore
 import * as html2pdf from 'html2pdf.js';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
 
 @Component({
   selector: 'app-administrador-del-edifcio',
@@ -37,7 +39,7 @@ export class AdministradorDelEdifcioComponent {
   single: any[] = [];
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _usuarioServices: UsuarioServices) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _usuarioServices: UsuarioServices,private router:Router, private _loginService:LoginService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -49,6 +51,11 @@ export class AdministradorDelEdifcioComponent {
       this.listaReportes = data;
     })
   };
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
+  }
 
   clasificarReporte(idReporte:number){
     sessionStorage.setItem('idReporteSeleccionado', idReporte.toString());

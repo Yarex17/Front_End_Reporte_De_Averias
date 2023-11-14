@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
 import { Prioridad } from 'src/app/Models/prioridades';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
 
 @Component({
   selector: 'app-crear-prioridades',
@@ -40,7 +41,7 @@ export class CrearPrioridadesComponent implements OnInit{
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private fb:FormBuilder, private _datosReporteServices: DatosReporteServices, private dialog: MatDialog, private router: Router){
+  constructor(private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private fb:FormBuilder, private _datosReporteServices: DatosReporteServices, private dialog: MatDialog, private router: Router){
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -52,6 +53,12 @@ export class CrearPrioridadesComponent implements OnInit{
     });
   }
   
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
+  }
+
   registrarEdificio(){
     if (
       !this.formularioEstado.value.tcNombreEstado
@@ -59,6 +66,8 @@ export class CrearPrioridadesComponent implements OnInit{
       this.mostrarPopupCamposEnBlanco();
       return;
     }
+
+    
     
     const request = {
       nombreEstado: this.formularioEstado.value.tcNombreEstado

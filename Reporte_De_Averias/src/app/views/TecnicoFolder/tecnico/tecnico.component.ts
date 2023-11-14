@@ -9,6 +9,8 @@ import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Reporte } from '../../../Models/reporte';
 import {ReporteServices} from '../../../core/ReportesServices';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
 
 @Component({
   selector: 'app-tecnico',
@@ -34,10 +36,15 @@ export class TecnicoComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices,private router:Router, private _loginService:LoginService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
   }
 
   obtenerReportes() {

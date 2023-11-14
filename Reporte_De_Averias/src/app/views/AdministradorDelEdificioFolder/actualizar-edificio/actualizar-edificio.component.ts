@@ -12,6 +12,8 @@ import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
+
 
 @Component({
   selector: 'app-actualizar-edificio',
@@ -40,7 +42,7 @@ export class ActualizarEdificioComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private fb:FormBuilder,private dialog: MatDialog,private router: Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private fb:FormBuilder,private dialog: MatDialog,private router: Router,private _loginService:LoginService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -51,6 +53,10 @@ export class ActualizarEdificioComponent {
       tbActivo:[1],
       tbEliminado:[0]
     });
+  }
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
   }
 
   modificarEdificio() {

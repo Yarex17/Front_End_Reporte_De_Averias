@@ -9,6 +9,8 @@ import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Edificio } from '../../../Models/edificio';
 import {EdificioServices} from '../../../core/EdificiosServices';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
 
 let dataEdificioSeleccionado: Edificio;
 
@@ -35,7 +37,7 @@ export class ListarEdificiosComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private fb:FormBuilder) {
+  constructor(private router:Router, private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private fb:FormBuilder) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -82,6 +84,11 @@ export class ListarEdificiosComponent implements OnInit {
         this.obtenerTareas();
       });
     }
+  }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
   }
 
   ngOnInit(): void {

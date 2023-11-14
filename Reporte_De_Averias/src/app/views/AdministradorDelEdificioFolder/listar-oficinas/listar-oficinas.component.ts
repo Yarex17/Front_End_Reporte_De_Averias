@@ -9,6 +9,8 @@ import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Oficina } from '../../../Models/oficina';
 import {OficinaServices} from '../../../core/OficinasServices';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
 
 let dataOficinaSeleccionada: Oficina;
 
@@ -35,7 +37,7 @@ export class ListarOficinasComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasService:OficinaServices, private fb:FormBuilder) {
+  constructor(private router:Router, private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasService:OficinaServices, private fb:FormBuilder) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

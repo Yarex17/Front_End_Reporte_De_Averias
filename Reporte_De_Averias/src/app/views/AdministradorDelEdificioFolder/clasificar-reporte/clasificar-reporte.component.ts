@@ -10,6 +10,7 @@ import { Reporte } from 'src/app/Models/reporte';
 import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
 import { ReporteServices } from 'src/app/core/ReportesServices';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
 
 @Component({
   selector: 'app-clasificar-reporte',
@@ -38,10 +39,15 @@ export class ClasificarReporteComponent implements OnInit{
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder, private router: Router) {
+  constructor(private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder, private router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
   }
 
   enviarReporte(){

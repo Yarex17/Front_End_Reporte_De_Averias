@@ -12,6 +12,7 @@ import { ReporteServices } from 'src/app/core/ReportesServices';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
 @Component({
   selector: 'app-crear-reporte',
   templateUrl: './crear-reporte.component.html',
@@ -40,7 +41,7 @@ export class CrearReporteComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder, private dialog: MatDialog, private router: Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder, private dialog: MatDialog, private router: Router, private _loginService:LoginService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -52,6 +53,11 @@ export class CrearReporteComponent {
       tbEliminado:[0]
     });
     this.idUsuarioActual = sessionStorage.getItem('id');
+  }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
   }
 
   crearReporte(){

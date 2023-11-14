@@ -10,6 +10,8 @@ import { Reporte } from 'src/app/Models/reporte';
 import { ReporteServices } from 'src/app/core/ReportesServices';
 import { EdificioServices } from 'src/app/core/EdificiosServices';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
+
 
 let dataReporteSeleccionado:Reporte;
 
@@ -37,12 +39,19 @@ export class JefetecnicoComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,private router: Router, private _reportesService:ReporteServices) {
+
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices,private router:Router, private _loginService:LoginService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     dataReporteSeleccionado;
   }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
+  }
+
 
   obtenerReportes() {
     return this._reportesService.listarReportesPorUsuario(this.idUsuarioActual).subscribe((data: Reporte[]) => {
