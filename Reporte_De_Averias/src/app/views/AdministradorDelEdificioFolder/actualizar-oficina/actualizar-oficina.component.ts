@@ -76,7 +76,8 @@ export class ActualizarOficinaComponent {
 
   mostrarPopupCamposEnBlanco() {
     const dialogRef = this.dialog.open(PopupComponent, {
-      width: '250px',
+      width: '900px',
+      height:'600px',
       data: { message: 'Los campos están en blanco' }
     });
   }

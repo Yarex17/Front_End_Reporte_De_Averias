@@ -12,6 +12,7 @@ import { EdificioServices } from 'src/app/core/EdificiosServices';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/LoginServices';
 
+
 let dataReporteSeleccionado:Reporte;
 
 @Component({
@@ -37,6 +38,7 @@ export class JefetecnicoComponent implements OnInit {
   rolValue: string | null | undefined;
 
   private _mobileQueryListener: () => void;
+
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices,private router:Router, private _loginService:LoginService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -68,6 +70,17 @@ export class JefetecnicoComponent implements OnInit {
       }
     });
 
+  }
+
+  eliminarReporte(idReporte:number){
+    sessionStorage.setItem('idReporteSeleccionado', idReporte.toString());
+    const request = {
+      idReporte: sessionStorage.getItem('idReporteSeleccionado'),
+    };
+    if (confirm('¿Estás seguro de que deseas eliminar este Reporte?')) {
+      this._reportesService.eliminarReporteTecnico(request).subscribe((data: any) => {});
+    }
+    
   }
 
   ngOnInit(): void {

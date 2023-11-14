@@ -43,7 +43,7 @@
                 <td class="text-center">{{Reporte.tcDescripcion}}</td>
                 <td class="text-center">{{Reporte.tfFecha}}</td>
                 <td class="text-center"><a (click)="editarReporte(Reporte.tnIdReporte)" href="/modificarreporte-jefetecnico"><img src="./assets/editar.png" alt="Imagen de la tarea"></a></td>
-                <td class="text-center"><a href="/eliminarEdificio"><img src="./assets/eliminar.png" alt="Imagen de la tarea"></a></td>
+                <td class="text-center"><a (click)="eliminarReporte(Reporte.tnIdReporte)" href="/jefetecnico"><img src="./assets/eliminar.png" alt="Imagen de la tarea"></a></td>
             </tbody>
           </table>
         </div>

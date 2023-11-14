@@ -73,7 +73,7 @@ export class ListarOficinasComponent {
   }
 
   eliminarOficina(idOficina: number) {
-    if (confirm('¿Estás seguro de que deseas eliminar este edificio?')) {
+    if (confirm('¿Estás seguro de que deseas eliminar esta oficina?')) {
       this._oficinasService.eliminarOficina(idOficina).subscribe((data: any) => {
         alert('Edificio eliminado exitosamente');
         this.obtenerOficinas();
