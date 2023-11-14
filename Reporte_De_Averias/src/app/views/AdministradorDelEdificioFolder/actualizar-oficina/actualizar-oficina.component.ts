@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
 import { OficinaServices } from 'src/app/core/OficinasServices';
+import { LoginService } from 'src/app/core/LoginServices';
 
 @Component({
   selector: 'app-actualizar-oficina',
@@ -36,7 +37,7 @@ export class ActualizarOficinaComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasService:OficinaServices, private fb:FormBuilder,private dialog: MatDialog,private router: Router) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasService:OficinaServices, private fb:FormBuilder,private dialog: MatDialog,private router: Router,private _loginService:LoginService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -46,6 +47,11 @@ export class ActualizarOficinaComponent {
       tbActivo:[1],
       tbEliminado:[0]
     });
+  }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
   }
 
   modificarOficina(){

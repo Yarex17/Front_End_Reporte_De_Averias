@@ -9,6 +9,8 @@ import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Reporte } from '../../../Models/reporte';
 import {ReporteServices} from '../../../core/ReportesServices';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
 
 @Component({
   selector: 'app-listarreporte-jefetecnico',
@@ -33,7 +35,7 @@ export class ListarreporteJefetecnicoComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder) {
+  constructor(private router:Router, private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -43,6 +45,11 @@ export class ListarreporteJefetecnicoComponent {
       TbActivo:[1,Validators.required],
       TbEliminado:[1,Validators.required],
     });
+  }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
   }
 
   obtenerTareas() {

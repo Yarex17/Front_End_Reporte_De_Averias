@@ -13,6 +13,7 @@ import { UsuarioServices } from 'src/app/core/UsuarioServices';
 import { ReporteServices } from 'src/app/core/ReportesServices';
 import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
+import { LoginService } from 'src/app/core/LoginServices';
 
 @Component({
   selector: 'app-verymodicarreporte-tecnico',
@@ -42,7 +43,7 @@ export class VerymodicarreporteTecnicoComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices, private _reportesService:ReporteServices, private fb:FormBuilder) {
+  constructor(private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices, private _reportesService:ReporteServices, private fb:FormBuilder) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -52,6 +53,11 @@ export class VerymodicarreporteTecnicoComponent {
       tbActivo:[1],
       tbEliminado:[0]
     });
+  }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
   }
 
   obtenerEstadoFinalizado() {

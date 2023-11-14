@@ -29,36 +29,37 @@ import { ListarTiposaveriaComponent } from './views/jefetecnicofolder/listar-tip
 import { CrearTipoaveriaComponent } from './views/jefetecnicofolder/crear-tipoaveria/crear-tipoaveria.component';
 import { ClasificarReporteComponent } from './views/AdministradorDelEdificioFolder/clasificar-reporte/clasificar-reporte.component';
 import { VerReportesFinalizadosComponent } from './views/jefetecnicofolder/ver-reportes-finalizados/ver-reportes-finalizados.component';
+import { AuthGuard } from './auth.guard';
 
 
-const routes: Routes = [{path : '', component : LoginComponent}
-,{path : 'secretaria', component : SecretariaComponent}
+const routes: Routes = [{path : '', component : LoginComponent, canActivate: [AuthGuard]}
+,{path : 'secretaria', component : SecretariaComponent, canActivate: [AuthGuard]}
 ,{path : 'login', component : LoginComponent}
-,{path : 'crear', component : CrearReporteComponent}
-,{path : 'listar', component: ListarReporteComponent}
-,{path : 'jefetecnico', component: JefetecnicoComponent}
-,{path : 'listarreporte-jefetecnico', component: ListarreporteJefetecnicoComponent}
-,{path : 'modificarreporte-jefetecnico', component: ModificarreporteJefetecnicoComponent}
-,{path : 'administradordeledificio', component: AdministradorDelEdifcioComponent}
-,{path : 'listar_edificio', component:ListarEdificiosComponent}
-,{path : 'listar_oficina', component:  ListarOficinasComponent}
-,{path : 'tecnico', component: TecnicoComponent}
-,{path : 'listarreporte-tecnico', component: ListarreporteTecnicoComponent}
-,{path : 'modificarreporte-tecnico', component: VerymodicarreporteTecnicoComponent}
-,{path : 'registrarOficina', component: RegistrarOficinaComponent}
-,{path : 'registrarEdificio', component: RegistrarEdificioComponent}
-,{path : 'crearUsuario', component: CrearUsuarioComponent}
-,{path : 'actualizarEdificio', component: ActualizarEdificioComponent}
-,{path : 'actualizarOficina', component: ActualizarOficinaComponent}
-,{path : 'listar_estado', component: ListarEstadosComponent}
-,{path : 'crearEstado', component: CrearEstadoComponent}
-,{path : 'crear-rol', component: CrearRolComponent}
-,{path : 'crear-prioridad', component: CrearPrioridadesComponent}
-,{path : 'listar_prioridad', component: ListarPrioridadesComponent}
-,{path : 'listar_tipoAveria', component: ListarTiposaveriaComponent}
-,{path : 'crear_tipoAveria', component: CrearTipoaveriaComponent}
-,{path : 'clasificar_reporte', component: ClasificarReporteComponent}
-,{path : 'ver-reportesFinalizados', component: VerReportesFinalizadosComponent}
+,{path : 'crear', component : CrearReporteComponent, canActivate: [AuthGuard]}
+,{path : 'listar', component: ListarReporteComponent, canActivate: [AuthGuard]}
+,{path : 'jefetecnico', component: JefetecnicoComponent, canActivate: [AuthGuard]}
+,{path : 'listarreporte-jefetecnico', component: ListarreporteJefetecnicoComponent, canActivate: [AuthGuard]}
+,{path : 'modificarreporte-jefetecnico', component: ModificarreporteJefetecnicoComponent, canActivate: [AuthGuard]}
+,{path : 'administradordeledificio', component: AdministradorDelEdifcioComponent, canActivate: [AuthGuard]}
+,{path : 'listar_edificio', component:ListarEdificiosComponent, canActivate: [AuthGuard]}
+,{path : 'listar_oficina', component:  ListarOficinasComponent, canActivate: [AuthGuard]}
+,{path : 'tecnico', component: TecnicoComponent, canActivate: [AuthGuard]}
+,{path : 'listarreporte-tecnico', component: ListarreporteTecnicoComponent, canActivate: [AuthGuard]}
+,{path : 'modificarreporte-tecnico', component: VerymodicarreporteTecnicoComponent, canActivate: [AuthGuard]}
+,{path : 'registrarOficina', component: RegistrarOficinaComponent, canActivate: [AuthGuard]}
+,{path : 'registrarEdificio', component: RegistrarEdificioComponent, canActivate: [AuthGuard]}
+,{path : 'crearUsuario', component: CrearUsuarioComponent, canActivate: [AuthGuard]}
+,{path : 'actualizarEdificio', component: ActualizarEdificioComponent, canActivate: [AuthGuard]}
+,{path : 'actualizarOficina', component: ActualizarOficinaComponent, canActivate: [AuthGuard]}
+,{path : 'listar_estado', component: ListarEstadosComponent, canActivate: [AuthGuard]}
+,{path : 'crearEstado', component: CrearEstadoComponent, canActivate: [AuthGuard]}
+,{path : 'crear-rol', component: CrearRolComponent, canActivate: [AuthGuard]}
+,{path : 'crear-prioridad', component: CrearPrioridadesComponent, canActivate: [AuthGuard]}
+,{path : 'listar_prioridad', component: ListarPrioridadesComponent, canActivate: [AuthGuard]}
+,{path : 'listar_tipoAveria', component: ListarTiposaveriaComponent, canActivate: [AuthGuard]}
+,{path : 'crear_tipoAveria', component: CrearTipoaveriaComponent, canActivate: [AuthGuard]}
+,{path : 'clasificar_reporte', component: ClasificarReporteComponent, canActivate: [AuthGuard]}
+,{path : 'ver-reportesFinalizados', component: VerReportesFinalizadosComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

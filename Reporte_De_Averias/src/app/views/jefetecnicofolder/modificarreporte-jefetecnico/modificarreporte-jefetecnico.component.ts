@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { UsuarioServices } from 'src/app/core/UsuarioServices';
 import { Usuario } from 'src/app/Models/usuario';
 import { ReporteServices } from 'src/app/core/ReportesServices';
+import { LoginService } from 'src/app/core/LoginServices';
 
 interface Tecnico {
   id: number;
@@ -58,10 +59,15 @@ export class ModificarreporteJefetecnicoComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices, private _reportesService:ReporteServices) {
+  constructor( private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices, private _reportesService:ReporteServices) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
   }
 
   obtenerEstados() {

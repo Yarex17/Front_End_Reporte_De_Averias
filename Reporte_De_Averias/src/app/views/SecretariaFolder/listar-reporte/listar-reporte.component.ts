@@ -9,6 +9,8 @@ import {NgIf, NgFor} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Reporte } from '../../../Models/reporte';
 import {ReporteServices} from '../../../core/ReportesServices';
+import { LoginService } from 'src/app/core/LoginServices';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-reporte',
@@ -33,7 +35,7 @@ export class ListarReporteComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private fb:FormBuilder,private router:Router, private _loginService:LoginService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -51,6 +53,11 @@ export class ListarReporteComponent {
       this.listaReportes = data;
     })
   };
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
+  }
   ngOnInit(): void {
     this.obtenerReportes();
     throw new Error('Method not implemented.');

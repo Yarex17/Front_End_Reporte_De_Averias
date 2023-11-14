@@ -1,9 +1,10 @@
+// login.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog'; // Importa MatDialog
+import { MatDialog } from '@angular/material/dialog';
 import { Login } from 'src/app/Models/login';
 import { LoginService } from 'src/app/core/LoginServices';
-import { DialogComponent } from '../../Alerts/dialog/dialog.component'; // Importa el componente de diálogo
+import { DialogComponent } from '../../Alerts/dialog/dialog.component';
 
 let dataLogin: Login;
 
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   public nombre: string;
   public contra: string;
   public entrar: boolean;
-  public error: boolean = false; // Nueva variable para manejar errores
+  public error: boolean = false;
 
   constructor(private loginService: LoginService, private router: Router, public dialog: MatDialog) {
     this.nombre = '';
@@ -25,8 +26,7 @@ export class LoginComponent implements OnInit {
     dataLogin;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   buttonInicioSesion(): void {
     if (this.nombre.trim().length === 0 || this.contra.trim().length === 0) {
@@ -42,18 +42,15 @@ export class LoginComponent implements OnInit {
   }
 
   buscarUsuario(usuario: string, contrasenna: string) {
-    if (usuario.trim().length != 0 && contrasenna.trim().length != 0) {
+    if (usuario.trim().length !== 0 && contrasenna.trim().length !== 0) {
       this.loginService.buscarUsuario({ usuario, contrasenna }).subscribe((data: any) => {
         console.log(data);
-        dataLogin = new Login(data.usuario, data.contrasenna, data.id, data.rol)
+        dataLogin = new Login(data.usuario, data.contrasenna, data.id, data.rol);
         if (dataLogin.ID != null) {
-
           sessionStorage.setItem('id', dataLogin.ID.toString());
           sessionStorage.setItem('usuario', dataLogin.usuario);
           sessionStorage.setItem('rol', dataLogin.rol);
-
           if (dataLogin.rol === "JefeTecnico") {
-
             this.router.navigate(['/jefetecnico']);
           } else if (dataLogin.rol === "Secretaria") {
             this.router.navigate(['/secretaria']);
@@ -62,17 +59,20 @@ export class LoginComponent implements OnInit {
           } else if (dataLogin.rol === "AdminEdificio") {
             this.router.navigate(['/administradordeledificio']);
           }
-
+          
         } else {
           console.log("El nombre de usuario o la contraseña son incorrectos");
-          this.openDialog(); // Abre el pop-up en caso de error
+          this.openDialog();
         }
       });
-    }
-    else {
+    } else {
       console.log("Buscar" + usuario.length);
     }
-  } //buscarUsuario
+  }
+
+  logout(){
+    this.loginService.logout();
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {

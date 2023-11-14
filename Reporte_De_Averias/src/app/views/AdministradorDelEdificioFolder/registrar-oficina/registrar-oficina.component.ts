@@ -12,6 +12,7 @@ import { OficinaServices } from 'src/app/core/OficinasServices';
 import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
 
 @Component({
   selector: 'app-registrar-oficina',
@@ -37,7 +38,7 @@ export class RegistrarOficinaComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasServices: OficinaServices, private fb:FormBuilder, private dialog: MatDialog, private router:Router) {
+  constructor(private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasServices: OficinaServices, private fb:FormBuilder, private dialog: MatDialog, private router:Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -47,6 +48,11 @@ export class RegistrarOficinaComponent {
       tbActivo:[1],
       tbEliminado:[0],
     });
+  }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
   }
 
   obtenerOficinas() {

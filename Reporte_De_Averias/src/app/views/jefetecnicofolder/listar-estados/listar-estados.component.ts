@@ -8,6 +8,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {NgIf, NgFor} from '@angular/common';
 import { DatosReporteServices } from 'src/app/core/DatosReporteServices';
 import { Estado } from 'src/app/Models/estado';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/core/LoginServices';
 
 
 @Component({
@@ -33,11 +35,17 @@ export class ListarEstadosComponent implements OnInit {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices){
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices,private router:Router, private _loginService:LoginService){
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
+
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
+  }
+
   
   obtenerEstados() {
     return this._datosReporteServices.getList().subscribe((data: Estado[]) => {

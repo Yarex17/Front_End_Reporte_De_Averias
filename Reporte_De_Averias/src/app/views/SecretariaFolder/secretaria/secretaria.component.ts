@@ -12,7 +12,8 @@ import { EdificioServices } from 'src/app/core/EdificiosServices';
 import { Edificio } from 'src/app/Models/edificio';
 import { UsuarioServices } from 'src/app/core/UsuarioServices';
 import { Usuario } from 'src/app/Models/usuario';
-
+import { LoginService } from 'src/app/core/LoginServices';
+import { Router } from '@angular/router';
 let dataEdificio: Edificio;
 let dataUsuario: Usuario;
 
@@ -41,7 +42,7 @@ export class SecretariaComponent implements OnInit{
   private _mobileQueryListener: () => void;
   rolValue: string | null | undefined;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _edificiosService: EdificioServices, private _usuarioServices: UsuarioServices) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _edificiosService: EdificioServices, private _usuarioServices: UsuarioServices, private router:Router, private _loginService:LoginService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -70,9 +71,7 @@ export class SecretariaComponent implements OnInit{
   }
 
   editarReporte(idReporte: number) {
-    // Aquí puedes utilizar el ID del reporte seleccionado (idReporte) como necesites
     console.log("ID del reporte seleccionado:", idReporte);
-    // También puedes redirigir a la página de edición o realizar otras acciones según tu lógica
   }
   
   obtenerAdminEdificio() {
@@ -101,6 +100,11 @@ export class SecretariaComponent implements OnInit{
     
   }
 
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
+  }
+  
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
