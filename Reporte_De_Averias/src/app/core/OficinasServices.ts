@@ -25,7 +25,7 @@ export class OficinaServices{
     }
 
     registrarOficina(data: any): Observable<any> {
-        return this.http.post("https://localhost:7196/api/TraOficinas/CrearTraOficina?numeroPiso="+data.numeroPisos+"&idEdificio="+data.idEdificio+"", data);
+        return this.http.post("https://localhost:7196/api/TraOficinas/CrearTraOficina?numeroPiso="+data.numeroPiso+"&idEdificio="+data.idEdificio, data);
     }
 
     buscarOficina(data: any):Observable<Oficina>{

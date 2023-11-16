@@ -13,6 +13,8 @@ import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/LoginServices';
+import { EdificioServices } from 'src/app/core/EdificiosServices';
+import { Edificio } from 'src/app/Models/edificio';
 
 @Component({
   selector: 'app-registrar-oficina',
@@ -33,12 +35,14 @@ import { LoginService } from 'src/app/core/LoginServices';
 })
 export class RegistrarOficinaComponent {
   mobileQuery: MediaQueryList;
+  listaEdificios:Edificio[]=[];
   listaOficinas:Oficina[]=[];
   formularioOficina:FormGroup;
+  selectedEdificio: string = '';
 
   private _mobileQueryListener: () => void;
 
-  constructor(private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _oficinasServices: OficinaServices, private fb:FormBuilder, private dialog: MatDialog, private router:Router) {
+  constructor(private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _edificiosService:EdificioServices, private _oficinasServices: OficinaServices, private fb:FormBuilder, private dialog: MatDialog, private router:Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -50,10 +54,21 @@ export class RegistrarOficinaComponent {
     });
   }
 
+  onChange(event: Event) {
+    this.selectedEdificio = (event.target as HTMLSelectElement).value;
+  }
+
   logout(): void {
     this._loginService.logout(); 
     this.router.navigate(['/login']);
   }
+
+  obtenerEdificios() {
+    return this._edificiosService.getList().subscribe((data: Edificio[]) => {
+      console.log(data);
+      this.listaEdificios = data;
+    })
+  };
 
   obtenerOficinas() {
     return this._oficinasServices.getList().subscribe((data: Oficina[]) => {
@@ -72,17 +87,17 @@ export class RegistrarOficinaComponent {
 
   registrarOficina(){
 
-    const propietario = this.formularioOficina.value.tnNumeroPisoCrearOficina;
-    const nombre = this.formularioOficina.value.tnEdificioCrearOficina;
+    const numeroPiso = this.formularioOficina.value.tnNumeroPisoCrearOficina;
+    const edificio = this.selectedEdificio;
   
-    if (!propietario || !nombre) {
+    if (!numeroPiso || !edificio) {
       this.mostrarPopupCamposEnBlanco();
       return; 
     }
 
     const request = {
-      numeroPisos: this.formularioOficina.value.tnNumeroPisoCrearOficina,
-      idEdificio: this.formularioOficina.value.tnEdificioCrearOficina
+      numeroPiso: numeroPiso,
+      idEdificio: edificio
     };
     
     this._oficinasServices.registrarOficina(request).subscribe((data: any) => {
@@ -93,6 +108,7 @@ export class RegistrarOficinaComponent {
   }
 
   ngOnInit(): void {
+    this.obtenerEdificios();
     this.obtenerOficinas();
   }
 
