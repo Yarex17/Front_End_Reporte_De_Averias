@@ -73,7 +73,7 @@ export class CrearReporteComponent {
     };
     this._reportesService.registrarReporte(request).subscribe((data: any) => {
       console.log(data);
-      this.router.navigate(['/listar_edificio']);
+      this.router.navigate(['/secretaria']);
     });
   }
 

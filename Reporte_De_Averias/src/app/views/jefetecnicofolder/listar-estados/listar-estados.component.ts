@@ -54,8 +54,8 @@ export class ListarEstadosComponent implements OnInit {
     })
   };
 
-  eliminarEdificio(idEstado: number) {
-    if (confirm('¿Estás seguro de que deseas eliminar este edificio?')) {
+  eliminarEstado(idEstado: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar este estado?')) {
       this._datosReporteServices.eliminarEstado(idEstado).subscribe((data: any) => {
         console.log('Estado eliminado exitosamente');
         this.obtenerEstados();
