@@ -55,7 +55,7 @@ export class ListarTiposaveriaComponent implements OnInit{
   eliminarTipoAveria(idTipoAveria: number) {
     if (confirm('¿Estás seguro de que deseas eliminar este tipo de avería?')) {
       this._datosReporteServices.eliminarTipoAveria(idTipoAveria).subscribe((data: any) => {
-        console.log('Estado eliminado exitosamente');
+        console.log('Tipo de Avería eliminado exitosamente');
         this.obtenerTiposAveria();
       });
     }

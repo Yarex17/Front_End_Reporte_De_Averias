@@ -79,6 +79,7 @@ export class CrearTipoaveriaComponent implements OnInit{
         });
       }, error:(e) =>{}
     });
+    this.router.navigate(['/listar_tipoAveria']);
   }
 
   obtenerTiposAveria() {

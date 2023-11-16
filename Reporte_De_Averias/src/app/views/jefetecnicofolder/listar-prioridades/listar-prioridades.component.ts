@@ -52,10 +52,10 @@ export class ListarPrioridadesComponent implements OnInit {
     })
   };
 
-  eliminarEdificio(idEstado: number) {
-    if (confirm('¿Estás seguro de que deseas eliminar este edificio?')) {
+  eliminarPrioridad(idEstado: number) {
+    if (confirm('¿Estás seguro de que deseas eliminar esta prioridad?')) {
       this._datosReporteServices.eliminarPrioridad(idEstado).subscribe((data: any) => {
-        console.log('Estado eliminado exitosamente');
+        console.log('Prioridad eliminada exitosamente');
         this.obtenerPrioridades();
       });
     }
