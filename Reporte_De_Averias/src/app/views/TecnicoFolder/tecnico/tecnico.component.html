@@ -15,8 +15,6 @@
     <mat-sidenav-container class="pro-sidenav-container"[style.marginTop.px]="mobileQuery.matches ? 56 : 0">
       <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
         <mat-nav-list>
-          <a class="asd" mat-list-item href="/tecnico">Menú principal</a>
-          <a class="asd" mat-list-item href="/modificarreporte-tecnico">Modificar Reporte</a>
           <a class="asd" mat-list-item (click)="logout()">Cerrar Sesión</a>
         </mat-nav-list>
       </mat-sidenav>
