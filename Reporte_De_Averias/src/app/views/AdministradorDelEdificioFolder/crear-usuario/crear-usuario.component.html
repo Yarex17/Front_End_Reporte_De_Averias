@@ -21,38 +21,55 @@
             <a class="asd" mat-list-item href="/registrarEdificio">Crear Edificio</a>
             <a class="asd" mat-list-item href="/listar_oficina">Listar oficinas</a>
             <a class="asd" mat-list-item href="/registrarOficina">Crear Oficina</a>
-            <a class="asd" mat-list-item href="/eliminarOficina">Eliminar oficinas</a>
-            <a class="asd" mat-list-item href="/actualizarOficina">Actualizar oficinas</a>
-            <a class="asd" mat-list-item href="/crear-rol">Crear Rol</a>
             <a class="asd" mat-list-item (click)="logout()">Cerrar Sesión</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
         <div class="container">
             <h1 class="mt-5">Registrar Usuario</h1>
-            <form>
+            <form [formGroup]="formularioUsuario">
               <div class="row">
                 <div class="col-md-6">
                   <div class="mb-3">
                     <label for="titulo_informe" class="form-label">Nombre de Usuario</label>
-                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" required>
+                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" formControlName="tcNombre" required>
                   </div>
-
+                  <div class="mb-3">
+                    <label for="titulo_informe" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" formControlName="tcApellido" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="titulo_informe" class="form-label">Cédula</label>
+                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" formControlName="tcCedula" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="titulo_informe" class="form-label">Correo</label>
+                    <input type="text" class="form-control" id="titulo_informe" name="titulo_informe" formControlName="tcCorreo" required>
+                  </div>
                   <div class="mb-3">
                     <label for="titulo_informe" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="titulo_informe" name="titulo_informe" required>
-                    
-                    <label for="titulo_informe" class="form-label">Tipo de rol</label>
-                    <input type="password" class="form-control" id="titulo_informe" name="titulo_informe" required>
-                 
-                
-
+                    <input type="password" class="form-control" id="titulo_informe" name="titulo_informe" formControlName="tcContrasennia" required>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="selectEstado" class="form-label" id="label1">Rol</label>
+                    <select class="form-select custom-select mb-3" id="selectEstado" name="Rol" formControlName="tccRol">
+                      <option value="Secretaria">Secretaria</option>
+                      <option value="AdminEdificio">Administrador de Edificio</option>
+                      <option value="Tecnico">Técnico</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="selectedOficina" class="form-label" id="label1">Oficina</label>
+                    <select class="form-select custom-select mb-3" id="selectedOficina" name="Oficina" formControlName="selectedOficina" (change)="onChange($event)">
+                      <option *ngFor="let Oficina of listaOficinas" [value]="Oficina.tnIdOficina">{{ Oficina.tnIdOficina }}</option>
+                    </select>
                   </div>
                 </div>
         
               </div>
               <button type="submit" class="btn btn-danger" id="cancelar">Cancelar</button>
-              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="submit" class="btn btn-primary" (click)="crearUsuario()">Guardar</button>
             </form>
           </div>
       </mat-sidenav-content>

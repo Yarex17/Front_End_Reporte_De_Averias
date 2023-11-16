@@ -18,6 +18,11 @@ export class UsuarioServices{
         withCredentials: false
     };
 
+    crearUsuario(data: any): Observable<any> {
+        console.log(data);
+        return this.http.post("https://localhost:7196/api/TraUsuarios/CrearTraUsario?rol="+data.rolUsuario+"&nombre="+data.nombreUsuario+"&apellido="+data.apellidoUsuario+"&cedula="+data.cedulaUsuario+"&correo="+data.correoUsuario+"&contrasennia="+data.contrasennaUsuario+"&idOficina="+data.idOficinaUsuario, data);
+    }
+
     buscarUsuarioPorEdificioYRol(data: any):Observable<Usuario>{
         return this.http.post<Usuario>("https://localhost:7196/api/TraUsuarios/BuscarTraUsarioPorEdificioYRol?idEdificio="+data.idEdificio+"&rol="+data.rol, data);
     }
