@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import {Oficina} from '../Models/oficina'
 
@@ -11,9 +11,17 @@ export class OficinaServices{
 
 
     constructor(private http:HttpClient){}
+    
+
+    httpOptions1 = {
+      headers: new HttpHeaders({
+        "Access-Control-Allow-Origin": "*"
+      }),
+      withCredentials: false
+    };
 
     getList():Observable<Oficina[]>{
-        return this.http.get<Oficina[]>('https://localhost:7196/api/TraOficinas/ListarTraOficinasPorTraEdificio');
+        return this.http.get<Oficina[]>('https://localhost:7196/api/TraOficinas/ListarTraOficinas');
     }
 
     registrarOficina(data: any): Observable<any> {

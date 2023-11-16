@@ -72,6 +72,11 @@ export class ListarOficinasComponent {
     });
   }
 
+  logout(): void {
+    this._loginService.logout(); 
+    this.router.navigate(['/login']);
+  }
+
   eliminarOficina(idOficina: number) {
     if (confirm('¿Estás seguro de que deseas eliminar esta oficina?')) {
       this._oficinasService.eliminarOficina(idOficina).subscribe((data: any) => {
