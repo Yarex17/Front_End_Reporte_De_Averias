@@ -47,6 +47,17 @@ export class VerReportesFinalizadosComponent implements OnInit{
     this.router.navigate(['/login']);
   }
 
+  obtenerAnioDesdeFecha(fecha: string | Date): number | null {
+   
+    const fechaDate = typeof fecha === 'string' ? new Date(fecha) : fecha;
+
+   
+    const year = fechaDate.getFullYear();
+
+   
+    return !isNaN(year) ? year : null;
+  }
+
   obtenerReportesFinalizados() {
     const request = {
       idUsuario: this.idUsuarioActual,
@@ -55,7 +66,13 @@ export class VerReportesFinalizadosComponent implements OnInit{
 
     return this._reportesService.listarReportesPorUsuarioYEstado(request).subscribe((data: Reporte[]) => {
       console.log(data);
-      this.listaReportes = data;
+      this.listaReportes = data.map((reporte: Reporte) => {
+
+        const year = new Date(reporte.tfFecha).getFullYear();
+
+
+        return { ...reporte, year: year };
+      });
     })
   };
 
