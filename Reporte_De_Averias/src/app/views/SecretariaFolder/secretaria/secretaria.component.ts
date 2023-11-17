@@ -50,6 +50,17 @@ export class SecretariaComponent implements OnInit{
     dataUsuario;
   }
 
+  obtenerAnioDesdeFecha(fecha: string | Date): number | null {
+   
+    const fechaDate = typeof fecha === 'string' ? new Date(fecha) : fecha;
+
+   
+    const year = fechaDate.getFullYear();
+
+   
+    return !isNaN(year) ? year : null;
+  }
+
   obtenerReportes() {
     return this._reportesService.listarReportesPorUsuario(this.idUsuarioActual).subscribe((data: Reporte[]) => {
       console.log(data);

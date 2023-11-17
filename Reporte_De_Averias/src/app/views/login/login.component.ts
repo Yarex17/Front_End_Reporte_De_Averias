@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
           } else if (dataLogin.rol === "AdminEdificio") {
             this.router.navigate(['/administradordeledificio']);
           }
-          
         } else {
           console.log("El nombre de usuario o la contraseña son incorrectos");
           this.openDialog();
@@ -70,6 +69,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  
   logout(){
     this.loginService.logout();
   }

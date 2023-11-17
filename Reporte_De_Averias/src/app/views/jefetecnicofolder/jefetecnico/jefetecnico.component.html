@@ -32,16 +32,16 @@
           <table class="table table-bordered" *ngFor="let Reporte of listaReportes">
             <thead>
               <tr>
-                <th class="text-center">Descripción</th>
-                <th class="text-center">Fecha</th>
+                <th class="text-center">Identificador</th>
+                <th class="text-center">Descripcion</th>
                 <th class="text-center">Editar</th>
                 <th class="text-center">Eliminar</th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td class="text-center">{{ obtenerAnioDesdeFecha(Reporte.tfFecha)+ ' - '+Reporte.tnIdReporte }}</td>
                 <td class="text-center">{{Reporte.tcDescripcion}}</td>
-                <td class="text-center">{{Reporte.tfFecha}}</td>
                 <td class="text-center"><a (click)="editarReporte(Reporte.tnIdReporte)" href="/modificarreporte-jefetecnico"><img src="./assets/editar.png" alt="Imagen de la tarea"></a></td>
                 <td class="text-center"><a (click)="eliminarReporte(Reporte.tnIdReporte)" href="/jefetecnico"><img src="./assets/eliminar.png" alt="Imagen de la tarea"></a></td>
             </tbody>

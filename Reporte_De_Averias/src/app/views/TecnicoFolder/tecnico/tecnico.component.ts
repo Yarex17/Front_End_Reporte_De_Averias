@@ -42,6 +42,17 @@ export class TecnicoComponent {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
+  obtenerAnioDesdeFecha(fecha: string | Date): number | null {
+   
+    const fechaDate = typeof fecha === 'string' ? new Date(fecha) : fecha;
+
+   
+    const year = fechaDate.getFullYear();
+
+   
+    return !isNaN(year) ? year : null;
+  }
+
   logout(): void {
     this._loginService.logout(); 
     this.router.navigate(['/login']);
