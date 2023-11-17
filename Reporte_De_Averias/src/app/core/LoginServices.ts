@@ -17,7 +17,7 @@ export class LoginService {
 
   isAuthenticated(): boolean {
     const id = sessionStorage.getItem('id');
-    return !!id; // Devuelve true si hay un ID en el almacenamiento de sesión, false si no
+    return !!id;
   }
 
   logout(): void {

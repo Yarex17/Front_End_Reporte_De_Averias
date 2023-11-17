@@ -11,6 +11,7 @@ import { ReporteServices } from 'src/app/core/ReportesServices';
 import { EdificioServices } from 'src/app/core/EdificiosServices';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/LoginServices';
+import { CommonModule } from '@angular/common';
 
 
 let dataReporteSeleccionado:Reporte;
@@ -28,6 +29,7 @@ let dataReporteSeleccionado:Reporte;
     MatSidenavModule,
     MatListModule,
     NgFor,
+    CommonModule
   ],
 })
 export class JefetecnicoComponent implements OnInit {
@@ -52,13 +54,31 @@ export class JefetecnicoComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  obtenerAnioDesdeFecha(fecha: string | Date): number | null {
+   
+    const fechaDate = typeof fecha === 'string' ? new Date(fecha) : fecha;
+
+   
+    const year = fechaDate.getFullYear();
+
+   
+    return !isNaN(year) ? year : null;
+  }
 
   obtenerReportes() {
     return this._reportesService.listarReportesPorUsuario(this.idUsuarioActual).subscribe((data: Reporte[]) => {
       console.log(data);
-      this.listaReportes = data;
-    })
-  };
+
+
+      this.listaReportes = data.map((reporte: Reporte) => {
+
+        const year = new Date(reporte.tfFecha).getFullYear();
+
+
+        return { ...reporte, year: year };
+      });
+    });
+  }
 
   editarReporte(idReporte:number){
     sessionStorage.setItem('idReporteSeleccionado', idReporte.toString());
