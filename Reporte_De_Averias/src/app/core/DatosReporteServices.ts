@@ -37,6 +37,10 @@ export class DatosReporteServices{
         return this.http.post<Estado>('https://localhost:7196/api/TraEstadoes/BuscarTraEstadoPorNombre?nombre='+data.estado, data);
     }
 
+    buscarEstadoPorReporte(data: any): Observable<Estado>{
+        return this.http.get<Estado>('https://localhost:7196/api/TraEstadoes/BuscarTraEstadoPorReporte?idReporte='+data);
+    }
+
     //crud Prioridad
 
     getListPrioridad():Observable<Prioridad[]>{
