@@ -14,6 +14,15 @@ import { Usuario } from 'src/app/Models/usuario';
 import * as html2pdf from 'html2pdf.js';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/LoginServices';
+import { DatosReporteServices } from 'src/app/core/DatosReporteServices';
+import { Estado } from 'src/app/Models/estado';
+
+interface ReporteEstado {
+  idReporte: number;
+  descripcionReporte: string;
+  idEstado: number;
+  nombreEstado: string;
+}
 
 @Component({
   selector: 'app-administrador-del-edifcio',
@@ -35,11 +44,12 @@ export class AdministradorDelEdifcioComponent {
   mobileQuery: MediaQueryList;
   listaReportes:Reporte[]=[];
   idUsuarioActual: string | null | undefined;
+  reportesConEstado: ReporteEstado[] =[];
   rolValue: string | null | undefined;
   single: any[] = [];
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _usuarioServices: UsuarioServices,private router:Router, private _loginService:LoginService) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _usuarioServices: UsuarioServices,private router:Router, private _loginService:LoginService, private _datosReporteServices: DatosReporteServices) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -58,10 +68,29 @@ export class AdministradorDelEdifcioComponent {
 
 
   obtenerReportes() {
-    return this._reportesService.listarReportesPorUsuario(this.idUsuarioActual).subscribe((data: Reporte[]) => {
+    this._reportesService.listarReportesPorUsuario(this.idUsuarioActual).subscribe((data: Reporte[]) => {
       console.log(data);
       this.listaReportes = data;
-    })
+      console.log("dentro: "+this.listaReportes.length);
+      
+      //Obtener Estados por Reporte
+      for (let index = 0; index < this.listaReportes.length; index++) {
+        this._datosReporteServices.buscarEstadoPorReporte(this.listaReportes[index].tnIdReporte).subscribe((data: Estado) => {
+          var estado: Estado = data;
+          if(estado != null){
+            this.reportesConEstado.push({idReporte: this.listaReportes[index].tnIdReporte,
+              descripcionReporte: this.listaReportes[index].tcDescripcion,
+              idEstado: estado.tnIdEstado,
+              nombreEstado: estado.tcNombre});
+          }else{
+            this.reportesConEstado.push({idReporte: this.listaReportes[index].tnIdReporte,
+              descripcionReporte: this.listaReportes[index].tcDescripcion,
+              idEstado: 0,
+              nombreEstado: "Sin asignar"});
+          }//else
+        });
+      }//for
+    });
   };
 
   logout(): void {
@@ -138,6 +167,7 @@ export class AdministradorDelEdifcioComponent {
     this.rolValue = sessionStorage.getItem('rol');
     
     this.obtenerReportes();
+    console.log("fuera: "+this.listaReportes.length);
   }
 
   ngOnDestroy(): void {
