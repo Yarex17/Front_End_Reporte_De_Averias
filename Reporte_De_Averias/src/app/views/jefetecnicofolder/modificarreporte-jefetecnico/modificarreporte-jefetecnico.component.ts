@@ -16,6 +16,8 @@ import { UsuarioServices } from 'src/app/core/UsuarioServices';
 import { Usuario } from 'src/app/Models/usuario';
 import { ReporteServices } from 'src/app/core/ReportesServices';
 import { LoginService } from 'src/app/core/LoginServices';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 interface Tecnico {
   id: number;
@@ -36,7 +38,8 @@ interface Tecnico {
     MatSidenavModule,
     MatListModule,
     NgFor,
-    FormsModule
+    FormsModule,
+    ToastrModule
     
   ],
   
@@ -59,7 +62,7 @@ export class ModificarreporteJefetecnicoComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor( private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices, private _reportesService:ReporteServices) {
+  constructor(private toastr: ToastrService, private _loginService:LoginService,changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _datosReporteServices: DatosReporteServices, private router: Router, private _usuarioServices: UsuarioServices, private _reportesService:ReporteServices) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -108,23 +111,33 @@ export class ModificarreporteJefetecnicoComponent {
       prioridadReporte: this.selectedPrioridad,
       estadoReporte: this.selectedEstado
     };
-
+  
     this._datosReporteServices.asignarDatosReportes(request).subscribe((data: any) => {
       console.log(data);
     });
+    
     this.tecnicosSeleccionados = this.tecnicos.filter(tecnico => tecnico.seleccionado);
+    
     for (let i = 0; i < this.tecnicosSeleccionados.length; i++) {
       const request = {
         idReporte: this.idReporteSeleccionado,
         idUsuario: this.tecnicosSeleccionados[i].id
       };
+      
       this._reportesService.enviarReporte(request).subscribe((data: any) => {
         console.log(data);
       });
     }
-    alert("El reporte ha sido enviado al técnico");
-    this.router.navigate(['/jefetecnico']); // Redirección aquí
-
+  
+    Swal.fire({
+      icon: 'success',
+      title: 'Éxito',
+      text: 'El reporte ha sido enviado al técnico',
+    }).then((result) => {
+      if (result.isConfirmed || result.isDismissed) {
+        this.router.navigate(['/jefetecnico']);
+      }
+    });
   }
 
   ngOnInit(): void {

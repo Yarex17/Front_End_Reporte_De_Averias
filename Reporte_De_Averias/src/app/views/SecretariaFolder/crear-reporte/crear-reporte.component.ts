@@ -13,6 +13,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from 'src/app/Alerts/popup/popup.component';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/LoginServices';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-crear-reporte',
   templateUrl: './crear-reporte.component.html',
@@ -72,8 +74,15 @@ export class CrearReporteComponent {
       idAdmin: this.idAdminEdificio
     };
     this._reportesService.registrarReporte(request).subscribe((data: any) => {
-      alert("El reporte ha sido creado");
-      this.router.navigate(['/secretaria']);
+      Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'El reporte ha sido enviado al Administrador del edificio',
+      }).then((result) => {
+        if (result.isConfirmed || result.isDismissed) {
+          this.router.navigate(['/secretaria']);
+        }
+      });
     });
   }
 
@@ -84,6 +93,9 @@ export class CrearReporteComponent {
       data: { message: 'Los campos están en blanco' }
     });
   }
+
+
+
 
   ngOnInit(): void {
     this.idUsuarioActual = sessionStorage.getItem('id');

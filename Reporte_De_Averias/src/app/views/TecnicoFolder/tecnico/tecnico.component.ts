@@ -71,7 +71,6 @@ export class TecnicoComponent {
     this._reportesService.buscarReporte(sessionStorage.getItem('idReporteSeleccionado')).subscribe((data: any) => 
     {
       if(data.tnIdReporte != null){
-        alert("El reporte ha sido reparado");
         sessionStorage.setItem('descripcionReporteSeleccionado', data.tcDescripcion);
       }
     });

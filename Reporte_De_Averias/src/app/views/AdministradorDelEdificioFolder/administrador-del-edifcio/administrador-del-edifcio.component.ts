@@ -27,7 +27,12 @@ interface ReporteEstado {
   fecha:Date;
 }
 
-
+interface TecnicoReportes {
+  idUsuario: number;
+  nombreUsuario: string;
+  apellidoUsuario: string;
+  cantidadReportesFinalizados: number;
+}
 
 
 
@@ -55,6 +60,8 @@ export class AdministradorDelEdifcioComponent {
   rolValue: string | null | undefined;
   single: any[] = [];
   listaTotalReportes:Reporte[]=[];
+  tenicosConCantidadReportes: TecnicoReportes[] = [];
+  listaTecnicos:Usuario[] = [];
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _usuarioServices: UsuarioServices,private router:Router, private _loginService:LoginService, private _datosReporteServices: DatosReporteServices) {
@@ -133,6 +140,22 @@ export class AdministradorDelEdifcioComponent {
 
   }
 
+  generarExcelTecnicos(): void {
+    const data = this.tenicosConCantidadReportes.map(tecnico => {
+      return {
+        'Nombre': `${tecnico.nombreUsuario} ${tecnico.apellidoUsuario}`,
+        'Cantidad de Reportes Finalizados': tecnico.cantidadReportesFinalizados,
+      };
+    });
+  
+    const options: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'TecnicosReportes');
+  
+    XLSX.writeFile(wb, 'tecnicos_reportes.xlsx');
+  }
+
   generarPDF(): void {
     const options = {
       margin: 10,
@@ -147,9 +170,8 @@ export class AdministradorDelEdifcioComponent {
     ];
   
     const fechaActual = new Date();
-    const nombreMesActual = meses[fechaActual.getMonth()]; 
+    const nombreMesActual = meses[fechaActual.getMonth()];
   
-    
     const reportesEnEsteMes = this.listaTotalReportes.filter(reporte => {
       const fechaReporte = new Date(reporte.tfFecha);
       return fechaReporte.getMonth() === fechaActual.getMonth();
@@ -157,7 +179,6 @@ export class AdministradorDelEdifcioComponent {
   
     const cantidadReportesEnEsteMes = reportesEnEsteMes.length;
   
-    
     const content = `
       Cantidad de Reportes Creados en ${nombreMesActual}: ${cantidadReportesEnEsteMes}\n\n
       Detalles de los Reportes:\n
@@ -166,6 +187,12 @@ export class AdministradorDelEdifcioComponent {
   
     const container = document.createElement('div');
     container.innerText = content;
+  
+    // Agregar información de los técnicos
+    container.innerText += '\n\nInformación de Técnicos:\n';
+    this.tenicosConCantidadReportes.forEach(tecnico => {
+      container.innerText += `${tecnico.nombreUsuario} ${tecnico.apellidoUsuario}: ${tecnico.cantidadReportesFinalizados} reportes finalizados\n`;
+    });
   
     html2pdf()
       .from(container)
@@ -177,6 +204,29 @@ export class AdministradorDelEdifcioComponent {
       });
   }
 
+  obtenerTecnicosCantidadReportes() {
+    this._usuarioServices.buscarTecnicos().subscribe((data: Usuario[]) => {
+    this.listaTecnicos = data;
+
+    for (let index = 0; index < this.listaTecnicos.length; index++) {
+      const request = {
+        idUsuario: this.listaTecnicos[index].tnIdUsuario,
+        nombreEstado: "Finalizado"
+      };
+      this._reportesService.listarReportesPorUsuarioYEstado(request).subscribe((data: Reporte[]) => {
+        var reportesTecnicoFinalizados: Reporte[] = data;
+        if(reportesTecnicoFinalizados != null){
+          console.log("tamannio: "+reportesTecnicoFinalizados.length);
+          this.tenicosConCantidadReportes.push({idUsuario: this.listaTecnicos[index].tnIdUsuario,
+            nombreUsuario: this.listaTecnicos[index].tcNombre,
+            apellidoUsuario: this.listaTecnicos[index].tcApellido,
+            cantidadReportesFinalizados: reportesTecnicoFinalizados.length});
+        }//if
+      });
+    }//for
+  }); 
+}
+
   private filtrarReportes(ultimosMeses: number): ReporteEstado[] {
     const fechaLimite = new Date();
     fechaLimite.setMonth(fechaLimite.getMonth() - ultimosMeses);
@@ -184,7 +234,6 @@ export class AdministradorDelEdifcioComponent {
     const reportesFiltrados = this.reportesConEstado.filter(reporte => {
       const fechaReporte = new Date(reporte.fecha);
   
-      // Aquí debes buscar el estado en la lista de reportes totales y ajustar la lógica según tus necesidades.
       const reporteTotal = this.reportesConEstado.find(r => r.idReporte === reporte.idReporte);
   
       const cumpleCriterios = (
@@ -230,6 +279,7 @@ export class AdministradorDelEdifcioComponent {
     this.generarPDF();
     this.generarExcel(3);
     this.generarExcel(1);
+    this.generarExcelTecnicos();
   }
   
 
@@ -241,6 +291,7 @@ export class AdministradorDelEdifcioComponent {
     
     this.obtenerReportes();
     console.log(this.obtenerReportesTotales());
+    this.obtenerTecnicosCantidadReportes();
   }
 
   ngOnDestroy(): void {
