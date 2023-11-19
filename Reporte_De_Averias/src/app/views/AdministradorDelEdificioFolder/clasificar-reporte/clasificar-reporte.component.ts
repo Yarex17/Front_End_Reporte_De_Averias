@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular
 import { ReporteServices } from 'src/app/core/ReportesServices';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/LoginServices';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clasificar-reporte',
@@ -55,9 +56,16 @@ export class ClasificarReporteComponent implements OnInit{
       idReporte: this.idReporteSeleccionado,
       idUsuario: this.idJefeTecnico
     };
-    alert("El reporte ha sido enviado al jefe técnico");
     this._reportesService.enviarReporte(request).subscribe((data: any) => {
-      this.router.navigate(['/administradordeledificio']); 
+      Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'El reporte ha sido enviado al Jefe Técnico',
+      }).then((result) => {
+        if (result.isConfirmed || result.isDismissed) {
+          this.router.navigate(['/administradordeledificio']);
+        }
+      });
     });
   }
 

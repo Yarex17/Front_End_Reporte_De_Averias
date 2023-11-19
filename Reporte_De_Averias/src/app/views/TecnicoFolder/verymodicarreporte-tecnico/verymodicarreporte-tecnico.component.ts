@@ -13,6 +13,7 @@ import { UsuarioServices } from 'src/app/core/UsuarioServices';
 import { ReporteServices } from 'src/app/core/ReportesServices';
 import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup,ReactiveFormsModule ,Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/core/LoginServices';
 
 @Component({
@@ -78,8 +79,15 @@ export class VerymodicarreporteTecnicoComponent {
     };
 
     this._reportesService.modificarReporteTecnico(request).subscribe((data: any) => {
-      console.log(data);
-      this.router.navigate(['/tecnico']);
+      Swal.fire({
+        icon: 'success',
+        title: 'Éxito',
+        text: 'El reporte ha sido enviado al Jefe técnico',
+      }).then((result) => {
+        if (result.isConfirmed || result.isDismissed) {
+          this.router.navigate(['/tecnico']);
+        }
+      });
     });
 
   }

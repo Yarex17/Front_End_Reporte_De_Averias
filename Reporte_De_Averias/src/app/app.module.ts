@@ -15,6 +15,7 @@ import { DialogComponent } from './Alerts/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupComponent } from './Alerts/popup/popup.component';
 import { VerReportesFinalizadosComponent } from './views/jefetecnicofolder/ver-reportes-finalizados/ver-reportes-finalizados.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -37,7 +38,8 @@ import { VerReportesFinalizadosComponent } from './views/jefetecnicofolder/ver-r
     MatIconModule,
     FormsModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
