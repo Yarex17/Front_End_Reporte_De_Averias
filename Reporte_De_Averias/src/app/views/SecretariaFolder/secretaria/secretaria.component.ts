@@ -63,7 +63,6 @@ export class SecretariaComponent implements OnInit{
 
   obtenerReportes() {
     return this._reportesService.listarReportesPorUsuario(this.idUsuarioActual).subscribe((data: Reporte[]) => {
-      console.log(data);
       this.listaReportes = data;
     })
   };
@@ -71,7 +70,6 @@ export class SecretariaComponent implements OnInit{
   obtenerEdificio() {
     this._edificiosService.buscarEdificioPorUsuario(this.idUsuarioActual).subscribe((data: any) => 
     {
-      console.log(data);
       dataEdificio = new Edificio(data.tnIdEdificio, data.tcPropietario, data.tcNombre, data.tbActivo, data.tbEliminado);
       if(dataEdificio.tnIdEdificio != null){
         sessionStorage.setItem('edificio', dataEdificio.tnIdEdificio.toString());
@@ -82,7 +80,7 @@ export class SecretariaComponent implements OnInit{
   }
 
   editarReporte(idReporte: number) {
-    console.log("ID del reporte seleccionado:", idReporte);
+    idReporte;
   }
   
   obtenerAdminEdificio() {
@@ -92,13 +90,11 @@ export class SecretariaComponent implements OnInit{
     };
     this._usuarioServices.buscarUsuarioPorEdificioYRol(request).subscribe((data: any) => 
     {
-      console.log(data);
+      
       dataUsuario = new Usuario(data.tnIdUsuario, data.tccRol, data.tcNombre, data.tcApellido, data.tcCedula, data.tcContrasennia, data.tcCorreo, data.tbActivo, data.tbEliminado);
       if(dataUsuario.tnIdUsuario != null){
         sessionStorage.setItem('idAdminEdificio', dataUsuario.tnIdUsuario.toString());
         sessionStorage.setItem('nombreAdminEdificio', dataUsuario.tcNombre);
-        console.log("id:"+sessionStorage.getItem('idAdminEdificio'))
-        console.log("nombre:"+sessionStorage.getItem('nombreAdminEdificio'))
       }
     });
   }

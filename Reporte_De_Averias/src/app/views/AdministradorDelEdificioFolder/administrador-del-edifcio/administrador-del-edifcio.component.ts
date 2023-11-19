@@ -16,13 +16,20 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/core/LoginServices';
 import { DatosReporteServices } from 'src/app/core/DatosReporteServices';
 import { Estado } from 'src/app/Models/estado';
+import * as XLSX from 'xlsx';
+
 
 interface ReporteEstado {
   idReporte: number;
   descripcionReporte: string;
   idEstado: number;
   nombreEstado: string;
+  fecha:Date;
 }
+
+
+
+
 
 @Component({
   selector: 'app-administrador-del-edifcio',
@@ -47,6 +54,7 @@ export class AdministradorDelEdifcioComponent {
   reportesConEstado: ReporteEstado[] =[];
   rolValue: string | null | undefined;
   single: any[] = [];
+  listaTotalReportes:Reporte[]=[];
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private _reportesService:ReporteServices, private _usuarioServices: UsuarioServices,private router:Router, private _loginService:LoginService, private _datosReporteServices: DatosReporteServices) {
@@ -71,27 +79,34 @@ export class AdministradorDelEdifcioComponent {
     this._reportesService.listarReportesPorUsuario(this.idUsuarioActual).subscribe((data: Reporte[]) => {
       console.log(data);
       this.listaReportes = data;
-      console.log("dentro: "+this.listaReportes.length);
-      
-      //Obtener Estados por Reporte
-      for (let index = 0; index < this.listaReportes.length; index++) {
-        this._datosReporteServices.buscarEstadoPorReporte(this.listaReportes[index].tnIdReporte).subscribe((data: Estado) => {
+    });
+  };
+
+  obtenerReportesTotales() {
+    this._reportesService.getList().subscribe((data: Reporte[]) => {
+      console.log(data);
+      this.listaTotalReportes = data;
+      console.log("dentro: "+this.listaTotalReportes.length);
+
+      for (let index = 0; index < this.listaTotalReportes.length; index++) {
+        this._datosReporteServices.buscarEstadoPorReporte(this.listaTotalReportes[index].tnIdReporte).subscribe((data: Estado) => {
           var estado: Estado = data;
           if(estado != null){
-            this.reportesConEstado.push({idReporte: this.listaReportes[index].tnIdReporte,
-              descripcionReporte: this.listaReportes[index].tcDescripcion,
+            this.reportesConEstado.push({idReporte: this.listaTotalReportes[index].tnIdReporte,
+              descripcionReporte: this.listaTotalReportes[index].tcDescripcion,
               idEstado: estado.tnIdEstado,
-              nombreEstado: estado.tcNombre});
+              nombreEstado: estado.tcNombre, fecha:this.listaTotalReportes[index].tfFecha});
           }else{
-            this.reportesConEstado.push({idReporte: this.listaReportes[index].tnIdReporte,
-              descripcionReporte: this.listaReportes[index].tcDescripcion,
+            this.reportesConEstado.push({idReporte: this.listaTotalReportes[index].tnIdReporte,
+              descripcionReporte: this.listaTotalReportes[index].tcDescripcion,
               idEstado: 0,
-              nombreEstado: "Sin asignar"});
+              nombreEstado: "Sin asignar",fecha:this.listaTotalReportes[index].tfFecha});
           }//else
         });
       }//for
     });
-  };
+
+  }
 
   logout(): void {
     this._loginService.logout(); 
@@ -132,21 +147,21 @@ export class AdministradorDelEdifcioComponent {
     ];
   
     const fechaActual = new Date();
-    const nombreMesActual = meses[fechaActual.getMonth()]; // Obtener el nombre del mes actual
+    const nombreMesActual = meses[fechaActual.getMonth()]; 
   
-    // Filtrar los reportes que fueron creados en el mismo mes
-    const reportesEnEsteMes = this.listaReportes.filter(reporte => {
+    
+    const reportesEnEsteMes = this.listaTotalReportes.filter(reporte => {
       const fechaReporte = new Date(reporte.tfFecha);
       return fechaReporte.getMonth() === fechaActual.getMonth();
     });
   
     const cantidadReportesEnEsteMes = reportesEnEsteMes.length;
   
-    // Construir el contenido del PDF
+    
     const content = `
       Cantidad de Reportes Creados en ${nombreMesActual}: ${cantidadReportesEnEsteMes}\n\n
       Detalles de los Reportes:\n
-      ${this.listaReportes.map(reporte => `${reporte.tcDescripcion} - ${reporte.tfFecha}`).join('\n')}
+      ${this.listaTotalReportes.map(reporte => `${reporte.tcDescripcion} - ${reporte.tfFecha}`).join('\n')}
     `;
   
     const container = document.createElement('div');
@@ -162,12 +177,70 @@ export class AdministradorDelEdifcioComponent {
       });
   }
 
+  private filtrarReportes(ultimosMeses: number): ReporteEstado[] {
+    const fechaLimite = new Date();
+    fechaLimite.setMonth(fechaLimite.getMonth() - ultimosMeses);
+  
+    const reportesFiltrados = this.reportesConEstado.filter(reporte => {
+      const fechaReporte = new Date(reporte.fecha);
+  
+      // Aquí debes buscar el estado en la lista de reportes totales y ajustar la lógica según tus necesidades.
+      const reporteTotal = this.reportesConEstado.find(r => r.idReporte === reporte.idReporte);
+  
+      const cumpleCriterios = (
+        reporteTotal &&
+        reporteTotal.nombreEstado === 'Finalizado' &&
+        fechaReporte >= fechaLimite &&
+        fechaReporte <= new Date()
+      );
+  
+      console.log(`Reporte ${reporte.idReporte} - Cumple criterios: ${cumpleCriterios}`);
+      return cumpleCriterios;
+    });
+  
+    console.log('Reportes filtrados:', reportesFiltrados);
+    return reportesFiltrados;
+  }
+  
+  generarExcel(ultimosMeses: number): void {
+    const reportesFiltrados = this.filtrarReportes(ultimosMeses);
+  
+    console.log('Datos para Excel:', reportesFiltrados);
+  
+    const data = reportesFiltrados.map(reporte => {
+      return {
+        Descripcion: reporte.descripcionReporte,
+        Fecha: reporte.fecha,
+      };
+    });
+  
+    console.log('Datos mapeados para Excel:', data);
+  
+    const options: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Reportes');
+  
+    XLSX.writeFile(wb, `reportes_${ultimosMeses}_meses.xlsx`);
+  }
+  
+  
+
+  generarReporteCompleto(): void {
+    this.generarPDF();
+    this.generarExcel(3);
+    this.generarExcel(1);
+  }
+  
+
+  
+
   ngOnInit(): void {
     this.idUsuarioActual = sessionStorage.getItem('id');
     this.rolValue = sessionStorage.getItem('rol');
     
     this.obtenerReportes();
-    console.log("fuera: "+this.listaReportes.length);
+    console.log(this.obtenerReportesTotales());
   }
 
   ngOnDestroy(): void {

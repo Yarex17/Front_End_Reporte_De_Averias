@@ -55,9 +55,9 @@ export class ClasificarReporteComponent implements OnInit{
       idReporte: this.idReporteSeleccionado,
       idUsuario: this.idJefeTecnico
     };
+    alert("El reporte ha sido enviado al jefe técnico");
     this._reportesService.enviarReporte(request).subscribe((data: any) => {
-      console.log(data);
-      this.router.navigate(['/administradordeledificio']); // Redirección aquí
+      this.router.navigate(['/administradordeledificio']); 
     });
   }
 

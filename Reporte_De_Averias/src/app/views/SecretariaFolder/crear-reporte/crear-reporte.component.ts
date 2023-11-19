@@ -64,7 +64,7 @@ export class CrearReporteComponent {
     const descripcionObtenida = this.formularioReporte.value.tcDescripcion;
     if (!descripcionObtenida) {
       this.mostrarPopupCamposEnBlanco();
-      return; // No continuar con el registro si hay campos vacíos
+      return;
     }
     const request = {
       descripcion: this.formularioReporte.value.tcDescripcion,
@@ -72,7 +72,7 @@ export class CrearReporteComponent {
       idAdmin: this.idAdminEdificio
     };
     this._reportesService.registrarReporte(request).subscribe((data: any) => {
-      console.log(data);
+      alert("El reporte ha sido creado");
       this.router.navigate(['/secretaria']);
     });
   }
