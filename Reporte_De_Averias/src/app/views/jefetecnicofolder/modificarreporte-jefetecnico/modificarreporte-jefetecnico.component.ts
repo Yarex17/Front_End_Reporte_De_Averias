@@ -122,6 +122,7 @@ export class ModificarreporteJefetecnicoComponent {
         console.log(data);
       });
     }
+    alert("El reporte ha sido enviado al técnico");
     this.router.navigate(['/jefetecnico']); // Redirección aquí
 
   }

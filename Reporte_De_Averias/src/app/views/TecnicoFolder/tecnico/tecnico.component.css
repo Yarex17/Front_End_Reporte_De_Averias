@@ -121,13 +121,13 @@ mat-toolbar{
 
 
 .table-title {
-  font-size: 2rem; /* Tamaño de fuente del título */
-  margin-bottom: 10px; /* Espaciado inferior del título */
+  font-size: 2rem; 
+  margin-bottom: 10px; 
 }
 
 .table {
-  width: 100%; /* Hace que la tabla ocupe el 100% del ancho del contenedor */
-  border-collapse: collapse; /* Combina los bordes de las celdas */
+  width: 100%; 
+  border-collapse: collapse; 
 }
 
 .table th, .table td {
@@ -135,8 +135,6 @@ mat-toolbar{
   text-align: center;
   padding: 8px;
   border: 1px solid #ddd;
-  background-color: white; /* Agrega esta línea para que las celdas tengan un fondo blanco */
-  color: black; /* Puedes cambiar el color del texto según sea necesario */
+  background-color: white; 
+  color: black; 
 }
-
-/* Otras reglas de estilo si es necesario */
