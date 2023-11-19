@@ -180,18 +180,18 @@ export class AdministradorDelEdifcioComponent {
     const cantidadReportesEnEsteMes = reportesEnEsteMes.length;
   
     const content = `
-      Cantidad de Reportes Creados en ${nombreMesActual}: ${cantidadReportesEnEsteMes}\n\n
-      Detalles de los Reportes:\n
-      ${this.listaTotalReportes.map(reporte => `${reporte.tcDescripcion} - ${reporte.tfFecha}`).join('\n')}
+      Cantidad de Reportes Creados en ${nombreMesActual}: ${cantidadReportesEnEsteMes}<br><br>
+      Detalles de los Reportes:<br>
+      ${this.listaTotalReportes.map(reporte => `${reporte.tcDescripcion} - ${reporte.tfFecha}`).join('<br>')}
     `;
   
     const container = document.createElement('div');
-    container.innerText = content;
+    container.innerHTML = content;
   
     // Agregar información de los técnicos
-    container.innerText += '\n\nInformación de Técnicos:\n';
+    container.innerHTML += '<br><br>Información de Técnicos:<br>';
     this.tenicosConCantidadReportes.forEach(tecnico => {
-      container.innerText += `${tecnico.nombreUsuario} ${tecnico.apellidoUsuario}: ${tecnico.cantidadReportesFinalizados} reportes finalizados\n`;
+      container.innerHTML += `${tecnico.nombreUsuario} ${tecnico.apellidoUsuario}: ${tecnico.cantidadReportesFinalizados} reportes finalizados<br>`;
     });
   
     html2pdf()
